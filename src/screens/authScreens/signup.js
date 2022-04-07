@@ -10,6 +10,7 @@ import Button1 from '../../components/buttons/button1';
 function Signup({navigation}) {
   return (
     <KeyboardAwareScrollView
+      enableOnAndroid={true}
       contentContainerStyle={styles.container}
       showsVerticalScrollIndicator={false}>
       {/* Header */}
@@ -133,7 +134,7 @@ function Signup({navigation}) {
               fontFamily: 'Poppins-Regular',
               color: '#5B5B5B',
             }}>
-            Already have a account?
+            Already have an account?
           </Text>
         </View>
         <Pressable onPress={() => navigation.navigate('Login')}>

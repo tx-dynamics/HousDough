@@ -13,7 +13,7 @@ function SetupScreen3({navigation}) {
     ['Still Example', false],
   ]);
 
-  // This function is to change state of activities buttons on toggle
+  // This function is to change state of skills buttons on toggle
   const changeStatus = ArrayIndex => {
     const temp = [];
 

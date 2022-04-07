@@ -86,6 +86,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Regular',
     flex: 1,
     fontSize: 14,
-    color: colors.placeHolderColor,
+    color: colors.black,
   },
 });

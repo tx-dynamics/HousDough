@@ -32,7 +32,7 @@ function SetupScreen1({navigation}) {
         <Text style={styles.text}>Use My Current Location</Text>
       </Pressable>
       {/* Enter Your Postcode */}
-      {0 ? (
+      {1 ? (
         <View style={styles.locationCard}>
           <TextInput style={styles.text} placeholder="Enter Your Postcode" />
         </View>

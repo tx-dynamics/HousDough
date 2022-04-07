@@ -30,11 +30,20 @@ function SetupScreen4({navigation}) {
 
       {/* Done Button */}
 
-      <Button2
-        onPress={() => navigation.navigate('BottomTabNavigator')}
-        text={'Done'}
-        light={false}
-      />
+      <View
+        style={{
+          position: 'absolute',
+          bottom: 25,
+          alignSelf: 'center',
+
+          width: '100%',
+        }}>
+        <Button2
+          onPress={() => navigation.navigate('BottomTabNavigator')}
+          text={'Done'}
+          light={false}
+        />
+      </View>
     </KeyboardAwareScrollView>
   );
 }

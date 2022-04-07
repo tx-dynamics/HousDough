@@ -4,9 +4,14 @@ import HomeHeader from '../../components/headers/homeHeader';
 import colors from '../../globalStyles/colorScheme';
 import HomeCard from '../../components/homeCard';
 
-const renderItem = ({item}) => <HomeCard item={item} />;
+function Home({navigation}) {
+  const renderItem = ({item}) => (
+    <HomeCard
+      onPress={() => navigation.navigate('OthersProfile')}
+      item={item[1]}
+    />
+  );
 
-function Home() {
   // Dummy Data
 
   const [Data, setData] = useState([
@@ -55,6 +60,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     marginHorizontal: '5%',
+    marginBottom: '2%',
   },
   text1: {
     color: colors.black,
