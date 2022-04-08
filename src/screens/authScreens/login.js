@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, StyleSheet, Pressable, Image} from 'react-native';
 import {Formik} from 'formik';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
@@ -61,10 +61,12 @@ function Login({navigation}) {
             </Pressable>
 
             {/* Sign In Button */}
+
             <Button1
               onPress={() => navigation.navigate('OnBoardNavigator')}
               text={'Sign In'}
             />
+
             {/* or */}
             <View style={{alignSelf: 'center', margin: 10}}>
               <Text style={{color: '#5B5B5B', fontSize: 18}}>or</Text>

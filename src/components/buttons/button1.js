@@ -20,6 +20,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: '10%',
+    shadowOffset: {width: 15, height: 15},
+    shadowColor: 'black',
+    shadowOpacity: 2,
+    elevation: 3,
   },
   buttonText: {
     fontSize: 18,

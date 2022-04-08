@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   View,
   Text,
@@ -12,8 +12,11 @@ import Header1 from '../../components/headers/Header1';
 import colors from '../../globalStyles/colorScheme';
 import Button3 from '../../components/buttons/button3';
 import Geolocation from '@react-native-community/geolocation';
+import {UserContext} from '../../contextApi/contextApi';
 
 function SetupScreen1({navigation}) {
+  const {userType, setUserType} = useContext(UserContext);
+
   return (
     <KeyboardAwareScrollView contentContainerStyle={styles.container}>
       {/* Header */}
@@ -32,7 +35,7 @@ function SetupScreen1({navigation}) {
         <Text style={styles.text}>Use My Current Location</Text>
       </Pressable>
       {/* Enter Your Postcode */}
-      {1 ? (
+      {userType ? (
         <View style={styles.locationCard}>
           <TextInput style={styles.text} placeholder="Enter Your Postcode" />
         </View>

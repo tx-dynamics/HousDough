@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useContext} from 'react';
 import {
   View,
   Text,
@@ -10,10 +10,12 @@ import {
   Animated,
 } from 'react-native';
 import Button2 from '../../components/buttons/button2';
+import {UserContext} from '../../contextApi/contextApi';
 
 function Splash({navigation}) {
   const [isLoading, setIsLoading] = useState(true);
   const translation = useRef(new Animated.Value(150)).current;
+  const {userType, setUserType} = useContext(UserContext);
 
   useEffect(() => {
     setInterval(() => {
@@ -63,13 +65,19 @@ function Splash({navigation}) {
             <Text style={styles.text1}>I AM A</Text>
 
             <Button2
-              onPress={() => navigation.navigate('Login')}
+              onPress={() => {
+                setUserType(0);
+                navigation.navigate('Login');
+              }}
               text={'HOSDOUGH WORKER'}
               light={true}
             />
 
             <Button2
-              onPress={() => navigation.navigate('Login')}
+              onPress={() => {
+                setUserType(1);
+                navigation.navigate('Login');
+              }}
               text={'HOSDOUGH EMPLOYER'}
               light={false}
             />

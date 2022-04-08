@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, Text, StyleSheet, TextInput} from 'react-native';
 import Header1 from '../../components/headers/Header1';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import colors from '../../globalStyles/colorScheme';
 import Button2 from '../../components/buttons/button2';
+import {UserContext} from '../../contextApi/contextApi';
 
 function SetupScreen4({navigation}) {
+  const {userType, setUserType} = useContext(UserContext);
+
   return (
     <KeyboardAwareScrollView contentContainerStyle={styles.container}>
       {/* Header */}
@@ -19,7 +22,7 @@ function SetupScreen4({navigation}) {
       </View>
       {/* Your Past Experience */}
 
-      {0 ? (
+      {!userType ? (
         <View>
           <Text style={styles.text1}>Your Past Experience</Text>
           <View style={styles.box}>
@@ -39,7 +42,11 @@ function SetupScreen4({navigation}) {
           width: '100%',
         }}>
         <Button2
-          onPress={() => navigation.navigate('BottomTabNavigator')}
+          onPress={() => {
+            userType
+              ? navigation.navigate('PaymentNavigator')
+              : navigation.navigate('BottomTabNavigator');
+          }}
           text={'Done'}
           light={false}
         />

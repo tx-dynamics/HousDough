@@ -5,7 +5,7 @@ import colors from '../../globalStyles/colorScheme';
 
 const Header3 = ({text, onPress}) => (
   <View style={styles.container}>
-    {/* Drawer Icon */}
+    {/* Back Arrow Icon */}
     <Pressable
       style={{
         height: '90%',

@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {View, Text, TextInput} from 'react-native';
 import RootNavigator from './src/navigation/rootNavigator';
+import {UserProvider} from './src/contextApi/contextApi';
 
 function App() {
   // This useEffect is stop font scalling
@@ -11,7 +12,11 @@ function App() {
     TextInput.defaultProps = TextInput.defaultProps || {};
     TextInput.defaultProps.allowFontScaling = false;
   }, []);
-  return <RootNavigator />;
+  return (
+    <UserProvider>
+      <RootNavigator />
+    </UserProvider>
+  );
 }
 
 export default App;
