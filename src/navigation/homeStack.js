@@ -12,7 +12,7 @@ function HomeStack() {
       initialRouteName="Home"
       screenOptions={{
         headerShown: false,
-        animation: 'none',
+        animation: 'fade',
       }}>
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="OthersProfile" component={OthersProfile} />

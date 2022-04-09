@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: '5%',
   },
   text1: {
-    fontFamily: 'Poppins-Bold',
+    fontFamily: 'Poppins-SemiBold',
     fontSize: 20,
     color: colors.black,
   },

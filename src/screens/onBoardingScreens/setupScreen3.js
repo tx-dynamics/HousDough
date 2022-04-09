@@ -1,10 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {View, Text, StyleSheet, ImageBackground} from 'react-native';
 import Header1 from '../../components/headers/Header1';
 import Button3 from '../../components/buttons/button3';
 import Button4 from '../../components/buttons/button4';
+import {UserContext} from '../../contextApi/contextApi';
 
 function SetupScreen3({navigation}) {
+  const {userType, setUserType} = useContext(UserContext);
+
   // This is dummy data
   const [skills, setSkills] = useState([
     ['Cooking', false],
@@ -31,7 +34,9 @@ function SetupScreen3({navigation}) {
       style={styles.container}>
       {/* Header */}
       <Header1
-        text={'Select Skills You Are Looking For'}
+        text={
+          userType ? 'Select Skills You Are Looking For' : 'Select Your Skills'
+        }
         light={true}
         Screen={3}
       />

@@ -15,6 +15,7 @@ function AuthNavigator() {
       initialRouteName="Splash"
       screenOptions={{
         headerShown: false,
+        animation: 'slide_from_bottom',
       }}>
       <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="Login" component={Login} />

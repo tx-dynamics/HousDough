@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
   },
   forgotPassword: {
     alignSelf: 'flex-end',
-    marginBottom: '5%',
+    marginBottom: '15%',
   },
   forgotPasswordText: {
     color: colors.placeHolderColor,

@@ -1,30 +1,44 @@
-import React, {useState} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {View, Text, StyleSheet, Image, FlatList} from 'react-native';
 import HomeHeader from '../../components/headers/homeHeader';
 import colors from '../../globalStyles/colorScheme';
 import HomeCard from '../../components/homeCard';
+import {UserContext} from '../../contextApi/contextApi';
 
 function Home({navigation}) {
+  const {userType, setUserType} = useContext(UserContext);
+
   const renderItem = ({item}) => (
     <HomeCard
-      onPress={() => navigation.navigate('OthersProfile')}
-      item={item[1]}
+      onPress={() => {
+        userType
+          ? navigation.navigate('Profile')
+          : navigation.navigate('OthersProfile');
+      }}
+      item={item}
+      ImageSource={item[1]}
+      UserType={userType}
+      Home={true}
     />
   );
+
+  useEffect(() => {
+    console.log('userType:', userType);
+  }, []);
 
   // Dummy Data
 
   const [Data, setData] = useState([
-    [1, require('../../../assets/images/img1.png')],
-    [2, require('../../../assets/images/img2.png')],
-    [3, require('../../../assets/images/img3.png')],
-    [4, require('../../../assets/images/img4.png')],
+    [1, require('../../../assets/images/img1.png'), 'Kathryn Murphy'],
+    [2, require('../../../assets/images/img2.png'), 'Wade Warren'],
+    [3, require('../../../assets/images/img3.png'), 'Robert Fox'],
+    [4, require('../../../assets/images/img4.png'), 'Jacob Jones'],
   ]);
 
   return (
     <View style={styles.container}>
       {/* Header */}
-      <HomeHeader />
+      <HomeHeader onPress={() => navigation.navigate('Messages')} />
       {/* Top Text */}
       <View style={styles.topText}>
         <View>

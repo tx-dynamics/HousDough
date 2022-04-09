@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
   },
   text1: {
-    fontFamily: 'Poppins-Bold',
+    fontFamily: 'Poppins-SemiBold',
     fontSize: 20,
   },
   text2: {

@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: '2%',
     paddingHorizontal: 20,
-    borderWidth: 2,
   },
   inputFieldText: {
     fontFamily: 'Poppins-SemiBold',

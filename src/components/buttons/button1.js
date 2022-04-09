@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: '10%',
+    marginTop: '0%',
     shadowOffset: {width: 15, height: 15},
     shadowColor: 'black',
     shadowOpacity: 2,

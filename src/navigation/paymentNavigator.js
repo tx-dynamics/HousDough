@@ -13,7 +13,7 @@ function PaymentNavigator() {
       initialRouteName="ChoosePlan"
       screenOptions={{
         headerShown: false,
-        animation: 'none',
+        animation: 'fade',
       }}>
       <Stack.Screen name="ChoosePlan" component={ChoosePlan} />
       <Stack.Screen name="PaymentInformation" component={PaymentInformation} />

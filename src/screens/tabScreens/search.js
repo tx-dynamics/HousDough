@@ -33,7 +33,7 @@ function Search() {
           flexDirection: 'row',
           flexWrap: 'wrap',
           paddingHorizontal: '5%',
-          marginVertical: '5%',
+          marginVertical: '3%',
         }}>
         {distance.map((item, index) => (
           <Button4

@@ -23,9 +23,9 @@ function SetupScreen1({navigation}) {
       <Header1 text={'Share Your Location'} Screen={1} />
       {/* Location Card */}
       <Pressable
-        onPress={() =>
-          Geolocation.getCurrentPosition(info => console.log(info))
-        }
+        onPress={() => {
+          Geolocation.getCurrentPosition(info => console.log(info));
+        }}
         style={styles.locationCard}>
         <Image
           source={require('../../../assets/icons/location.png')}

@@ -1,15 +1,20 @@
 import React from 'react';
-import {View, Pressable, StyleSheet, Image, TextInput} from 'react-native';
+import {
+  View,
+  Pressable,
+  StyleSheet,
+  Image,
+  TextInput,
+  Dimensions,
+} from 'react-native';
 import colors from '../../globalStyles/colorScheme';
 
 const InputField2 = ({
   title,
   value,
-  icon,
+
   onChangeText,
-  eye,
-  onEyePress,
-  ShowPassword,
+
   autoCapitalize,
   onBlur,
 }) => {
@@ -18,7 +23,7 @@ const InputField2 = ({
       <TextInput
         style={styles.inputFieldText}
         placeholder={title}
-        secureTextEntry={!ShowPassword}
+        //secureTextEntry={!ShowPassword}
         onChangeText={onChangeText}
         value={value}
         placeholderTextColor={colors.placeHolderColor}
@@ -37,7 +42,7 @@ const styles = StyleSheet.create({
   inputField: {
     backgroundColor: '#F4F4F4',
     width: '90%',
-    height: 55,
+    height: Dimensions.get('window').height / 13,
     borderRadius: 48,
     flexDirection: 'row',
     alignItems: 'center',
@@ -50,6 +55,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Regular',
     flex: 1,
     fontSize: 14,
-    color: colors.placeHolderColor,
+    color: colors.black,
   },
 });

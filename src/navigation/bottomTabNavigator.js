@@ -19,10 +19,11 @@ function BottomTabNavigator() {
           position: 'absolute',
           bottom: 25,
           backgroundColor: 'rgba(235, 58, 112, 0.2)',
-          height: 67,
+          height: '9%',
           borderRadius: 69,
           marginHorizontal: '5%',
           shadowColor: 0,
+          borderTopWidth: 0,
         },
       }}>
       <Tab.Screen
@@ -37,8 +38,8 @@ function BottomTabNavigator() {
               <Image
                 source={require('../../assets/icons/profile.png')}
                 style={{
-                  width: 24,
-                  height: 24,
+                  width: 22,
+                  height: 22,
                   tintColor: focused ? 'white' : colors.primary,
                 }}
               />
@@ -68,8 +69,8 @@ function BottomTabNavigator() {
               <Image
                 source={require('../../assets/icons/home.png')}
                 style={{
-                  width: 24,
-                  height: 24,
+                  width: 22,
+                  height: 22,
                   tintColor: focused ? 'white' : colors.primary,
                 }}
               />
@@ -93,8 +94,8 @@ function BottomTabNavigator() {
               <Image
                 source={require('../../assets/icons/search.png')}
                 style={{
-                  width: 24,
-                  height: 24,
+                  width: 22,
+                  height: 22,
                   tintColor: focused ? 'white' : colors.primary,
                 }}
               />
@@ -113,8 +114,8 @@ function BottomTabNavigator() {
 export default BottomTabNavigator;
 const styles = StyleSheet.create({
   selectedTab: {
-    width: 50,
-    height: 50,
+    width: 45,
+    height: 45,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 40,

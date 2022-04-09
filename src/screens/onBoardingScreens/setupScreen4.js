@@ -18,6 +18,7 @@ function SetupScreen4({navigation}) {
         <TextInput
           style={styles.boxText}
           placeholder="Write about Yourself..."
+          multiline={true}
         />
       </View>
       {/* Your Past Experience */}
@@ -26,7 +27,11 @@ function SetupScreen4({navigation}) {
         <View>
           <Text style={styles.text1}>Your Past Experience</Text>
           <View style={styles.box}>
-            <TextInput style={styles.boxText} placeholder="Write here..." />
+            <TextInput
+              style={styles.boxText}
+              placeholder="Write here..."
+              multiline={true}
+            />
           </View>
         </View>
       ) : null}
@@ -36,9 +41,9 @@ function SetupScreen4({navigation}) {
       <View
         style={{
           position: 'absolute',
-          bottom: 25,
+          bottom: 0,
           alignSelf: 'center',
-
+          marginBottom: '10%',
           width: '100%',
         }}>
         <Button2
@@ -72,7 +77,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingHorizontal: 20,
     paddingVertical: 0,
-    height: 170,
+    height: 150,
     alignSelf: 'flex-start',
     marginTop: 5,
     marginBottom: 30,

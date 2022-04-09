@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  Dimensions,
+} from 'react-native';
 import Header2 from '../../components/headers/Header2';
 import HomeCard from '../../components/homeCard';
 import colors from '../../globalStyles/colorScheme';
@@ -13,7 +20,7 @@ function Profile() {
       <ScrollView>
         {/* Top Video */}
         <View style={{marginHorizontal: '5%'}}>
-          <HomeCard item={require('../../../assets/images/img5.png')} />
+          <HomeCard ImageSource={require('../../../assets/images/img5.png')} />
         </View>
         {/* Image and Info */}
         <View
@@ -73,7 +80,7 @@ function Profile() {
           </Text>
         </View>
         {/* Past Experience Section */}
-        <View style={{paddingHorizontal: '5%'}}>
+        <View style={{paddingHorizontal: '5%', paddingBottom: '25%'}}>
           <Text style={styles.text2}>Past Experience</Text>
           <Text style={styles.text4}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -93,8 +100,8 @@ const styles = StyleSheet.create({
   },
   ProfileImage: {
     backgroundColor: '#C4C4C4',
-    width: 80,
-    height: 80,
+    width: Dimensions.get('window').width / 5,
+    height: Dimensions.get('window').width / 5,
     borderRadius: 40,
     alignItems: 'center',
     justifyContent: 'center',

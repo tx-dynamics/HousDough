@@ -8,7 +8,7 @@ const Button4 = ({text, selected, onPress, searchScreen}) => (
       style={{
         ...styles.button,
         backgroundColor: selected
-          ? colors.primary
+          ? colors.secondary
           : searchScreen
           ? '#F4F4F4'
           : 'white',

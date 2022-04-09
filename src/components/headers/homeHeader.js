@@ -1,9 +1,9 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
 
 import colors from '../../globalStyles/colorScheme';
 
-const HomeHeader = ({text, light, Screen}) => (
+const HomeHeader = ({text, light, Screen, onPress}) => (
   <View style={styles.container}>
     {/* Drawer Icon */}
     <Image
@@ -18,11 +18,19 @@ const HomeHeader = ({text, light, Screen}) => (
       style={{width: '30%', height: 100}}
     />
     {/* Message */}
-    <Image
-      source={require('../../../assets/icons/message.png')}
-      resizeMode={'contain'}
-      style={{width: '7%'}}
-    />
+    <Pressable
+      onPress={onPress}
+      style={{
+        height: '90%',
+        width: '7%',
+        justifyContent: 'center',
+      }}>
+      <Image
+        source={require('../../../assets/icons/message.png')}
+        resizeMode={'contain'}
+        style={{width: '100%'}}
+      />
+    </Pressable>
   </View>
 );
 
@@ -33,7 +41,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    height: '13%',
+    height: '11%',
     width: '100%',
 
     paddingHorizontal: '5%',
