@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     marginTop: '3%',
   },
   bar: {
-    height: 15,
+    height: 13,
     width: '22%',
     borderRadius: 10,
   },

@@ -75,13 +75,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginVertical: '2%',
     paddingHorizontal: 20,
-    shadowOffset: {width: 15, height: 15},
-    shadowColor: 'black',
-    shadowOpacity: 2,
+    shadowOffset: {width: 0, height: 0},
+    //shadowColor: 'black',
+    shadowOpacity: 0.8,
     elevation: 3,
     // background color must be set
     backgroundColor: '#FFFFFF', // invisible color
   },
+
   inputFieldText: {
     fontFamily: 'Poppins-Regular',
     flex: 1,
