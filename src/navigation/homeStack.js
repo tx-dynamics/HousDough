@@ -15,7 +15,7 @@ function HomeStack() {
         animation: 'fade',
       }}>
       <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="OthersProfile" component={OthersProfile} />
+      {/* <Stack.Screen name="OthersProfile" component={OthersProfile} /> */}
     </Stack.Navigator>
   );
 }

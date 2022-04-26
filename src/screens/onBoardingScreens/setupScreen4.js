@@ -43,7 +43,7 @@ function SetupScreen4({navigation}) {
           position: 'absolute',
           bottom: 0,
           alignSelf: 'center',
-          marginBottom: '10%',
+          marginBottom: '5%',
           width: '100%',
         }}>
         <Button2
@@ -66,7 +66,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: '5%',
-
     backgroundColor: 'white',
   },
   box: {
@@ -76,9 +75,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#FAFAFA',
     borderRadius: 10,
     paddingHorizontal: 20,
-    paddingVertical: 0,
+
     height: 150,
-    alignSelf: 'flex-start',
     marginTop: 5,
     marginBottom: 30,
   },
@@ -86,11 +84,12 @@ const styles = StyleSheet.create({
     color: colors.black,
     fontFamily: 'Poppins-Regular',
     fontSize: 13,
+    flex: 1,
+    textAlignVertical: 'top',
   },
   text1: {
     color: colors.black,
     fontFamily: 'Poppins-Medium',
     fontSize: 16,
-    alignSelf: 'flex-start',
   },
 });

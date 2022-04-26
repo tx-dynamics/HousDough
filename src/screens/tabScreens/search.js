@@ -5,6 +5,8 @@ import InputField2 from '../../components/inputFields/InputField2';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import Button4 from '../../components/buttons/button4';
 
+import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
+
 function Search() {
   const [distance, setDistance] = useState([
     ['5 Km', false],
@@ -48,10 +50,27 @@ function Search() {
       {/* Map */}
 
       <View style={{flex: 1}}>
-        <Image
-          source={require('../../../assets/images/map.png')}
-          resizeMode={'stretch'}
-        />
+        <MapView
+          provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+          style={styles.map}
+          region={{
+            latitude: 31.519539,
+            longitude: 74.29161,
+            latitudeDelta: 0.015,
+            longitudeDelta: 0.0121,
+          }}>
+          <Marker
+            coordinate={{
+              latitude: 31.519539,
+              longitude: 74.29161,
+            }}>
+            <Image
+              source={require('../../../assets/images/p5.jpg')}
+              //resizeMode={'contain'}
+              style={styles.markerIcon}
+            />
+          </Marker>
+        </MapView>
       </View>
     </KeyboardAwareScrollView>
   );
@@ -62,5 +81,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
+  },
+
+  map: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  markerIcon: {
+    height: 50,
+    width: 50,
+    borderRadius: 40,
   },
 });

@@ -31,7 +31,7 @@ export default ChatCard;
 const styles = StyleSheet.create({
   container: {
     width: '60%',
-    marginVertical: '5%',
+    marginVertical: '1.5%',
     padding: '3%',
     justifyContent: 'space-between',
     borderRadius: 10,

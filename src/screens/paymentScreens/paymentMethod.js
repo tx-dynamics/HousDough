@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, Dimensions} from 'react-native';
+import {View, Text, StyleSheet, Image} from 'react-native';
 import Header3 from '../../components/headers/Header3';
 import colorScheme from '../../globalStyles/colorScheme';
 import Button2 from '../../components/buttons/button2';
@@ -8,17 +8,23 @@ function PaymentMethod({navigation}) {
   return (
     <View style={styles.container}>
       {/* Header */}
-      <Header3 text={'Payment Method'} />
+
+      <View>
+        <Header3
+          text={'Payment Method'}
+          onPress={() => navigation.navigate('ChoosePlan')}
+        />
+      </View>
+
       {/* Middle */}
       <View style={{paddingHorizontal: '5%', flex: 1}}>
-        <Text style={styles.text1}>Payment</Text>
+        <Text style={styles.text1}>Package</Text>
         {/* Top location Card */}
 
         <View
           style={{
             flexDirection: 'row',
             alignItems: 'center',
-
             height: 100,
             marginTop: '3%',
             marginBottom: '7%',
@@ -27,7 +33,10 @@ function PaymentMethod({navigation}) {
             source={require('../../../assets/icons/map_icon.png')}
             resizeMode={'contain'}
             style={{
-              width: 120,
+              width: 99.07,
+              height: 94,
+
+              marginRight: '5%',
             }}
           />
           <View
@@ -53,7 +62,7 @@ function PaymentMethod({navigation}) {
           resizeMode={'contain'}
           style={{
             width: '100%',
-            height: '45%',
+            height: '50%',
           }}
         />
         {/* Total Payment */}
@@ -68,7 +77,7 @@ function PaymentMethod({navigation}) {
       </View>
 
       {/* Next Button */}
-      <View style={{marginHorizontal: '5%', marginBottom: '10%'}}>
+      <View style={{marginHorizontal: '5%', marginBottom: '5%'}}>
         <Button2
           text={'Next'}
           onPress={() => navigation.navigate('PaymentInformation')}

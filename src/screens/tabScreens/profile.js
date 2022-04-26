@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   View,
   Text,
@@ -7,21 +7,28 @@ import {
   ScrollView,
   Dimensions,
 } from 'react-native';
-import Header2 from '../../components/headers/Header2';
+import Video from 'react-native-video';
+
+import Header3 from '../../components/headers/Header3';
 import HomeCard from '../../components/homeCard';
 import colors from '../../globalStyles/colorScheme';
 import Button4 from '../../components/buttons/button4';
+import VideoCard from '../../components/videoCard';
+import {UserContext} from '../../contextApi/contextApi';
 
-function Profile() {
+function Profile({navigation}) {
+  const {userType, setUserType} = useContext(UserContext);
+
   return (
     <View style={styles.container}>
       {/* Header */}
-      <Header2 text={'Profile'} />
+      <Header3 onPress={() => navigation.navigate('Home')} text={'Profile'} />
       <ScrollView>
         {/* Top Video */}
         <View style={{marginHorizontal: '5%'}}>
-          <HomeCard ImageSource={require('../../../assets/images/img5.png')} />
+          <VideoCard />
         </View>
+
         {/* Image and Info */}
         <View
           style={{
@@ -54,11 +61,19 @@ function Profile() {
             </View>
           </View>
           {/* pencil */}
-          <Image
-            source={require('../../../assets/icons/pencil.png')}
-            resizeMode={'contain'}
-            style={{width: '8%', height: 50}}
-          />
+          {userType ? (
+            <Image
+              source={require('../../../assets/icons/message2.png')}
+              resizeMode={'contain'}
+              style={{width: 52, height: 52}}
+            />
+          ) : (
+            <Image
+              source={require('../../../assets/icons/pencil.png')}
+              resizeMode={'contain'}
+              style={{width: 30, height: 30}}
+            />
+          )}
         </View>
         {/* Skills Section */}
         <View

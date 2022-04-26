@@ -42,7 +42,9 @@ function Home({navigation}) {
       {/* Top Text */}
       <View style={styles.topText}>
         <View>
-          <Text style={styles.text1}>Venues nearby you</Text>
+          <Text style={styles.text1}>
+            {userType ? 'Workers' : 'Venues'} nearby you
+          </Text>
         </View>
         {/* Filter */}
         <Image

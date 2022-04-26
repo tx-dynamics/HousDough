@@ -15,7 +15,7 @@ const HomeHeader = ({text, light, Screen, onPress}) => (
     <Image
       source={require('../../../assets/icons/logo.png')}
       resizeMode={'contain'}
-      style={{width: '30%', height: 100}}
+      style={{width: '30%', height: 100, marginTop: 10}}
     />
     {/* Message */}
     <Pressable

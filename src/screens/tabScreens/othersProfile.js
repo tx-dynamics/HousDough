@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   View,
   Text,
@@ -12,8 +12,12 @@ import Header3 from '../../components/headers/Header3';
 import HomeCard from '../../components/homeCard';
 import colors from '../../globalStyles/colorScheme';
 import Button4 from '../../components/buttons/button4';
+import VideoCard from '../../components/videoCard';
+import {UserContext} from '../../contextApi/contextApi';
 
 function OthersProfile({navigation}) {
+  const {userType, setUserType} = useContext(UserContext);
+
   return (
     <View style={styles.container}>
       <Header3
@@ -23,10 +27,7 @@ function OthersProfile({navigation}) {
       <ScrollView>
         {/* Top Video */}
         <View style={{marginHorizontal: '5%'}}>
-          <HomeCard
-            Home={false}
-            ImageSource={require('../../../assets/images/img6.png')}
-          />
+          <VideoCard />
         </View>
         {/* Image and Info */}
         <View
@@ -65,11 +66,19 @@ function OthersProfile({navigation}) {
             onPress={() =>
               navigation.navigate('Chat', {screen: 'OthersProfile'})
             }>
-            <Image
-              source={require('../../../assets/icons/message2.png')}
-              resizeMode={'contain'}
-              style={{width: 52, height: 52}}
-            />
+            {userType ? (
+              <Image
+                source={require('../../../assets/icons/pencil.png')}
+                resizeMode={'contain'}
+                style={{width: 30, height: 30}}
+              />
+            ) : (
+              <Image
+                source={require('../../../assets/icons/message2.png')}
+                resizeMode={'contain'}
+                style={{width: 52, height: 52}}
+              />
+            )}
           </Pressable>
         </View>
 

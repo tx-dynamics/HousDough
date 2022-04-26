@@ -24,5 +24,9 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
       </activity>
+      <!-- React Native Maps -->
+      <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="AIzaSyDt9GY0qjMwSFvi-ODbrRJFZg3wCwtZofc"/>
     </application>
 </manifest>

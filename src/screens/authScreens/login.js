@@ -108,7 +108,7 @@ function Login({navigation}) {
               fontFamily: 'Poppins-Regular',
               color: '#5B5B5B',
             }}>
-            Already have an account?
+            Don't have an account yet?
           </Text>
         </View>
         <Pressable onPress={() => navigation.navigate('Signup')}>

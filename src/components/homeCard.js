@@ -8,6 +8,7 @@ import {
   ImageBackground,
   Image,
 } from 'react-native';
+import Video from 'react-native-video';
 
 const HomeCard = ({item, onPress, UserType, Home, ImageSource}) => (
   <Pressable onPress={onPress}>

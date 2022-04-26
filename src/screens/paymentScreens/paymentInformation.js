@@ -8,6 +8,10 @@ import Button2 from '../../components/buttons/button2';
 
 function PaymentInformation({navigation}) {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
+  const [fieldFocus, setFieldFocus] = useState(false);
+  const [fieldFocus1, setFieldFocus1] = useState(false);
+  const [fieldFocus2, setFieldFocus2] = useState(false);
+  const [fieldFocus3, setFieldFocus3] = useState(false);
 
   return (
     <KeyboardAwareScrollView contentContainerStyle={styles.container}>
@@ -31,12 +35,22 @@ function PaymentInformation({navigation}) {
         {/* Name And Credit Card */}
         <View style={{alignItems: 'center'}}>
           {/* Name */}
-          <InputField3 title={'Name'} placeHolder={'John Doe'} width={'90%'} />
+          <InputField3
+            title={'Name'}
+            placeHolder={'John Doe'}
+            width={'90%'}
+            onFocus={() => setFieldFocus(true)}
+            onBlur={() => setFieldFocus(false)}
+            focused={fieldFocus}
+          />
           {/* Card Number */}
           <InputField3
             title={'Card Number'}
             placeHolder={'1234 5678 4325 2343'}
             width={'90%'}
+            onFocus={() => setFieldFocus1(true)}
+            onBlur={() => setFieldFocus1(false)}
+            focused={fieldFocus1}
           />
         </View>
 
@@ -48,12 +62,22 @@ function PaymentInformation({navigation}) {
             justifyContent: 'space-between',
           }}>
           {/* CVV */}
-          <InputField3 title={'CVV'} placeHolder={'1234'} width={'47%'} />
+          <InputField3
+            title={'CVV'}
+            placeHolder={'1234'}
+            width={'47%'}
+            onFocus={() => setFieldFocus2(true)}
+            onBlur={() => setFieldFocus2(false)}
+            focused={fieldFocus2}
+          />
           {/* Expiration Date */}
           <InputField3
             title={'Expiration Date'}
             placeHolder={'08/2023'}
             width={'47%'}
+            onFocus={() => setFieldFocus3(true)}
+            onBlur={() => setFieldFocus3(false)}
+            focused={fieldFocus3}
           />
         </View>
         {/* CheckBox */}
@@ -68,14 +92,15 @@ function PaymentInformation({navigation}) {
             disabled={false}
             value={toggleCheckBox}
             onValueChange={newValue => setToggleCheckBox(newValue)}
+            tintColors={{true: 'black', false: 'black'}}
           />
           <Text style={styles.text1}>Save credit card Information</Text>
         </View>
       </View>
       {/* Next Button */}
-      <View style={{marginHorizontal: '5%', marginBottom: '10%'}}>
+      <View style={{marginHorizontal: '5%', marginBottom: '5%'}}>
         <Button2
-          text={'Next'}
+          text={'Done'}
           onPress={() => navigation.navigate('BottomTabNavigator')}
         />
       </View>
@@ -93,7 +118,7 @@ const styles = StyleSheet.create({
   text1: {
     fontFamily: 'Poppins-Medium',
     fontSize: 13,
-    color: '#25251C',
+    color: 'rgba(37, 37, 28, 0.5)',
     marginLeft: '2%',
   },
 });

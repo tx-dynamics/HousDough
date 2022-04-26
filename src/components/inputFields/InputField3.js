@@ -9,14 +9,16 @@ import {
 } from 'react-native';
 import colors from '../../globalStyles/colorScheme';
 
-const InputField3 = ({title, placeHolder, width}) => {
+const InputField3 = ({title, placeHolder, width, onFocus, onBlur, focused}) => {
   return (
     <View style={{width: width}}>
       <Text style={styles.text1}>{title}</Text>
-      <View style={styles.inputField}>
+      <View style={{...styles.inputField, borderWidth: focused ? 1 : 0}}>
         <TextInput
           placeholder={placeHolder}
-          style={styles.inputFieldText}></TextInput>
+          style={styles.inputFieldText}
+          onFocus={onFocus}
+          onBlur={onBlur}></TextInput>
       </View>
     </View>
   );
@@ -34,6 +36,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: '2%',
     paddingHorizontal: 20,
+    borderColor: '#25251C80',
   },
   inputFieldText: {
     fontFamily: 'Poppins-SemiBold',

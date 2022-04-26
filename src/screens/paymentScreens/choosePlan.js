@@ -55,7 +55,7 @@ function ChoosePlan1({navigation}) {
         </View>
       </View>
       {/* Next Button */}
-      <View style={{marginHorizontal: '5%', marginBottom: '10%'}}>
+      <View style={{marginHorizontal: '5%', marginBottom: '5%'}}>
         <Button2
           text={'Next'}
           onPress={() => navigation.navigate('PaymentMethod')}
