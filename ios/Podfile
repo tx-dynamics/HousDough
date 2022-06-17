@@ -4,6 +4,10 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 platform :ios, '11.0'
 
 target 'HOSDOUGH' do
+  permissions_path = '../node_modules/react-native-permissions/ios'
+  pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
+  pod 'Permission-LocationAccuracy', :path => "#{permissions_path}/LocationAccuracy"
+  pod 'Permission-LocationWhenInUse', :path => "#{permissions_path}/LocationWhenInUse"
   config = use_native_modules!
 
   use_react_native!(
@@ -13,7 +17,8 @@ target 'HOSDOUGH' do
   )
 
   pod 'react-native-video', :path => '../node_modules/react-native-video'
-
+  rn_maps_path = '../node_modules/react-native-maps'
+  pod 'react-native-google-maps', :path => rn_maps_path
   target 'HOSDOUGHTests' do
     inherit! :complete
     # Pods for testing

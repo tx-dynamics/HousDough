@@ -41,7 +41,11 @@ function SetupScreen2({navigation}) {
   return (
     <View style={styles.container}>
       {/* Header */}
-      <Header1 text={'Add Your Profile Video/Images'} Screen={2} />
+      <Header1 
+     
+      text={!userType ?'Add Your Profile Video':'Add Your Profile Images'} 
+      
+      Screen={2} />
       {/* Image Videos Display Placeholder */}
       <Pressable
         onPress={() => setmodalVisibility(true)}

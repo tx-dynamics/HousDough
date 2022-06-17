@@ -15,7 +15,7 @@ import colorScheme from '../globalStyles/colorScheme';
 const VideoCard = ({item, onPress, UserType, Home, ImageSource}) => (
   <Video
     repeat={true}
-    paused={false}
+    paused={true}
     resizeMode={'contain'}
     controls={true}
     source={require('../../assets/videos/vid4.mp4')} // Can be a URL or a local file.

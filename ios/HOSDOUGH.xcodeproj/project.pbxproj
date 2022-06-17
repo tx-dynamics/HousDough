@@ -11,7 +11,25 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		477B4FE52816CCBC008AD6D1 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 477B4FD52816CCBB008AD6D1 /* Poppins-Regular.ttf */; };
+		477B4FE62816CCBC008AD6D1 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 477B4FD62816CCBB008AD6D1 /* Poppins-Light.ttf */; };
+		477B4FE72816CCBC008AD6D1 /* Poppins-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 477B4FD72816CCBC008AD6D1 /* Poppins-Italic.ttf */; };
+		477B4FE82816CCBC008AD6D1 /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 477B4FD82816CCBC008AD6D1 /* Poppins-ExtraBold.ttf */; };
+		477B4FE92816CCBC008AD6D1 /* Poppins-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 477B4FD92816CCBC008AD6D1 /* Poppins-ExtraLightItalic.ttf */; };
+		477B4FEA2816CCBC008AD6D1 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 477B4FDA2816CCBC008AD6D1 /* Poppins-Bold.ttf */; };
+		477B4FEB2816CCBC008AD6D1 /* Poppins-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 477B4FDB2816CCBC008AD6D1 /* Poppins-LightItalic.ttf */; };
+		477B4FEC2816CCBC008AD6D1 /* Poppins-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 477B4FDC2816CCBC008AD6D1 /* Poppins-BoldItalic.ttf */; };
+		477B4FED2816CCBC008AD6D1 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 477B4FDD2816CCBC008AD6D1 /* Poppins-ExtraLight.ttf */; };
+		477B4FEE2816CCBC008AD6D1 /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 477B4FDE2816CCBC008AD6D1 /* Poppins-MediumItalic.ttf */; };
+		477B4FEF2816CCBC008AD6D1 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 477B4FDF2816CCBC008AD6D1 /* Poppins-Medium.ttf */; };
+		477B4FF02816CCBC008AD6D1 /* Poppins-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 477B4FE02816CCBC008AD6D1 /* Poppins-SemiBoldItalic.ttf */; };
+		477B4FF12816CCBC008AD6D1 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 477B4FE12816CCBC008AD6D1 /* Poppins-SemiBold.ttf */; };
+		477B4FF22816CCBC008AD6D1 /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 477B4FE22816CCBC008AD6D1 /* Poppins-Thin.ttf */; };
+		477B4FF32816CCBC008AD6D1 /* poppins-extrabolditalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 477B4FE32816CCBC008AD6D1 /* poppins-extrabolditalic.ttf */; };
+		477B4FF42816CCBC008AD6D1 /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 477B4FE42816CCBC008AD6D1 /* Poppins-ThinItalic.ttf */; };
+		4A78EFD7EBA0BA07EA450170 /* libPods-HOSDOUGH.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F44305473481670830D186E /* libPods-HOSDOUGH.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		DA4AABBC2D4EBC432D47DF5F /* libPods-HOSDOUGH-HOSDOUGHTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0CB837E8E3F1AD949D37850 /* libPods-HOSDOUGH-HOSDOUGHTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +52,29 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = HOSDOUGH/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = HOSDOUGH/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = HOSDOUGH/main.m; sourceTree = "<group>"; };
+		477B4FD52816CCBB008AD6D1 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Regular.ttf"; path = "../assets/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		477B4FD62816CCBB008AD6D1 /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Light.ttf"; path = "../assets/fonts/Poppins-Light.ttf"; sourceTree = "<group>"; };
+		477B4FD72816CCBC008AD6D1 /* Poppins-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Italic.ttf"; path = "../assets/fonts/Poppins-Italic.ttf"; sourceTree = "<group>"; };
+		477B4FD82816CCBC008AD6D1 /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-ExtraBold.ttf"; path = "../assets/fonts/Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
+		477B4FD92816CCBC008AD6D1 /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-ExtraLightItalic.ttf"; path = "../assets/fonts/Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		477B4FDA2816CCBC008AD6D1 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Bold.ttf"; path = "../assets/fonts/Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		477B4FDB2816CCBC008AD6D1 /* Poppins-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-LightItalic.ttf"; path = "../assets/fonts/Poppins-LightItalic.ttf"; sourceTree = "<group>"; };
+		477B4FDC2816CCBC008AD6D1 /* Poppins-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-BoldItalic.ttf"; path = "../assets/fonts/Poppins-BoldItalic.ttf"; sourceTree = "<group>"; };
+		477B4FDD2816CCBC008AD6D1 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-ExtraLight.ttf"; path = "../assets/fonts/Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
+		477B4FDE2816CCBC008AD6D1 /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-MediumItalic.ttf"; path = "../assets/fonts/Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
+		477B4FDF2816CCBC008AD6D1 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Medium.ttf"; path = "../assets/fonts/Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		477B4FE02816CCBC008AD6D1 /* Poppins-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-SemiBoldItalic.ttf"; path = "../assets/fonts/Poppins-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		477B4FE12816CCBC008AD6D1 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-SemiBold.ttf"; path = "../assets/fonts/Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		477B4FE22816CCBC008AD6D1 /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Thin.ttf"; path = "../assets/fonts/Poppins-Thin.ttf"; sourceTree = "<group>"; };
+		477B4FE32816CCBC008AD6D1 /* poppins-extrabolditalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "poppins-extrabolditalic.ttf"; path = "../assets/fonts/poppins-extrabolditalic.ttf"; sourceTree = "<group>"; };
+		477B4FE42816CCBC008AD6D1 /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-ThinItalic.ttf"; path = "../assets/fonts/Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
+		5F44305473481670830D186E /* libPods-HOSDOUGH.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HOSDOUGH.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = HOSDOUGH/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B42C9BFC757699DE65562FE7 /* Pods-HOSDOUGH.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HOSDOUGH.debug.xcconfig"; path = "Target Support Files/Pods-HOSDOUGH/Pods-HOSDOUGH.debug.xcconfig"; sourceTree = "<group>"; };
+		BDC0B6A8DE0AD93AE47ED99B /* Pods-HOSDOUGH-HOSDOUGHTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HOSDOUGH-HOSDOUGHTests.debug.xcconfig"; path = "Target Support Files/Pods-HOSDOUGH-HOSDOUGHTests/Pods-HOSDOUGH-HOSDOUGHTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D0CB837E8E3F1AD949D37850 /* libPods-HOSDOUGH-HOSDOUGHTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HOSDOUGH-HOSDOUGHTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4851FFFD5E47A7D5CC52544 /* Pods-HOSDOUGH-HOSDOUGHTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HOSDOUGH-HOSDOUGHTests.release.xcconfig"; path = "Target Support Files/Pods-HOSDOUGH-HOSDOUGHTests/Pods-HOSDOUGH-HOSDOUGHTests.release.xcconfig"; sourceTree = "<group>"; };
+		D6F179331F109319AD37E664 /* Pods-HOSDOUGH.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HOSDOUGH.release.xcconfig"; path = "Target Support Files/Pods-HOSDOUGH/Pods-HOSDOUGH.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -43,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA4AABBC2D4EBC432D47DF5F /* libPods-HOSDOUGH-HOSDOUGHTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A78EFD7EBA0BA07EA450170 /* libPods-HOSDOUGH.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,10 +128,23 @@
 			name = HOSDOUGH;
 			sourceTree = "<group>";
 		};
+		2909F769161181E2563C5AE8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B42C9BFC757699DE65562FE7 /* Pods-HOSDOUGH.debug.xcconfig */,
+				D6F179331F109319AD37E664 /* Pods-HOSDOUGH.release.xcconfig */,
+				BDC0B6A8DE0AD93AE47ED99B /* Pods-HOSDOUGH-HOSDOUGHTests.debug.xcconfig */,
+				D4851FFFD5E47A7D5CC52544 /* Pods-HOSDOUGH-HOSDOUGHTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
+				5F44305473481670830D186E /* libPods-HOSDOUGH.a */,
+				D0CB837E8E3F1AD949D37850 /* libPods-HOSDOUGH-HOSDOUGHTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -104,11 +159,28 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				477B4FDA2816CCBC008AD6D1 /* Poppins-Bold.ttf */,
+				477B4FDC2816CCBC008AD6D1 /* Poppins-BoldItalic.ttf */,
+				477B4FD82816CCBC008AD6D1 /* Poppins-ExtraBold.ttf */,
+				477B4FE32816CCBC008AD6D1 /* poppins-extrabolditalic.ttf */,
+				477B4FDD2816CCBC008AD6D1 /* Poppins-ExtraLight.ttf */,
+				477B4FD92816CCBC008AD6D1 /* Poppins-ExtraLightItalic.ttf */,
+				477B4FD72816CCBC008AD6D1 /* Poppins-Italic.ttf */,
+				477B4FD62816CCBB008AD6D1 /* Poppins-Light.ttf */,
+				477B4FDB2816CCBC008AD6D1 /* Poppins-LightItalic.ttf */,
+				477B4FDF2816CCBC008AD6D1 /* Poppins-Medium.ttf */,
+				477B4FDE2816CCBC008AD6D1 /* Poppins-MediumItalic.ttf */,
+				477B4FD52816CCBB008AD6D1 /* Poppins-Regular.ttf */,
+				477B4FE12816CCBC008AD6D1 /* Poppins-SemiBold.ttf */,
+				477B4FE02816CCBC008AD6D1 /* Poppins-SemiBoldItalic.ttf */,
+				477B4FE22816CCBC008AD6D1 /* Poppins-Thin.ttf */,
+				477B4FE42816CCBC008AD6D1 /* Poppins-ThinItalic.ttf */,
 				13B07FAE1A68108700A75B9A /* HOSDOUGH */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* HOSDOUGHTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				2909F769161181E2563C5AE8 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -131,9 +203,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "HOSDOUGHTests" */;
 			buildPhases = (
+				3658AFA9BF462F9A2A7120F6 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
+				4BED7F6E005D9F9AEA7A6965 /* [CP] Embed Pods Frameworks */,
+				BFB28338A011B74C0DFCFA58 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -149,11 +224,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "HOSDOUGH" */;
 			buildPhases = (
+				BFBFE6F94EAC3264BBD6B4E0 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				C23899EAC3D4D1C213710732 /* [CP] Embed Pods Frameworks */,
+				2B02F729DEC04A9806775943 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -212,6 +290,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				477B4FE52816CCBC008AD6D1 /* Poppins-Regular.ttf in Resources */,
+				477B4FE62816CCBC008AD6D1 /* Poppins-Light.ttf in Resources */,
+				477B4FE72816CCBC008AD6D1 /* Poppins-Italic.ttf in Resources */,
+				477B4FE82816CCBC008AD6D1 /* Poppins-ExtraBold.ttf in Resources */,
+				477B4FE92816CCBC008AD6D1 /* Poppins-ExtraLightItalic.ttf in Resources */,
+				477B4FEA2816CCBC008AD6D1 /* Poppins-Bold.ttf in Resources */,
+				477B4FEB2816CCBC008AD6D1 /* Poppins-LightItalic.ttf in Resources */,
+				477B4FEC2816CCBC008AD6D1 /* Poppins-BoldItalic.ttf in Resources */,
+				477B4FED2816CCBC008AD6D1 /* Poppins-ExtraLight.ttf in Resources */,
+				477B4FEE2816CCBC008AD6D1 /* Poppins-MediumItalic.ttf in Resources */,
+				477B4FEF2816CCBC008AD6D1 /* Poppins-Medium.ttf in Resources */,
+				477B4FF02816CCBC008AD6D1 /* Poppins-SemiBoldItalic.ttf in Resources */,
+				477B4FF12816CCBC008AD6D1 /* Poppins-SemiBold.ttf in Resources */,
+				477B4FF22816CCBC008AD6D1 /* Poppins-Thin.ttf in Resources */,
+				477B4FF32816CCBC008AD6D1 /* poppins-extrabolditalic.ttf in Resources */,
+				477B4FF42816CCBC008AD6D1 /* Poppins-ThinItalic.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
@@ -233,6 +327,118 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
+		};
+		2B02F729DEC04A9806775943 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HOSDOUGH/Pods-HOSDOUGH-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HOSDOUGH/Pods-HOSDOUGH-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HOSDOUGH/Pods-HOSDOUGH-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3658AFA9BF462F9A2A7120F6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HOSDOUGH-HOSDOUGHTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4BED7F6E005D9F9AEA7A6965 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HOSDOUGH-HOSDOUGHTests/Pods-HOSDOUGH-HOSDOUGHTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HOSDOUGH-HOSDOUGHTests/Pods-HOSDOUGH-HOSDOUGHTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HOSDOUGH-HOSDOUGHTests/Pods-HOSDOUGH-HOSDOUGHTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BFB28338A011B74C0DFCFA58 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HOSDOUGH-HOSDOUGHTests/Pods-HOSDOUGH-HOSDOUGHTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HOSDOUGH-HOSDOUGHTests/Pods-HOSDOUGH-HOSDOUGHTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HOSDOUGH-HOSDOUGHTests/Pods-HOSDOUGH-HOSDOUGHTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BFBFE6F94EAC3264BBD6B4E0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HOSDOUGH-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C23899EAC3D4D1C213710732 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HOSDOUGH/Pods-HOSDOUGH-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HOSDOUGH/Pods-HOSDOUGH-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HOSDOUGH/Pods-HOSDOUGH-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -286,6 +492,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BDC0B6A8DE0AD93AE47ED99B /* Pods-HOSDOUGH-HOSDOUGHTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -312,6 +519,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4851FFFD5E47A7D5CC52544 /* Pods-HOSDOUGH-HOSDOUGHTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -335,23 +543,29 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B42C9BFC757699DE65562FE7 /* Pods-HOSDOUGH.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = MNK9C6746T;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = HOSDOUGH/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.9;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.HOSDOUGH;
 				PRODUCT_NAME = HOSDOUGH;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -360,22 +574,28 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6F179331F109319AD37E664 /* Pods-HOSDOUGH.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = MNK9C6746T;
 				INFOPLIST_FILE = HOSDOUGH/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.9;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.HOSDOUGH;
 				PRODUCT_NAME = HOSDOUGH;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -414,6 +634,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -478,6 +699,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

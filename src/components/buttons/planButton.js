@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Medium',
   },
   amount: {
-    fontSize: 16,
+    fontSize: 18,
     color: 'white',
     fontFamily: 'Poppins-ExtraBold',
   },

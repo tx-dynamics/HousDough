@@ -6,11 +6,11 @@ import colors from '../../globalStyles/colorScheme';
 const Header2 = ({text}) => (
   <View style={styles.container}>
     {/* Drawer Icon */}
-    <Image
+    {/* <Image
       source={require('../../../assets/icons/drawer.png')}
       resizeMode={'contain'}
       style={{width: '5%'}}
-    />
+    /> */}
     <Text style={styles.text1}>{text}</Text>
     {/* Placeholder */}
     <Text> {'   '}</Text>
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     height: 80,
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: '5%',
   },
