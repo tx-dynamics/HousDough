@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {View, Text, StyleSheet, TextInput} from 'react-native';
+import {View, Text, StyleSheet, TextInput, ScrollView} from 'react-native';
 import Header1 from '../../components/headers/Header1';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import colors from '../../globalStyles/colorScheme';
@@ -13,29 +13,46 @@ function SetupScreen4({navigation}) {
     <KeyboardAwareScrollView contentContainerStyle={styles.container}>
       {/* Header */}
       <Header1 text={'Add About You'} Screen={4} />
-      {/* Write about Yourself */}
-      <View style={styles.box}>
-        <TextInput
-          style={styles.boxText}
-          placeholder="Write about Yourself..."
-          multiline={true}
-        />
-      </View>
-      {/* Your Past Experience */}
-
-      {!userType ? (
-        <View>
-          <Text style={styles.text1}>Your Past Experience</Text>
-          <View style={styles.box}>
-            <TextInput
-              style={styles.boxText}
-              placeholder="Write here..."
-              multiline={true}
-            />
-          </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {/* Write about Yourself */}
+        <View style={styles.box}>
+          <TextInput
+            style={styles.boxText}
+            placeholder="Write about Yourself..."
+            multiline={true}
+          />
         </View>
-      ) : null}
+        {/* Your Past Experience */}
 
+        {!userType ? (
+          <View>
+            <Text style={styles.text1}>Your Past Experience</Text>
+            <View style={styles.box}>
+              <TextInput
+                style={styles.boxText}
+                placeholder="Write here..."
+                multiline={true}
+              />
+            </View>
+          </View>
+        ) : null}
+        {/* Your Past Experience */}
+
+        {!userType ? (
+          <View>
+            <Text style={styles.text1}>Reference</Text>
+            <View style={styles.box}>
+              <TextInput
+                style={styles.boxText}
+                placeholder="Write here..."
+                multiline={true}
+              />
+            </View>
+          </View>
+        ) : null}
+      </ScrollView>
+      {/* bottom space filler */}
+      <View style={{height: '10%'}} />
       {/* Done Button */}
 
       <View

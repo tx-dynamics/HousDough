@@ -43,15 +43,15 @@ function Home({navigation}) {
       <View style={styles.topText}>
         <View>
           <Text style={styles.text1}>
-            {userType ? 'Workers' : 'Venues'} nearby you
+            {userType ? 'Workers' : 'Venues'} nearby
           </Text>
         </View>
         {/* Filter */}
-        <Image
+        {/* <Image
           source={require('../../../assets/icons/filter.png')}
           resizeMode={'contain'}
           style={{width: '6%', height: 30}}
-        />
+        /> */}
       </View>
       {/* Middle */}
 

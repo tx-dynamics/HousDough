@@ -33,6 +33,7 @@ function Login({navigation}) {
               ShowPassword={true}
               autoCapitalize="none"
               onBlur={formikProps.handleBlur('email')}
+              autoComplete={'email'}
             />
             {/* Password Input */}
             <InputField

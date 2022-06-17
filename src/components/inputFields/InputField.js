@@ -12,6 +12,7 @@ const InputField = ({
   ShowPassword,
   autoCapitalize,
   onBlur,
+  autoComplete = 'off',
 }) => {
   return (
     <View style={styles.inputField}>
@@ -32,7 +33,7 @@ const InputField = ({
             placeholderTextColor={colors.placeHolderColor}
             underlineColorAndroid="transparent"
             autoCapitalize={autoCapitalize}
-            autoComplete={'off'}
+            autoComplete={autoComplete}
             onBlur={onBlur}
           />
         </View>
@@ -75,12 +76,15 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginVertical: '2%',
     paddingHorizontal: 20,
-    shadowOffset: {width: 0, height: 0},
-    //shadowColor: 'black',
-    shadowOpacity: 0.8,
-    elevation: 3,
-    // background color must be set
-    backgroundColor: '#FFFFFF', // invisible color
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
 
   inputFieldText: {

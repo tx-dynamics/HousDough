@@ -1,35 +1,43 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
 import Header1 from '../../components/headers/Header1';
 import Button3 from '../../components/buttons/button3';
 import colors from '../../globalStyles/colorScheme';
 import ImagePicker from 'react-native-image-crop-picker';
 import ImagePickerModal from '../../components/Modals/imagePickerModal';
-
-//To Open Camera
-
-const openCamera = () => {
-  ImagePicker.openCamera({
-    width: 300,
-    height: 400,
-    cropping: true,
-  }).then(image => {
-    console.log(image);
-  });
-};
-const openGallery = () => {
-  ImagePicker.openPicker({
-    multiple: true,
-  }).then(images => {
-    console.log(images);
-  });
-};
-
-//To Open Gallery
+import {UserContext} from '../../contextApi/contextApi';
 
 function SetupScreen2({navigation}) {
   // Image picker modal viability state
   const [ModalVisibility, setmodalVisibility] = useState(false);
+  const {userType, setUserType} = useContext(UserContext);
+
+  //To Open Camera
+
+  const openCamera = () => {
+    ImagePicker.openCamera({
+      width: 300,
+      height: 400,
+      cropping: true,
+      mediaType: !userType ? 'video' : 'any',
+    })
+      .then(image => {
+        console.log(image);
+      })
+      .catch(error => console.log(error));
+  };
+  //To Open Gallery
+  const openGallery = () => {
+    ImagePicker.openPicker({
+      multiple: true,
+      mediaType: !userType ? 'video' : 'any',
+    })
+      .then(images => {
+        console.log(images);
+      })
+      .catch(error => console.log(error));
+  };
+
   return (
     <View style={styles.container}>
       {/* Header */}

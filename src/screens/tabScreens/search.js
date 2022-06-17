@@ -54,15 +54,15 @@ function Search() {
           provider={PROVIDER_GOOGLE} // remove if not using Google Maps
           style={styles.map}
           region={{
-            latitude: 31.519539,
-            longitude: 74.29161,
-            latitudeDelta: 0.015,
-            longitudeDelta: 0.0121,
+            latitude: 37.78825,
+            longitude: -122.4324,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
           }}>
           <Marker
             coordinate={{
-              latitude: 31.519539,
-              longitude: 74.29161,
+              latitude: 37.78825,
+              longitude: -122.4324,
             }}>
             <Image
               source={require('../../../assets/images/p5.jpg')}

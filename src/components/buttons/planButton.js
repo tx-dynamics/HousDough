@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, Pressable} from 'react-native';
 import colors from '../../globalStyles/colorScheme';
 
-const PlanButton = ({onPress, text1, text2, selected}) => (
+const PlanButton = ({onPress, text1, text2, amount, selected}) => (
   <Pressable onPress={onPress}>
     <View style={{...styles.button, opacity: selected ? 1 : 0.5}}>
       {/*  */}
@@ -10,7 +10,11 @@ const PlanButton = ({onPress, text1, text2, selected}) => (
         {/* Text1 */}
         <Text style={styles.text1}>{text1}</Text>
         {/* Text2 */}
-        <Text style={styles.text2}>{text2}</Text>
+        <View style={{flexDirection: 'row'}}>
+          <Text style={styles.text2}>{text2}</Text>
+          <Text style={styles.amount}>{` $${amount}`}</Text>
+          <Text style={styles.text2}>{' / Month'}</Text>
+        </View>
       </View>
     </View>
   </Pressable>
@@ -36,5 +40,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: 'white',
     fontFamily: 'Poppins-Medium',
+  },
+  amount: {
+    fontSize: 16,
+    color: 'white',
+    fontFamily: 'Poppins-ExtraBold',
   },
 });

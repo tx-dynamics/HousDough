@@ -6,8 +6,8 @@ import Button2 from '../../components/buttons/button2';
 
 function ChoosePlan1({navigation}) {
   const [planButtonData, setPlanButtonData] = useState([
-    ['Standard Plan', 'Upto 100 Profiles in 25$', false],
-    ['Premium Plan', 'Unlimited Profiles in 100$', false],
+    ['Standard Plan', 'Upto 100 Profiles in', false, 25],
+    ['Premium Plan', 'Unlimited Profiles in', false, 100],
   ]);
 
   // This function is to change state of skills buttons on toggle
@@ -16,8 +16,13 @@ function ChoosePlan1({navigation}) {
 
     planButtonData.forEach((element, index) => {
       ArrayIndex !== index
-        ? temp.push([element[0], element[1], (element[2] = false)])
-        : temp.push([element[0], element[1], (element[2] = !element[2])]);
+        ? temp.push([element[0], element[1], (element[2] = false), element[3]])
+        : temp.push([
+            element[0],
+            element[1],
+            (element[2] = !element[2]),
+            element[3],
+          ]);
     });
     setPlanButtonData(temp);
   };
@@ -43,6 +48,7 @@ function ChoosePlan1({navigation}) {
             text1={item[0]}
             text2={item[1]}
             selected={item[2]}
+            amount={item[3]}
             onPress={() => changeStatus(index)}
           />
         ))}

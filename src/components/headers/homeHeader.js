@@ -7,7 +7,7 @@ const HomeHeader = ({text, light, Screen, onPress}) => (
   <View style={styles.container}>
     {/* Drawer Icon */}
     <Image
-      source={require('../../../assets/icons/drawer.png')}
+      // source={require('../../../assets/icons/drawer.png')}
       resizeMode={'contain'}
       style={{width: '5%'}}
     />

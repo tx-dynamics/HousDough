@@ -67,7 +67,7 @@ function Splash({navigation}) {
             <Button2
               onPress={() => {
                 setUserType(0);
-                navigation.navigate('Login');
+                navigation.navigate('Signup');
               }}
               text={'HOSDOUGH WORKER'}
               light={true}

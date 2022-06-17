@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, StyleSheet, Pressable, Image} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  Image,
+  Dimensions,
+} from 'react-native';
 import colors from '../../globalStyles/colorScheme';
 
 const Button3 = ({onPress}) => (
@@ -17,8 +24,8 @@ export default Button3;
 
 const styles = StyleSheet.create({
   button: {
-    width: 80,
-    height: 80,
+    width: Dimensions.get('window').width * 0.18,
+    height: Dimensions.get('window').width * 0.18,
     borderRadius: 100,
     alignItems: 'center',
     justifyContent: 'center',

@@ -32,7 +32,9 @@ function SetupScreen1({navigation}) {
           resizeMode={'contain'}
           style={styles.locationIcon}
         />
-        <Text style={styles.text}>Use My Current Location</Text>
+        <Text style={styles.text}>
+          {userType ? 'Add Your Venue Location' : 'Use My Current Location'}
+        </Text>
       </Pressable>
       {/* Enter Your Postcode */}
       {userType ? (

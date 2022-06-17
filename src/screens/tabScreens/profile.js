@@ -22,7 +22,10 @@ function Profile({navigation}) {
   return (
     <View style={styles.container}>
       {/* Header */}
-      <Header3 onPress={() => navigation.navigate('Home')} text={'Profile'} />
+      <Header3
+        onPress={() => navigation.navigate('HomeStack')}
+        text={'Profile'}
+      />
       <ScrollView>
         {/* Top Video */}
         <View style={{marginHorizontal: '5%'}}>
