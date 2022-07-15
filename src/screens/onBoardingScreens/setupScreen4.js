@@ -7,7 +7,7 @@ import Button2 from '../../components/buttons/button2';
 import {UserContext} from '../../contextApi/contextApi';
 
 function SetupScreen4({navigation}) {
-  const {userType, setUserType} = useContext(UserContext);
+  const {userType, setOnBoardingDone, setPaymentDone} = useContext(UserContext);
 
   return (
     <KeyboardAwareScrollView contentContainerStyle={styles.container}>
@@ -65,9 +65,8 @@ function SetupScreen4({navigation}) {
         }}>
         <Button2
           onPress={() => {
-            userType
-              ? navigation.navigate('PaymentNavigator')
-              : navigation.navigate('BottomTabNavigator');
+            !userType && setPaymentDone(true);
+            setOnBoardingDone(true);
           }}
           text={'Done'}
           light={false}

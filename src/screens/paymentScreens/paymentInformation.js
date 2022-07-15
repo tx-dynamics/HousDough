@@ -1,12 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import Header3 from '../../components/headers/Header3';
 import InputField3 from '../../components/inputFields/InputField3';
 import CheckBox from '@react-native-community/checkbox';
 import Button2 from '../../components/buttons/button2';
+import {UserContext} from '../../contextApi/contextApi';
 
 function PaymentInformation({navigation}) {
+  const {setPaymentDone} = useContext(UserContext);
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [fieldFocus, setFieldFocus] = useState(false);
   const [fieldFocus1, setFieldFocus1] = useState(false);
@@ -99,10 +101,7 @@ function PaymentInformation({navigation}) {
       </View>
       {/* Next Button */}
       <View style={{marginHorizontal: '5%', marginBottom: '5%'}}>
-        <Button2
-          text={'Done'}
-          onPress={() => navigation.navigate('BottomTabNavigator')}
-        />
+        <Button2 text={'Done'} onPress={() => setPaymentDone(true)} />
       </View>
     </KeyboardAwareScrollView>
   );

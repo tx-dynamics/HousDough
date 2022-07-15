@@ -25,6 +25,10 @@ function Splash({navigation}) {
         useNativeDriver: true,
       }).start();
     }, 3000);
+    //UseEffect Cleanup Funstion
+    return () => {
+      setIsLoading(false);
+    };
   }, [isLoading]);
   return (
     <View style={styles.container}>

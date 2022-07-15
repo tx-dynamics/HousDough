@@ -1,13 +1,31 @@
-import React from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {View, Text, StyleSheet, Pressable, Image} from 'react-native';
 import {Formik} from 'formik';
+import auth from '@react-native-firebase/auth';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
+import {showMessage, hideMessage} from 'react-native-flash-message';
 import colors from '../../globalStyles/colorScheme';
 import InputField from '../../components/inputFields/InputField';
 import AuthHeader from '../../components/headers/authHeader';
 import Button1 from '../../components/buttons/button1';
+import {UserContext} from '../../contextApi/contextApi';
+import {signup} from '../../firebase/authFunctions';
+import {signupSchema} from '../../validations/authValidations';
+import ErrorText from '../../components/ErrorText';
+import LoaderModal from '../../components/Modals/loaderModal';
 
 function Signup({navigation}) {
+  const {setOnBoardingDone, setPaymentDone} = useContext(UserContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const [serverError, setServerError] = useState(null);
+
+  useEffect(() => {
+    //UseEffect Clean up function
+    return () => {
+      setIsLoading(false);
+      setServerError(null);
+    };
+  }, []);
   return (
     <KeyboardAwareScrollView
       enableOnAndroid={true}
@@ -29,8 +47,25 @@ function Signup({navigation}) {
           ShowPassword: false,
           ShowConfirmPassword: false,
         }}
-        onSubmit={values => {
-          console.log(values);
+        validationSchema={signupSchema}
+        onSubmit={(values, {resetForm}) => {
+          setOnBoardingDone(null);
+          setPaymentDone(null);
+          setIsLoading(true);
+          signup(values).then(res => {
+            setIsLoading(false);
+            if (res === true) {
+              showMessage({
+                message: `Welcome ${values.name}`,
+                description: `${values.name} Your Account Have Been Created Successfully!`,
+                type: 'success',
+                duration: 3000,
+              });
+              resetForm();
+            } else {
+              setServerError(res);
+            }
+          });
         }}>
         {formikProps => (
           <View style={{flex: 1, marginTop: '5%'}}>
@@ -43,6 +78,10 @@ function Signup({navigation}) {
               ShowPassword={true}
               onBlur={formikProps.handleBlur('email')}
             />
+            {/*Name Error */}
+            {formikProps.touched.name && (
+              <ErrorText text={formikProps.errors.name} />
+            )}
             {/* Email Input */}
             <InputField
               title={'Enter Your Email'}
@@ -53,6 +92,11 @@ function Signup({navigation}) {
               autoCapitalize="none"
               onBlur={formikProps.handleBlur('email')}
             />
+            {/*Email Error */}
+            {formikProps.touched.email && (
+              <ErrorText text={formikProps.errors.email} />
+            )}
+
             {/* Password Input */}
             <InputField
               title={'Password'}
@@ -70,6 +114,10 @@ function Signup({navigation}) {
                 )
               }
             />
+            {/*Password Error */}
+            {formikProps.touched.password && (
+              <ErrorText text={formikProps.errors.password} />
+            )}
             {/* Confirm Password Input */}
             <InputField
               title={'Confirm Password'}
@@ -87,35 +135,54 @@ function Signup({navigation}) {
                 )
               }
             />
+            {/*Confirm Password Error */}
+            {formikProps.touched.confirmPassword && (
+              <ErrorText text={formikProps.errors.confirmPassword} />
+            )}
+
+            {/*Server Error */}
+            {serverError && <ErrorText text={serverError} />}
 
             {/* Sign In Button */}
             <Button1
-              onPress={() => navigation.navigate('OnBoardNavigator')}
+              onPress={() => {
+                formikProps.handleSubmit();
+              }}
               text={'Sign up'}
             />
             {/* or */}
-            <View style={{alignSelf: 'center', margin: 10}}>
-              <Text style={{color: '#5B5B5B', fontSize: 18}}>or</Text>
-            </View>
+            {!formikProps.errors.name &&
+            !formikProps.errors.email &&
+            !formikProps.errors.password &&
+            !formikProps.errors.confirmPassword ? (
+              <View style={{alignSelf: 'center', margin: 10}}>
+                <Text style={{color: '#5B5B5B', fontSize: 18}}>or</Text>
+              </View>
+            ) : null}
             {/* Facebook & Instagram */}
-            <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-              {/* Facebook Icon */}
-              <Pressable onPress={() => console.log('Facebook')}>
-                <Image
-                  source={require('../../../assets/icons/facebook.png')}
-                  resizeMode={'contain'}
-                  style={{width: 40, height: 40, marginHorizontal: 15}}
-                />
-              </Pressable>
-              {/* Instagram Icon */}
-              <Pressable onPress={() => console.log('Facebook')}>
-                <Image
-                  source={require('../../../assets/icons/instagram.png')}
-                  resizeMode={'contain'}
-                  style={{width: 40, height: 40, marginHorizontal: 15}}
-                />
-              </Pressable>
-            </View>
+            {!formikProps.errors.name &&
+            !formikProps.errors.email &&
+            !formikProps.errors.password &&
+            !formikProps.errors.confirmPassword ? (
+              <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                {/* Facebook Icon */}
+                <Pressable onPress={() => console.log('Facebook')}>
+                  <Image
+                    source={require('../../../assets/icons/facebook.png')}
+                    resizeMode={'contain'}
+                    style={{width: 40, height: 40, marginHorizontal: 15}}
+                  />
+                </Pressable>
+                {/* Instagram Icon */}
+                <Pressable onPress={() => console.log('Facebook')}>
+                  <Image
+                    source={require('../../../assets/icons/instagram.png')}
+                    resizeMode={'contain'}
+                    style={{width: 40, height: 40, marginHorizontal: 15}}
+                  />
+                </Pressable>
+              </View>
+            ) : null}
           </View>
         )}
       </Formik>
@@ -151,6 +218,8 @@ function Signup({navigation}) {
           </View>
         </Pressable>
       </View>
+      {/* Loader */}
+      <LoaderModal Visibility={isLoading} />
     </KeyboardAwareScrollView>
   );
 }

@@ -1,13 +1,31 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useContext, useState} from 'react';
 import {View, Text, StyleSheet, Pressable, Image} from 'react-native';
 import {Formik} from 'formik';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
+import {showMessage, hideMessage} from 'react-native-flash-message';
 import colors from '../../globalStyles/colorScheme';
 import InputField from '../../components/inputFields/InputField';
 import AuthHeader from '../../components/headers/authHeader';
 import Button1 from '../../components/buttons/button1';
+import {UserContext} from '../../contextApi/contextApi';
+import {signin} from '../../firebase/authFunctions';
+import {loginSchema} from '../../validations/authValidations';
+import ErrorText from '../../components/ErrorText';
+import LoaderModal from '../../components/Modals/loaderModal';
 
 function Login({navigation}) {
+  const {setUser} = useContext(UserContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const [serverError, setServerError] = useState(null);
+
+  useEffect(() => {
+    //UseEffect Clean up function
+    return () => {
+      setIsLoading(false);
+      setServerError(null);
+    };
+  }, []);
+
   return (
     <KeyboardAwareScrollView
       enableOnAndroid={true}
@@ -19,8 +37,23 @@ function Login({navigation}) {
 
       <Formik
         initialValues={{email: '', password: '', ShowPassword: false}}
-        onSubmit={values => {
-          console.log(values);
+        validationSchema={loginSchema}
+        onSubmit={(values, {resetForm}) => {
+          setIsLoading(true);
+          signin(values).then(res => {
+            setIsLoading(false);
+            if (res === true) {
+              showMessage({
+                message: `Hello`,
+                description: `Login Successfully!`,
+                type: 'success',
+                duration: 3000,
+              });
+              resetForm();
+            } else {
+              setServerError(res);
+            }
+          });
         }}>
         {formikProps => (
           <View style={{flex: 1, marginTop: '15%'}}>
@@ -35,6 +68,10 @@ function Login({navigation}) {
               onBlur={formikProps.handleBlur('email')}
               autoComplete={'email'}
             />
+            {/*Email Error */}
+            {formikProps.touched.email && (
+              <ErrorText text={formikProps.errors.email} />
+            )}
             {/* Password Input */}
             <InputField
               title={'Password'}
@@ -52,6 +89,13 @@ function Login({navigation}) {
                 )
               }
             />
+            {/*Password Error */}
+            {formikProps.touched.password && (
+              <ErrorText text={formikProps.errors.password} />
+            )}
+            {/*Server Error */}
+            {serverError && <ErrorText text={serverError} />}
+
             {/* Forgot Password */}
             <Pressable
               onPress={() => {
@@ -64,7 +108,7 @@ function Login({navigation}) {
             {/* Sign In Button */}
 
             <Button1
-              onPress={() => navigation.navigate('OnBoardNavigator')}
+              onPress={() => formikProps.handleSubmit()}
               text={'Sign In'}
             />
 
@@ -126,6 +170,8 @@ function Login({navigation}) {
           </View>
         </Pressable>
       </View>
+      {/* Loader */}
+      <LoaderModal Visibility={isLoading} />
     </KeyboardAwareScrollView>
   );
 }

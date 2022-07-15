@@ -1,10 +1,11 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {View, Text, StyleSheet, Image, FlatList} from 'react-native';
+import {showMessage, hideMessage} from 'react-native-flash-message';
 import HomeHeader from '../../components/headers/homeHeader';
 import colors from '../../globalStyles/colorScheme';
 import HomeCard from '../../components/homeCard';
 import {UserContext} from '../../contextApi/contextApi';
-
+import {logout} from '../../firebase/authFunctions';
 function Home({navigation}) {
   const {userType, setUserType} = useContext(UserContext);
 
@@ -38,7 +39,19 @@ function Home({navigation}) {
   return (
     <View style={styles.container}>
       {/* Header */}
-      <HomeHeader onPress={() => navigation.navigate('Messages')} />
+      <HomeHeader
+        onPress={() => navigation.navigate('Messages')}
+        onPressLogout={() =>
+          logout().then(() => {
+            showMessage({
+              message: `Logout`,
+              description: `You Logged Out Successfully!`,
+              type: 'success',
+              duration: 3000,
+            });
+          })
+        }
+      />
       {/* Top Text */}
       <View style={styles.topText}>
         <View>

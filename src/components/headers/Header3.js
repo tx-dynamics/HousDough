@@ -6,19 +6,21 @@ import colors from '../../globalStyles/colorScheme';
 const Header3 = ({text, onPress}) => (
   <View style={styles.container}>
     {/* Back Arrow Icon */}
-    <Pressable
-      style={{
-        height: '90%',
-        width: '6%',
-        justifyContent: 'center',
-      }}
-      onPress={onPress}>
-      <Image
-        source={require('../../../assets/icons/back_arrow.png')}
-        resizeMode={'contain'}
-        style={{width: '100%'}}
-      />
-    </Pressable>
+    {
+      <Pressable
+        style={{
+          height: '90%',
+          width: '6%',
+          justifyContent: 'center',
+        }}
+        onPress={onPress}>
+        <Image
+          source={require('../../../assets/icons/back_arrow.png')}
+          resizeMode={'contain'}
+          style={{width: '100%'}}
+        />
+      </Pressable>
+    }
 
     <Text style={styles.text1}>{text}</Text>
     {/* Placeholder */}

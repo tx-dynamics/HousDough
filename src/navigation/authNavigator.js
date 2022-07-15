@@ -4,8 +4,6 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Splash from '../screens/authScreens/splash';
 import Login from '../screens/authScreens/login';
 import Signup from '../screens/authScreens/signup';
-import OnBoardNavigator from './onboardNavigator';
-import PaymentNavigator from './paymentNavigator';
 
 const Stack = createNativeStackNavigator(); //Stack Navigator for Authentication Stack Created
 
@@ -20,8 +18,6 @@ function AuthNavigator() {
       <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Signup" component={Signup} />
-      <Stack.Screen name="OnBoardNavigator" component={OnBoardNavigator} />
-      <Stack.Screen name="PaymentNavigator" component={PaymentNavigator} />
     </Stack.Navigator>
   );
 }

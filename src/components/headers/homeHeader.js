@@ -3,14 +3,24 @@ import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
 
 import colors from '../../globalStyles/colorScheme';
 
-const HomeHeader = ({text, light, Screen, onPress}) => (
+const HomeHeader = ({text, light, Screen, onPress, onPressLogout}) => (
   <View style={styles.container}>
     {/* Drawer Icon */}
-    <Image
-      // source={require('../../../assets/icons/drawer.png')}
-      resizeMode={'contain'}
-      style={{width: '5%'}}
-    />
+    <Pressable
+      onPress={() => onPressLogout()}
+      style={{
+        width: '7%',
+        height: '40%',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+      <Image
+        source={require('../../../assets/icons/Logout.png')}
+        resizeMode={'contain'}
+        style={{width: '100%'}}
+      />
+    </Pressable>
+
     {/* Logo */}
     <Image
       source={require('../../../assets/icons/logo.png')}

@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import Header3 from '../../components/headers/Header3';
 import PlanButton from '../../components/buttons/planButton';
 import Button2 from '../../components/buttons/button2';
+import {UserContext} from '../../contextApi/contextApi';
 
 function ChoosePlan1({navigation}) {
+  const {setOnBoardingDone} = useContext(UserContext);
   const [planButtonData, setPlanButtonData] = useState([
     ['Standard Plan', 'Upto 100 Profiles in', false, 25],
     ['Premium Plan', 'Unlimited Profiles in', false, 100],
@@ -31,7 +33,7 @@ function ChoosePlan1({navigation}) {
       {/* Header */}
       <Header3
         text={'Choose Your Plan'}
-        onPress={() => navigation.navigate('SetupScreen4')}
+        onPress={() => setOnBoardingDone(false)}
       />
       {/* Middle */}
       <View style={{flex: 1}}>
