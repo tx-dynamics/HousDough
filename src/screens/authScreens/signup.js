@@ -15,7 +15,7 @@ import ErrorText from '../../components/ErrorText';
 import LoaderModal from '../../components/Modals/loaderModal';
 
 function Signup({navigation}) {
-  const {setOnBoardingDone, setPaymentDone} = useContext(UserContext);
+  const {setOnBoardingDone, setPaymentDone, userType} = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
   const [serverError, setServerError] = useState(null);
 
@@ -52,7 +52,7 @@ function Signup({navigation}) {
           setOnBoardingDone(null);
           setPaymentDone(null);
           setIsLoading(true);
-          signup(values).then(res => {
+          signup(values, userType).then(res => {
             setIsLoading(false);
             if (res === true) {
               showMessage({

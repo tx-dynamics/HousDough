@@ -1,5 +1,7 @@
 import React, {useState, useContext} from 'react';
 import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
+import {showMessage, hideMessage} from 'react-native-flash-message';
 import Header1 from '../../components/headers/Header1';
 import Button3 from '../../components/buttons/button3';
 import colors from '../../globalStyles/colorScheme';
@@ -11,6 +13,7 @@ function SetupScreen2({navigation}) {
   // Image picker modal viability state
   const [ModalVisibility, setmodalVisibility] = useState(false);
   const {userType, setUserType} = useContext(UserContext);
+  const {videoLink} = useSelector(state => state.onBoadrding);
 
   //To Open Camera
 
@@ -18,13 +21,19 @@ function SetupScreen2({navigation}) {
     ImagePicker.openCamera({
       width: 300,
       height: 400,
-      cropping: true,
-      mediaType: !userType ? 'video' : 'any',
+      mediaType: 'video',
     })
       .then(image => {
         console.log(image);
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log('error', error);
+        showMessage({
+          message: error.message,
+          type: 'danger',
+          duration: 3000,
+        });
+      });
   };
   //To Open Gallery
   const openGallery = () => {
@@ -35,17 +44,23 @@ function SetupScreen2({navigation}) {
       .then(images => {
         console.log(images);
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log(error);
+        showMessage({
+          message: error.message,
+          type: 'danger',
+          duration: 3000,
+        });
+      });
   };
 
   return (
     <View style={styles.container}>
       {/* Header */}
-      <Header1 
-     
-      text={!userType ?'Add Your Profile Video':'Add Your Profile Images'} 
-      
-      Screen={2} />
+      <Header1
+        text={!userType ? 'Add Your Profile Video' : 'Add Your Profile Images'}
+        Screen={2}
+      />
       {/* Image Videos Display Placeholder */}
       <Pressable
         onPress={() => setmodalVisibility(true)}
@@ -67,7 +82,18 @@ function SetupScreen2({navigation}) {
       </View>
       {/* Next Arrow Button */}
       <View style={{position: 'absolute', bottom: '10%', right: '5%'}}>
-        <Button3 onPress={() => navigation.navigate('SetupScreen3')} />
+        <Button3
+          onPress={() => {
+            if (videoLink == null)
+              showMessage({
+                message: `Video Required`,
+                description: `Please Upload A Video To Continue!`,
+                type: 'success',
+                duration: 3000,
+              });
+            else navigation.navigate('SetupScreen3');
+          }}
+        />
       </View>
       {/* Image Picker Modal */}
       <ImagePickerModal

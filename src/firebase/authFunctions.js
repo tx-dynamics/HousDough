@@ -1,13 +1,30 @@
+import React, {useContext} from 'react';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
+import {UserContext} from '../contextApi/contextApi';
 
 // This Function Is for Creatinon of new User
-export const signup = async values => {
+export const signup = async (values, userType) => {
+  console.log('userType', userType);
   const {email, password, name} = values;
   let response = auth()
     .createUserWithEmailAndPassword(email, password)
-    .then(() => {
+    .then(userData => {
+      return firestore()
+        .collection('Users')
+        .doc(userData.user.uid)
+        .set({
+          name: name,
+          email: email,
+          userType: userType,
+          onBoarding: false,
+          paymentMethod: false,
+        })
+        .then(() => {
+          return true;
+          console.log('User added to cloud store!');
+        });
       console.log('User account created & signed in!');
-      return true;
     })
     .catch(error => {
       if (error.code === 'auth/email-already-in-use') {

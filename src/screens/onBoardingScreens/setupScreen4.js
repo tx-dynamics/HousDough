@@ -2,9 +2,11 @@ import React, {useContext} from 'react';
 import {View, Text, StyleSheet, TextInput, ScrollView} from 'react-native';
 import Header1 from '../../components/headers/Header1';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
+import {showMessage, hideMessage} from 'react-native-flash-message';
 import colors from '../../globalStyles/colorScheme';
 import Button2 from '../../components/buttons/button2';
 import {UserContext} from '../../contextApi/contextApi';
+import {setOnBoarding} from '../../firebase/updateFuctions';
 
 function SetupScreen4({navigation}) {
   const {userType, setOnBoardingDone, setPaymentDone} = useContext(UserContext);
@@ -65,8 +67,25 @@ function SetupScreen4({navigation}) {
         }}>
         <Button2
           onPress={() => {
-            !userType && setPaymentDone(true);
-            setOnBoardingDone(true);
+            setOnBoarding(userType).then(data => {
+              if (data) {
+                showMessage({
+                  message: `Profile Setup`,
+                  description: `Profile Setup Successfully!`,
+                  type: 'success',
+                  duration: 3000,
+                });
+                !userType && setPaymentDone(true);
+                setOnBoardingDone(true);
+              } else {
+                showMessage({
+                  message: `Profile Setup`,
+                  description: `Something Went Wrong!`,
+                  type: 'danger',
+                  duration: 3000,
+                });
+              }
+            });
           }}
           text={'Done'}
           light={false}

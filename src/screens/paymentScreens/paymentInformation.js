@@ -1,14 +1,16 @@
 import React, {useState, useContext} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
+import {showMessage, hideMessage} from 'react-native-flash-message';
 import Header3 from '../../components/headers/Header3';
 import InputField3 from '../../components/inputFields/InputField3';
 import CheckBox from '@react-native-community/checkbox';
 import Button2 from '../../components/buttons/button2';
 import {UserContext} from '../../contextApi/contextApi';
+import {setPaymentMethod} from '../../firebase/updateFuctions';
 
 function PaymentInformation({navigation}) {
-  const {setPaymentDone} = useContext(UserContext);
+  const {setPaymentDone, userType} = useContext(UserContext);
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [fieldFocus, setFieldFocus] = useState(false);
   const [fieldFocus1, setFieldFocus1] = useState(false);
@@ -101,7 +103,29 @@ function PaymentInformation({navigation}) {
       </View>
       {/* Next Button */}
       <View style={{marginHorizontal: '5%', marginBottom: '5%'}}>
-        <Button2 text={'Done'} onPress={() => setPaymentDone(true)} />
+        <Button2
+          text={'Done'}
+          onPress={() =>
+            setPaymentMethod(userType).then(res => {
+              if (res) {
+                showMessage({
+                  message: `Payment`,
+                  description: `Payment Setup Successfully!`,
+                  type: 'success',
+                  duration: 3000,
+                });
+                setPaymentDone(true);
+              } else {
+                showMessage({
+                  message: `Payment`,
+                  description: `Something Went Wrong!`,
+                  type: 'danger',
+                  duration: 3000,
+                });
+              }
+            })
+          }
+        />
       </View>
     </KeyboardAwareScrollView>
   );
