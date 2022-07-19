@@ -1,16 +1,48 @@
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
+import storage from '@react-native-firebase/storage';
 
-export const setOnBoarding = async userType => {
-  console.log('setOnBoarding');
+export const setOnBoarding = async (userType, userData) => {
+  console.log('setOnBoarding', userData.VideoLink);
 
-  return firestore()
-    .collection('Users')
-    .doc(auth().currentUser.uid)
-    .update({onBoarding: true})
-    .then(() => {
-      console.log('User OnBoarding set to true');
-      return true;
+  const reference = storage().ref(
+    `/usersMedia/${'Rnm2DiTAmtahCBgHsVIOXj0ZGmu2'}`,
+  );
+  // uploads file
+  const task = reference.putFile(userData.VideoLink);
+
+  task.on('state_changed', taskSnapshot => {
+    console.log(
+      ` ${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`,
+    );
+  });
+
+  return task
+    .then(async () => {
+      console.log('Image uploaded to the bucket!');
+
+      userData.VideoLink = await storage()
+        .ref(`/usersMedia/${'Rnm2DiTAmtahCBgHsVIOXj0ZGmu2'}`)
+        .getDownloadURL();
+
+      return firestore()
+        .collection('Users')
+        .doc(auth().currentUser.uid)
+        .set(
+          {
+            onBoarding: true,
+            ...userData,
+          },
+          {merge: true},
+        )
+        .then(() => {
+          console.log('User OnBoarding set to true');
+          return true;
+        })
+        .catch(error => {
+          console.log(error);
+          return false;
+        });
     })
     .catch(error => {
       console.log(error);

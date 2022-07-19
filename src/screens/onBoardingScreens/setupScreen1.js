@@ -52,7 +52,7 @@ function SetupScreen1({navigation}) {
   Geocoder.init('AIzaSyD3BToDj_z_1ZLuhdDSURQplj3_9IgQSis'); // use a valid API key
 
   useEffect(() => {
-    console.log('onBoadrdingData', location, Postcode);
+    console.log('onBoadrdingData', userType);
   }, []);
 
   return (
@@ -136,7 +136,7 @@ function SetupScreen1({navigation}) {
                 type: 'info',
                 duration: 3000,
               });
-            } else if (Postcode == null)
+            } else if (Postcode == null && userType == 0)
               showMessage({
                 message: `Postcode Required `,
                 description: `Please Enter Postcode!`,

@@ -1,12 +1,21 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {View, Text, StyleSheet, ImageBackground} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
+import {showMessage, hideMessage} from 'react-native-flash-message';
 import Header1 from '../../components/headers/Header1';
 import Button3 from '../../components/buttons/button3';
 import Button4 from '../../components/buttons/button4';
 import {UserContext} from '../../contextApi/contextApi';
+import {setUserSkills} from '../../redux/features/onBoadrdingSlice';
 
 function SetupScreen3({navigation}) {
   const {userType, setUserType} = useContext(UserContext);
+  const {Skills} = useSelector(state => state.onBoadrding);
+  const onBoadrdingDispatch = useDispatch();
+
+  useEffect(() => {
+    console.log('Skills', Skills);
+  }, []);
 
   // This is dummy data
   const [skills, setSkills] = useState([
@@ -26,6 +35,12 @@ function SetupScreen3({navigation}) {
         : temp.push([element[0], (element[1] = !element[1])]);
     });
     setSkills(temp);
+
+    onBoadrdingDispatch(
+      setUserSkills({
+        Skills: temp.filter(e => e[1] == true).map(item => item[0]),
+      }),
+    );
   };
 
   return (
@@ -58,7 +73,18 @@ function SetupScreen3({navigation}) {
 
       {/* Next Arrow Button */}
       <View style={{position: 'absolute', bottom: '10%', right: '5%'}}>
-        <Button3 onPress={() => navigation.navigate('SetupScreen4')} />
+        <Button3
+          onPress={() => {
+            Skills.length === 0
+              ? showMessage({
+                  message: `Skills Requires`,
+                  description: `Please Select Atleast One Skill`,
+                  type: 'info',
+                  duration: 3000,
+                })
+              : navigation.navigate('SetupScreen4');
+          }}
+        />
       </View>
     </ImageBackground>
   );
