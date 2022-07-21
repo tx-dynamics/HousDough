@@ -6,6 +6,7 @@ import {
   Modal,
   Dimensions,
   ActivityIndicator,
+  Image,
 } from 'react-native';
 import colors from '../../globalStyles/colorScheme';
 
@@ -13,8 +14,13 @@ const LoaderMessageModal = ({Visibility, message}) => (
   <Modal visible={Visibility} transparent={true} animationType={'fade'}>
     <View style={styles.container}>
       <View style={styles.modal}>
+        <Image
+          source={require('../../../assets/icons/upload.png')}
+          resizeMode={'contain'}
+          style={{height: '50%', width: '90%'}}
+        />
+        <Text style={styles.text}>{message}</Text>
         <ActivityIndicator size={'large'} color={colors.secondary} />
-        <Text>{message}</Text>
       </View>
     </View>
   </Modal>
@@ -31,9 +37,16 @@ const styles = StyleSheet.create({
   modal: {
     backgroundColor: 'white',
     width: '80%',
-    height: 200,
+    height: '55%',
     borderRadius: 20,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
+  },
+  text: {
+    color: colors.black,
+    fontFamily: 'Poppins-Bold',
+    fontSize: 16,
+    textAlign: 'center',
+    width: '70%',
   },
 });

@@ -59,6 +59,15 @@ function SetupScreen1({navigation}) {
     <KeyboardAwareScrollView contentContainerStyle={styles.container}>
       {/* Header */}
       <Header1 text={'Share Your Location'} Screen={1} />
+      {/* Text */}
+      <View style={styles.textContainer}>
+        <Text style={styles.text2}>
+          In order for you to find the best work in your area please enter your
+          postcode and change the radius to how far you are willing to travel.
+          Venue managers in those areas will also be able to see your profile
+        </Text>
+      </View>
+
       {/* Location Card */}
       <Pressable
         onPress={() => {
@@ -181,5 +190,22 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Regular',
     fontSize: 13,
     width: '100%',
+  },
+  textContainer: {
+    backgroundColor: '#FAFAFA',
+    width: '100%',
+    borderRadius: 10,
+    alignItems: 'center',
+    padding: '3%',
+    flexDirection: 'row',
+    borderColor: '#CDCDCD',
+    borderWidth: 1,
+    marginVertical: '2%',
+  },
+  text2: {
+    color: colors.black,
+    fontFamily: 'Poppins-Medium',
+    fontSize: 14,
+    textAlign: 'center',
   },
 });

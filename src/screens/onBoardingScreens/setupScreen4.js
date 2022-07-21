@@ -18,6 +18,7 @@ import LoaderMessageModal from '../../components/Modals/loaderMessageModal';
 function SetupScreen4({navigation}) {
   const {userType, setOnBoardingDone, setPaymentDone} = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
+  const {email, uid} = useSelector(state => state.userProfile);
   const {
     location,
     Postcode,
@@ -38,6 +39,14 @@ function SetupScreen4({navigation}) {
       {/* Header */}
       <Header1 text={'Add About You'} Screen={4} />
       <ScrollView showsVerticalScrollIndicator={false}>
+        {/* About You Text */}
+        <View style={styles.textContainer}>
+          <Text style={styles.text2}>
+            Share some facts about you in 25 words or less. If you are
+            struggling, think of how friends and family or customers would
+            describe you.
+          </Text>
+        </View>
         {/* Write about Yourself */}
         <View style={styles.box}>
           <TextInput
@@ -56,6 +65,20 @@ function SetupScreen4({navigation}) {
         {!userType ? (
           <View>
             <Text style={styles.text1}>Your Past Experience</Text>
+            {/* About You Text  */}
+            <View style={styles.textContainer}>
+              <Text style={styles.text2}>
+                This is your chance to give a brief overview- focus less on your
+                skills as you will be able to choose those next and more on your
+                years/months of experience and any particular venues you have
+                worked at.
+                {`
+  
+Tip: Keep this short and summarized- at Hosdough we want to ditch the CV.  
+ 
+Note: If you don't have any previous experience write about what venues you want to work at and why.`}
+              </Text>
+            </View>
             <View style={styles.box}>
               <TextInput
                 style={styles.boxText}
@@ -124,15 +147,19 @@ function SetupScreen4({navigation}) {
               });
             else {
               setIsLoading(true);
-              setOnBoarding(userType, {
-                location,
-                Postcode,
-                VideoLink,
-                Skills,
-                AboutYou,
-                PastExperience,
-                Reference,
-              }).then(data => {
+              setOnBoarding(
+                userType,
+                {
+                  location,
+                  Postcode,
+                  VideoLink,
+                  Skills,
+                  AboutYou,
+                  PastExperience,
+                  Reference,
+                },
+                uid,
+              ).then(data => {
                 setIsLoading(false);
                 if (data) {
                   showMessage({
@@ -141,7 +168,7 @@ function SetupScreen4({navigation}) {
                     type: 'success',
                     duration: 3000,
                   });
-                  !userType && setPaymentDone(true);
+                  !userType && setPaymentDone(false);
                   setOnBoardingDone(true);
                 } else {
                   showMessage({
@@ -160,7 +187,7 @@ function SetupScreen4({navigation}) {
       </View>
       {/* Loader */}
       <LoaderMessageModal
-        message={'You Profile is setting sp, This might take awhile'}
+        message={'You Profile is setting up, This might take a while'}
         Visibility={isLoading}
       />
     </KeyboardAwareScrollView>
@@ -198,5 +225,22 @@ const styles = StyleSheet.create({
     color: colors.black,
     fontFamily: 'Poppins-Medium',
     fontSize: 16,
+  },
+  textContainer: {
+    backgroundColor: '#FAFAFA',
+    width: '100%',
+    borderRadius: 10,
+    alignItems: 'center',
+    padding: '3%',
+    flexDirection: 'row',
+    borderColor: '#CDCDCD',
+    borderWidth: 1,
+    marginVertical: '2%',
+  },
+  text2: {
+    color: colors.black,
+    fontFamily: 'Poppins-Medium',
+    fontSize: 14,
+    textAlign: 'center',
   },
 });

@@ -21,7 +21,7 @@ function Splash({navigation}) {
     setInterval(() => {
       setIsLoading(false);
       Animated.timing(translation, {
-        toValue: -120,
+        toValue: -70,
         useNativeDriver: true,
       }).start();
     }, 3000);
@@ -56,13 +56,13 @@ function Splash({navigation}) {
           </View>
         )}
         {/* Top Text */}
-        {!isLoading && (
+        {/* {!isLoading && (
           <View style={{position: 'absolute', top: 140}}>
             <Text style={{color: 'white', fontSize: 24}}>
               WELCOME TO HOSDOUGH!
             </Text>
           </View>
-        )}
+        )} */}
         {/* Bottom View with buttons */}
         {!isLoading && (
           <View style={styles.bottomView}>

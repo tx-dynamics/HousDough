@@ -9,7 +9,17 @@ import {
 } from 'react-native';
 import colors from '../../globalStyles/colorScheme';
 
-const InputField3 = ({title, placeHolder, width, onFocus, onBlur, focused}) => {
+const InputField3 = ({
+  title,
+  placeHolder,
+  width,
+  onFocus,
+  onBlur,
+  focused,
+  value,
+  onChangeText,
+  keyboardType,
+}) => {
   return (
     <View style={{width: width}}>
       <Text style={styles.text1}>{title}</Text>
@@ -18,7 +28,11 @@ const InputField3 = ({title, placeHolder, width, onFocus, onBlur, focused}) => {
           placeholder={placeHolder}
           style={styles.inputFieldText}
           onFocus={onFocus}
-          onBlur={onBlur}></TextInput>
+          onBlur={onBlur}
+          value={value}
+          onChangeText={onChangeText}
+          keyboardType={keyboardType}
+        />
       </View>
     </View>
   );

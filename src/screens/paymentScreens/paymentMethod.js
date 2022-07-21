@@ -1,12 +1,17 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
+import {Formik} from 'formik';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
+
 import Header3 from '../../components/headers/Header3';
 import colorScheme from '../../globalStyles/colorScheme';
 import Button2 from '../../components/buttons/button2';
+import InputField from '../../components/inputFields/InputField';
+import ErrorText from '../../components/ErrorText';
 
 function PaymentMethod({navigation}) {
   return (
-    <View style={styles.container}>
+    <KeyboardAwareScrollView contentContainerStyle={styles.container}>
       {/* Header */}
 
       <View>
@@ -39,6 +44,7 @@ function PaymentMethod({navigation}) {
               marginRight: '5%',
             }}
           />
+
           <View
             style={{
               height: 100,
@@ -76,6 +82,34 @@ function PaymentMethod({navigation}) {
         </View>
       </View>
 
+      <Formik
+        initialValues={{email: ''}}
+        onSubmit={values => {
+          console.log(values);
+        }}>
+        {formikProps => (
+          <View style={{marginTop: 20, paddingHorizontal: '5%'}}>
+            <Text style={styles.text1}>
+              Please Enter Email Below For The Invoices
+            </Text>
+            <InputField
+              title={'Enter Your Email'}
+              value={formikProps.values.email}
+              icon={require('../../../assets/icons/email.png')}
+              onChangeText={formikProps.handleChange('email')}
+              ShowPassword={true}
+              autoCapitalize="none"
+              onBlur={formikProps.handleBlur('email')}
+              autoComplete={'email'}
+            />
+
+            {formikProps.touched.email && (
+              <ErrorText text={formikProps.errors.email} />
+            )}
+          </View>
+        )}
+      </Formik>
+
       {/* Next Button */}
       <View style={{marginHorizontal: '5%', marginBottom: '5%'}}>
         <Button2
@@ -83,7 +117,7 @@ function PaymentMethod({navigation}) {
           onPress={() => navigation.navigate('PaymentInformation')}
         />
       </View>
-    </View>
+    </KeyboardAwareScrollView>
   );
 }
 

@@ -37,7 +37,7 @@ const Header1 = ({text, light, Screen}) => (
           backgroundColor: Screen == 4 ? colors.primary : colors.third,
         }}></View>
     </View>
-    {/*  */}
+
     <Text style={{...styles.text2, color: light ? 'white' : colors.black}}>
       {text}
     </Text>
@@ -49,22 +49,26 @@ export default Header1;
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: '23%',
+    // height: '23%',
     alignItems: 'center',
-    justifyContent: 'space-evenly',
+    // justifyContent: 'center',
+    paddingVertical: '5%',
   },
   text1: {
     fontFamily: 'Poppins-SemiBold',
     fontSize: 20,
+    marginBottom: '3%',
   },
   text2: {
     fontFamily: 'Poppins-Medium',
     fontSize: 16,
     marginTop: '3%',
+    textAlign: 'center',
   },
   bar: {
     height: 13,
     width: '22%',
     borderRadius: 10,
+    marginBottom: '3%',
   },
 });

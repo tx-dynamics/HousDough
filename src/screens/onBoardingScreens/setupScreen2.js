@@ -81,7 +81,10 @@ function SetupScreen2({navigation}) {
     <View style={styles.container}>
       {/* Header */}
       <Header1
-        text={!userType ? 'Add Your Profile Video' : 'Add Your Profile Images'}
+        // text={!userType ? 'Add Your Profile Video' : 'Add Your Profile Images'}
+        text={
+          'Hosdough was designed to show Venue Managers a little snippet of your personality because we know that this is the most important part of customer service. Skills and experience help but they can always be taught'
+        }
         Screen={2}
       />
       {/* Image Videos Display Placeholder */}
@@ -98,7 +101,8 @@ function SetupScreen2({navigation}) {
           />
         </Pressable>
       ) : (
-        <View style={styles.imagePlaceholder}>
+        <View
+          style={{...styles.imagePlaceholder, backgroundColor: colors.black}}>
           <Video
             repeat={true}
             paused={true}
@@ -115,15 +119,19 @@ function SetupScreen2({navigation}) {
       {/* Bottom Text */}
       <View style={{flexWrap: 'wrap', width: '100%'}}>
         <Text style={styles.text}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor.
+          {`Film a short 45 second video by pressing the record button or if you aren't great on the spot pre record one and upload it later. Venues will not be shown your profile until you upload a video.
+
+1) Include your name
+2) Favourite food or beverage
+3) Why you love or want hospo work
+`}
         </Text>
       </View>
       {/* Next Arrow Button */}
       <View style={{position: 'absolute', bottom: '10%', right: '5%'}}>
         <Button3
           onPress={() => {
-            if (VideoLink == null)
+            if (VideoLink !== null)
               showMessage({
                 message: `Video Required`,
                 description: `Please Upload A Video To Continue!`,
@@ -167,7 +175,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: '5%',
+    marginBottom: '5%',
   },
   text: {
     color: colors.black,

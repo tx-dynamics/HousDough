@@ -4,6 +4,7 @@ import Header2 from '../../components/headers/Header2';
 import InputField2 from '../../components/inputFields/InputField2';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import Button4 from '../../components/buttons/button4';
+import colors from '../../globalStyles/colorScheme';
 
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 
@@ -27,6 +28,15 @@ function Search() {
     <KeyboardAwareScrollView contentContainerStyle={styles.container}>
       {/* Header */}
       <Header2 text={'Search'} />
+      {/* Text */}
+      <View style={styles.textContainer}>
+        <Text style={styles.text2}>
+          In order for you to find the best workers in your area please enter
+          your venue's postcode. You will be able to see hospitality workers who
+          live nearby or are happy to commute
+        </Text>
+      </View>
+
       {/* Search Bar */}
       <InputField2 title={'Enter Your Suburb Or Postcode'} />
       {/* Area Radius Filter */}
@@ -90,5 +100,23 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
     borderRadius: 40,
+  },
+  textContainer: {
+    backgroundColor: '#FAFAFA',
+    width: '90%',
+    borderRadius: 10,
+    alignItems: 'center',
+    padding: '3%',
+    flexDirection: 'row',
+    borderColor: '#CDCDCD',
+    borderWidth: 1,
+    marginVertical: '2%',
+    alignSelf: 'center',
+  },
+  text2: {
+    color: colors.black,
+    fontFamily: 'Poppins-Medium',
+    fontSize: 14,
+    textAlign: 'center',
   },
 });
