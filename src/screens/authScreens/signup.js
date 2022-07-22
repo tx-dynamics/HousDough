@@ -15,7 +15,8 @@ import ErrorText from '../../components/ErrorText';
 import LoaderModal from '../../components/Modals/loaderModal';
 
 function Signup({navigation}) {
-  const {setOnBoardingDone, setPaymentDone, userType} = useContext(UserContext);
+  const {setOnBoardingDone, setPaymentDone, userType, setUser} =
+    useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
   const [serverError, setServerError] = useState(null);
 
@@ -51,7 +52,7 @@ function Signup({navigation}) {
           ShowPassword: false,
           ShowConfirmPassword: false,
         }}
-        validationSchema={signupSchema}
+        // validationSchema={signupSchema}
         onSubmit={(values, {resetForm}) => {
           setOnBoardingDone(null);
           setPaymentDone(null);
@@ -59,12 +60,13 @@ function Signup({navigation}) {
           signup(values, userType).then(res => {
             setIsLoading(false);
             if (res === true) {
-              showMessage({
-                message: `Welcome ${values.name}`,
-                description: `${values.name} Your Account Have Been Created Successfully!`,
-                type: 'success',
-                duration: 3000,
-              });
+              setUser(true);
+              // showMessage({
+              //   message: `Welcome ${values.name}`,
+              //   description: `${values.name} Your Account Have Been Created Successfully!`,
+              //   type: 'success',
+              //   duration: 3000,
+              // });
               resetForm();
             } else {
               setServerError(res);

@@ -37,18 +37,19 @@ function Login({navigation}) {
 
       <Formik
         initialValues={{email: '', password: '', ShowPassword: false}}
-        validationSchema={loginSchema}
+        // validationSchema={loginSchema}
         onSubmit={(values, {resetForm}) => {
           setIsLoading(true);
           signin(values).then(res => {
             setIsLoading(false);
             if (res === true) {
-              showMessage({
-                message: `Hello`,
-                description: `Login Successfully!`,
-                type: 'success',
-                duration: 3000,
-              });
+              setUser(true);
+              // showMessage({
+              //   message: `Hello`,
+              //   description: `Login Successfully!`,
+              //   type: 'success',
+              //   duration: 3000,
+              // });
               resetForm();
             } else {
               setServerError(res);

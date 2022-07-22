@@ -84,14 +84,15 @@ function ChoosePlan1({navigation}) {
         <Button2
           text={'Next'}
           onPress={() => {
-            if (Plan == null)
-              showMessage({
-                message: `Plan Required`,
-                description: `Please Choose A Plan To Continue!`,
-                type: 'info',
-                duration: 3000,
-              });
-            else navigation.navigate('PaymentMethod');
+            // if (Plan == null)
+            //   showMessage({
+            //     message: `Plan Required`,
+            //     description: `Please Choose A Plan To Continue!`,
+            //     type: 'info',
+            //     duration: 3000,
+            //   });
+            // else
+            navigation.navigate('PaymentMethod');
           }}
         />
       </View>

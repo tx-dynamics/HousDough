@@ -7,7 +7,7 @@ import HomeCard from '../../components/homeCard';
 import {UserContext} from '../../contextApi/contextApi';
 import {logout} from '../../firebase/authFunctions';
 function Home({navigation}) {
-  const {userType, setUserType} = useContext(UserContext);
+  const {userType, setUserType, setUser} = useContext(UserContext);
 
   const renderItem = ({item}) => (
     <HomeCard
@@ -41,15 +41,16 @@ function Home({navigation}) {
       {/* Header */}
       <HomeHeader
         onPress={() => navigation.navigate('Messages')}
-        onPressLogout={() =>
-          logout().then(() => {
-            showMessage({
-              message: `Logout`,
-              description: `You Logged Out Successfully!`,
-              type: 'success',
-              duration: 3000,
-            });
-          })
+        onPressLogout={
+          () => setUser(false)
+          // logout().then(() => {
+          //   showMessage({
+          //     message: `Logout`,
+          //     description: `You Logged Out Successfully!`,
+          //     type: 'success',
+          //     duration: 3000,
+          //   });
+          // })
         }
       />
       {/* Top Text */}

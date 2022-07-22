@@ -52,24 +52,25 @@ function PaymentInformation({navigation}) {
           // validationSchema={paymentInformationSchema}
           onSubmit={value => {
             console.log(value);
-            setPaymentMethod(userType).then(res => {
-              if (res) {
-                showMessage({
-                  message: `Payment`,
-                  description: `Payment Setup Successfully!`,
-                  type: 'success',
-                  duration: 3000,
-                });
-                setPaymentDone(true);
-              } else {
-                showMessage({
-                  message: `Payment`,
-                  description: `Something Went Wrong!`,
-                  type: 'danger',
-                  duration: 3000,
-                });
-              }
-            });
+            // setPaymentMethod(userType).then(res => {
+            //   if (res) {
+            //     showMessage({
+            //       message: `Payment`,
+            //       description: `Payment Setup Successfully!`,
+            //       type: 'success',
+            //       duration: 3000,
+            //     });
+            //     setPaymentDone(true);
+            //   } else {
+            //     showMessage({
+            //       message: `Payment`,
+            //       description: `Something Went Wrong!`,
+            //       type: 'danger',
+            //       duration: 3000,
+            //     });
+            //   }
+            // });
+            setPaymentDone(true);
           }}>
           {formikProps => (
             <View style={{flex: 1}}>

@@ -72,7 +72,7 @@ function SetupScreen1({navigation}) {
       {/* Location Card */}
       <Pressable
         onPress={() => {
-          setIsLoading(true);
+          // setIsLoading(true);
           Geolocation.getCurrentPosition(
             position => {
               //getting the Longitude from the location json
@@ -81,22 +81,22 @@ function SetupScreen1({navigation}) {
               );
               //getting the Latitude from the location json
               const currentLatitude = JSON.stringify(position.coords.latitude);
-              onBoadrdingDispatch(
-                setLocation({
-                  Latitude: currentLatitude,
-                  Longitude: currentLongitude,
-                }),
-              );
+              // onBoadrdingDispatch(
+              //   setLocation({
+              //     Latitude: currentLatitude,
+              //     Longitude: currentLongitude,
+              //   }),
+              // );
 
-              getAreaAndCity(currentLatitude, currentLongitude).then(result => {
-                setAddress(`${result.Area}, ${result.City}`);
-                showMessage({
-                  message: `Location Set`,
-                  description: `Your Location Is Set ${result.Area}, ${result.City}`,
-                  type: 'success',
-                  duration: 3000,
-                });
-              });
+              // getAreaAndCity(currentLatitude, currentLongitude).then(result => {
+              //   setAddress(`${result.Area}, ${result.City}`);
+              //   showMessage({
+              //     message: `Location Set`,
+              //     description: `Your Location Is Set ${result.Area}, ${result.City}`,
+              //     type: 'success',
+              //     duration: 3000,
+              //   });
+              // });
 
               setIsLoading(false);
             },
@@ -139,21 +139,22 @@ function SetupScreen1({navigation}) {
       <View style={{position: 'absolute', bottom: '10%', right: '5%'}}>
         <Button3
           onPress={() => {
-            if (location.Latitude == null) {
-              showMessage({
-                message: `Location Required `,
-                description: `Please Set Location To Continue!`,
-                type: 'info',
-                duration: 3000,
-              });
-            } else if (Postcode == null && userType == 0)
-              showMessage({
-                message: `Postcode Required `,
-                description: `Please Enter Postcode!`,
-                type: 'info',
-                duration: 3000,
-              });
-            else navigation.navigate('SetupScreen2');
+            // if (location.Latitude == null) {
+            //   showMessage({
+            //     message: `Location Required `,
+            //     description: `Please Set Location To Continue!`,
+            //     type: 'info',
+            //     duration: 3000,
+            //   });
+            // } else if (Postcode == null && userType == 0)
+            //   showMessage({
+            //     message: `Postcode Required `,
+            //     description: `Please Enter Postcode!`,
+            //     type: 'info',
+            //     duration: 3000,
+            //   });
+            // else
+            navigation.navigate('SetupScreen2');
           }}
         />
       </View>

@@ -90,6 +90,7 @@ function SetupScreen2({navigation}) {
       {/* Image Videos Display Placeholder */}
       {VideoLink == null ? (
         <Pressable
+          disabled={true}
           onPress={() => setmodalVisibility(true)}
           style={styles.imagePlaceholder}>
           <Image
@@ -131,14 +132,15 @@ function SetupScreen2({navigation}) {
       <View style={{position: 'absolute', bottom: '10%', right: '5%'}}>
         <Button3
           onPress={() => {
-            if (VideoLink == null)
-              showMessage({
-                message: `Video Required`,
-                description: `Please Upload A Video To Continue!`,
-                type: 'info',
-                duration: 3000,
-              });
-            else navigation.navigate('SetupScreen3');
+            // if (VideoLink == null)
+            //   showMessage({
+            //     message: `Video Required`,
+            //     description: `Please Upload A Video To Continue!`,
+            //     type: 'info',
+            //     duration: 3000,
+            //   });
+            // else
+            navigation.navigate('SetupScreen3');
           }}
         />
       </View>

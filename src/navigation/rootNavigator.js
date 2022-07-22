@@ -22,23 +22,23 @@ function RootNavigator() {
     useContext(UserContext);
 
   // Handle user state changes
-  function onAuthStateChanged(user) {
-    setUser(user);
-    userDispatch(setUid({uid: user?.uid})); //setting UID in redux
-    userDispatch(setEmail({email: user?.email})); //setting email in redux
-    if (initializing) setInitializing(false);
+  // function onAuthStateChanged(user) {
+  //   setUser(user);
+  //   userDispatch(setUid({uid: user?.uid})); //setting UID in redux
+  //   userDispatch(setEmail({email: user?.email})); //setting email in redux
+  //   if (initializing) setInitializing(false);
 
-    getUserInfo()
-      .then(res => {
-        console.log('getUserInfo', res);
-        setUserType(res?.userType);
-        setOnBoardingDone(res?.onBoarding);
-        res?.userType
-          ? setPaymentDone(res?.paymentMethod)
-          : setPaymentDone(true);
-      })
-      .catch(error => console.log(error));
-  }
+  //   getUserInfo()
+  //     .then(res => {
+  //       console.log('getUserInfo', res);
+  //       setUserType(res?.userType);
+  //       setOnBoardingDone(res?.onBoarding);
+  //       res?.userType
+  //         ? setPaymentDone(res?.paymentMethod)
+  //         : setPaymentDone(true);
+  //     })
+  //     .catch(error => console.log(error));
+  // }
 
   useEffect(() => {
     //This is for splash screen
@@ -47,11 +47,11 @@ function RootNavigator() {
       setIsLoading(false);
     }, 3000);
 
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber; // unsubscribe on unmount
+    // const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    // return subscriber; // unsubscribe on unmount
   }, []);
 
-  if (initializing) return null;
+  // if (initializing) return null;
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>

@@ -75,14 +75,15 @@ function SetupScreen3({navigation}) {
       <View style={{position: 'absolute', bottom: '10%', right: '5%'}}>
         <Button3
           onPress={() => {
-            Skills.length === 0
-              ? showMessage({
-                  message: `Skills Requires`,
-                  description: `Please Select Atleast One Skill`,
-                  type: 'info',
-                  duration: 3000,
-                })
-              : navigation.navigate('SetupScreen4');
+            // Skills.length === 0
+            //   ? showMessage({
+            //       message: `Skills Requires`,
+            //       description: `Please Select Atleast One Skill`,
+            //       type: 'info',
+            //       duration: 3000,
+            //     })
+            //   :
+            navigation.navigate('SetupScreen4');
           }}
         />
       </View>

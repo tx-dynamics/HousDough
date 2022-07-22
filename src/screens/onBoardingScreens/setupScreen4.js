@@ -136,59 +136,61 @@ Note: If you don't have any previous experience write about what venues you want
         }}>
         <Button2
           onPress={() => {
-            if (AboutYou == '')
-              showMessage({
-                message: `About You Is Required`,
-                type: 'info',
-                duration: 3000,
-              });
-            else if (PastExperience == '' && userType == 0)
-              showMessage({
-                message: `Past Experience Is Required`,
-                type: 'info',
-                duration: 3000,
-              });
-            else if (Reference == '' && userType == 0)
-              showMessage({
-                message: `Reference Is Required`,
-                type: 'info',
-                duration: 3000,
-              });
-            else {
-              setIsLoading(true);
-              setOnBoarding(
-                userType,
-                {
-                  location,
-                  Postcode,
-                  VideoLink,
-                  Skills,
-                  AboutYou,
-                  PastExperience,
-                  Reference,
-                },
-                uid,
-              ).then(data => {
-                setIsLoading(false);
-                if (data) {
-                  showMessage({
-                    message: `Profile Setup`,
-                    description: `Profile Setup Successfully!`,
-                    type: 'success',
-                    duration: 3000,
-                  });
-                  !userType && setPaymentDone(true);
-                  setOnBoardingDone(true);
-                } else {
-                  showMessage({
-                    message: `Profile Setup`,
-                    description: `Something Went Wrong!`,
-                    type: 'danger',
-                    duration: 3000,
-                  });
-                }
-              });
-            }
+            // if (AboutYou == '')
+            //   showMessage({
+            //     message: `About You Is Required`,
+            //     type: 'info',
+            //     duration: 3000,
+            //   });
+            // else if (PastExperience == '' && userType == 0)
+            //   showMessage({
+            //     message: `Past Experience Is Required`,
+            //     type: 'info',
+            //     duration: 3000,
+            //   });
+            // else if (Reference == '' && userType == 0)
+            //   showMessage({
+            //     message: `Reference Is Required`,
+            //     type: 'info',
+            //     duration: 3000,
+            //   });
+            // else {
+            //   setIsLoading(true);
+            //   setOnBoarding(
+            //     userType,
+            //     {
+            //       location,
+            //       Postcode,
+            //       VideoLink,
+            //       Skills,
+            //       AboutYou,
+            //       PastExperience,
+            //       Reference,
+            //     },
+            //     uid,
+            //   ).then(data => {
+            //     setIsLoading(false);
+            //     if (data) {
+            //       showMessage({
+            //         message: `Profile Setup`,
+            //         description: `Profile Setup Successfully!`,
+            //         type: 'success',
+            //         duration: 3000,
+            //       });
+            //       !userType && setPaymentDone(true);
+            //       setOnBoardingDone(true);
+            //     } else {
+            //       showMessage({
+            //         message: `Profile Setup`,
+            //         description: `Something Went Wrong!`,
+            //         type: 'danger',
+            //         duration: 3000,
+            //       });
+            //     }
+            //   });
+            // }
+            !userType && setPaymentDone(true);
+            setOnBoardingDone(true);
           }}
           text={'Done'}
           light={false}
