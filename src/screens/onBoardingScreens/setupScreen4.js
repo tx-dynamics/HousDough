@@ -37,7 +37,16 @@ function SetupScreen4({navigation}) {
   return (
     <KeyboardAwareScrollView contentContainerStyle={styles.container}>
       {/* Header */}
-      <Header1 text={'Add About You'} Screen={4} />
+      <Header1
+        text={
+          0
+            ? 'Add About You'
+            : `Describe your venue for potential workers. Try to avoid cliches or copy pasting your website- Keep it real and describe the pace or the other workers or the customers - Don't shy away from the hard parts but also include incentives that would attract someone
+ 
+ Remember there are thousands of other venues competing for the same workers so keep it real`
+        }
+        Screen={4}
+      />
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* About You Text */}
         <View style={styles.textContainer}>
@@ -168,7 +177,7 @@ Note: If you don't have any previous experience write about what venues you want
                     type: 'success',
                     duration: 3000,
                   });
-                  !userType && setPaymentDone(false);
+                  !userType && setPaymentDone(true);
                   setOnBoardingDone(true);
                 } else {
                   showMessage({

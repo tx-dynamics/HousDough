@@ -34,7 +34,11 @@ function Signup({navigation}) {
       {/* Header */}
       <AuthHeader
         text1={'Sign Up to Hosdough'}
-        text2={`Let's create your account`}
+        text2={
+          userType
+            ? `Let's create your venue's account so we can find workers in your area`
+            : `Let's create your account so we can find venues in your area.`
+        }
       />
       {/* Formik library user to create forms */}
 

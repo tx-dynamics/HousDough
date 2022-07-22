@@ -48,6 +48,7 @@ function SetupScreen1({navigation}) {
   const [address, setAddress] = useState('');
   const onBoadrdingDispatch = useDispatch();
   const {location, Postcode} = useSelector(state => state.onBoadrding);
+  const {uid} = useSelector(state => state.userProfile);
 
   Geocoder.init('AIzaSyD3BToDj_z_1ZLuhdDSURQplj3_9IgQSis'); // use a valid API key
 

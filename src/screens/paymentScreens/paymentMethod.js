@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
 import {Formik} from 'formik';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 
@@ -82,6 +82,7 @@ function PaymentMethod({navigation}) {
         </View>
       </View>
 
+      {/* Invoices Email Field */}
       <Formik
         initialValues={{email: ''}}
         onSubmit={values => {

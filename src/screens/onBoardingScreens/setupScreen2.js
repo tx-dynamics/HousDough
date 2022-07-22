@@ -131,7 +131,7 @@ function SetupScreen2({navigation}) {
       <View style={{position: 'absolute', bottom: '10%', right: '5%'}}>
         <Button3
           onPress={() => {
-            if (VideoLink !== null)
+            if (VideoLink == null)
               showMessage({
                 message: `Video Required`,
                 description: `Please Upload A Video To Continue!`,
