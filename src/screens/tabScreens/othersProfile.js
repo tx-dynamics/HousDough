@@ -27,7 +27,11 @@ function OthersProfile({navigation}) {
       <ScrollView>
         {/* Top Video */}
         <View style={{marginHorizontal: '5%'}}>
-          <VideoCard />
+          <VideoCard
+            VideoUri={
+              'https://firebasestorage.googleapis.com/v0/b/hosdough-bd7e6.appspot.com/o/usersMedia%2Fn4h9r2otqvUn91DVBn7td29wONW2?alt=media&token=b41856cf-f582-482a-beb2-02ef8080c1a2'
+            }
+          />
         </View>
         {/* Image and Info */}
         <View

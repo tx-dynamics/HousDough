@@ -3,7 +3,7 @@ import auth from '@react-native-firebase/auth';
 
 export const getUserInfo = async () => {
   // console.log('getUserInfo', auth()?.currentUser);
-  const uid = await auth().currentUser.uid;
+  const uid = await auth()?.currentUser?.uid;
   return firestore()
     .collection('Users')
     .doc(uid)

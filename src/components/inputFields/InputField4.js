@@ -1,7 +1,14 @@
 import React from 'react';
-import {View, Pressable, StyleSheet, Image, TextInput} from 'react-native';
+import {
+  View,
+  Pressable,
+  StyleSheet,
+  Image,
+  TextInput,
+  Text,
+} from 'react-native';
 import colors from '../../globalStyles/colorScheme';
-const InputField = ({
+const InputField4 = ({
   title,
   value,
   icon,
@@ -14,21 +21,13 @@ const InputField = ({
   autoComplete = 'off',
 }) => {
   return (
-    <View style={styles.inputField}>
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        {/* icon */}
-        {/* Profile Icon */}
-        {icon ? (
-          <View>
-            <Image resizeMode={'contain'} source={icon} style={{width: 20}} />
-          </View>
-        ) : null}
-        {/* text */}
+    <View>
+      <Text style={styles.titleText}>{title}</Text>
+      <View style={styles.inputField}>
         <View style={{marginLeft: 10, width: '85%'}}>
           <TextInput
             style={styles.inputFieldText}
             placeholder={title}
-            secureTextEntry={!ShowPassword}
             onChangeText={onChangeText}
             value={value}
             placeholderTextColor={colors.placeHolderColor}
@@ -36,41 +35,21 @@ const InputField = ({
             autoCapitalize={autoCapitalize}
             autoComplete={autoComplete}
             onBlur={onBlur}
+            multiline={true}
           />
         </View>
-      </View>
-
-      {/* eye */}
-      <View>
-        {eye && (
-          <Pressable
-            onPress={onEyePress}
-            hitSlop={{top: 20, bottom: 20, left: 50, right: 50}}>
-            <View style={{}}>
-              <Image
-                resizeMode={'contain'}
-                source={
-                  ShowPassword
-                    ? require('../../../assets/icons/show_eye.png')
-                    : require('../../../assets/icons/hide_eye.png')
-                }
-                style={{width: 18, alignItems: 'center', tintColor: 'black'}}
-              />
-            </View>
-          </Pressable>
-        )}
       </View>
     </View>
   );
 };
 
-export default InputField;
+export default InputField4;
 
 const styles = StyleSheet.create({
   inputField: {
     backgroundColor: 'white',
     width: '100%',
-    height: 55,
+    height: 150,
     borderRadius: 10,
     flexDirection: 'row',
     alignItems: 'center',
@@ -93,5 +72,11 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 14,
     color: colors.black,
+    textAlignVertical: 'top',
+  },
+  titleText: {
+    color: colors.black,
+    fontFamily: 'Poppins-Medium',
+    fontSize: 14,
   },
 });

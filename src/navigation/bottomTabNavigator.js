@@ -1,13 +1,12 @@
 import React, {useContext} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import HomeStack from './homeStack';
-
-import Profile from '../screens/tabScreens/profile';
 import Search from '../screens/tabScreens/search';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import colors from '../globalStyles/colorScheme';
-import OthersProfile from '../screens/tabScreens/othersProfile';
 import {UserContext} from '../contextApi/contextApi';
+import EmployersProfile from '../screens/tabScreens/employersProfile';
+import WorkersProfile from '../screens/tabScreens/workersProfile';
 
 // Creating bottom tab navigator
 const Tab = createBottomTabNavigator();
@@ -58,8 +57,8 @@ function BottomTabNavigator() {
         //   ),
         //   headerShown: false,
         // }}
-        name={userType ? 'TabOthersProfile' : 'TabProfile'}
-        component={userType ? OthersProfile : Profile}
+        name={userType ? 'EmployersProfile' : 'WorkersProfile'}
+        component={userType ? EmployersProfile : WorkersProfile}
       />
       <Tab.Screen
         options={{

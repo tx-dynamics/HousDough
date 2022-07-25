@@ -10,19 +10,23 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import Video from 'react-native-video';
+import VideoPlayer from 'react-native-video-controls';
+
 import colorScheme from '../globalStyles/colorScheme';
 
-const VideoCard = ({item, onPress, UserType, Home, ImageSource}) => (
-  <Video
+const VideoCard = ({item, onPress, UserType, Home, ImageSource, VideoUri}) => (
+  <VideoPlayer
     repeat={true}
     paused={true}
-    resizeMode={'contain'}
+    // resizeMode={'contain'}
+    disableBack={true}
+    disableVolume={true}
     controls={true}
-    source={require('../../assets/videos/vid4.mp4')} // Can be a URL or a local file.
-    onBuffer={() => console.log('buffer')}
-    // Store reference
-    // Callback when video cannot be loaded
+    source={{
+      uri: VideoUri,
+    }}
     style={styles.container}
+    tapAnywhereToPause={true}
   />
 );
 export default VideoCard;
@@ -36,8 +40,8 @@ const styles = StyleSheet.create({
     backgroundColor: colorScheme.black,
     marginBottom: '5%',
     borderRadius: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
   cardInfo: {
     position: 'absolute',

@@ -10,7 +10,18 @@ import {getUserInfo} from '../firebase/getFunctions';
 import Splash from '../screens/authScreens/splash';
 import LoaderModal from '../components/Modals/loaderModal';
 import Splash2 from '../screens/authScreens/splash2';
-import {setUid, setEmail} from '../redux/features/userSlice';
+import {
+  setUid,
+  setEmail,
+  setName,
+  setLocation,
+  setPostCode,
+  setVideoLink,
+  setUserSkills,
+  setAboutYou,
+  setPastExperience,
+  setReference,
+} from '../redux/features/userSlice';
 
 function RootNavigator() {
   // Set an initializing state whilst Firebase connects
@@ -26,6 +37,7 @@ function RootNavigator() {
     setUser(user);
     userDispatch(setUid({uid: user?.uid})); //setting UID in redux
     userDispatch(setEmail({email: user?.email})); //setting email in redux
+
     if (initializing) setInitializing(false);
 
     getUserInfo()
@@ -36,6 +48,20 @@ function RootNavigator() {
         res?.userType
           ? setPaymentDone(res?.paymentMethod)
           : setPaymentDone(true);
+
+        userDispatch(
+          setLocation({
+            Latitude: res?.location?.Latitude,
+            Longitude: res?.location?.Longitude,
+          }),
+        );
+        userDispatch(setPostCode({Postcode: res?.Postcode}));
+        userDispatch(setVideoLink({VideoLink: res?.VideoLink}));
+        userDispatch(setName({userName: res?.name}));
+        userDispatch(setUserSkills({Skills: res?.Skills}));
+        userDispatch(setAboutYou({AboutYou: res?.AboutYou}));
+        userDispatch(setPastExperience({PastExperience: res?.PastExperience}));
+        userDispatch(setReference({Reference: res?.Reference}));
       })
       .catch(error => console.log(error));
   }

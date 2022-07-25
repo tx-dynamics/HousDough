@@ -26,7 +26,7 @@ export const setOnBoarding = async (userType, userData, uid) => {
 
       return firestore()
         .collection('Users')
-        .doc(auth().currentUser.uid)
+        .doc(auth()?.currentUser?.uid)
         .set(
           {
             onBoarding: true,
@@ -54,10 +54,31 @@ export const setPaymentMethod = async userType => {
 
   return firestore()
     .collection('Users')
-    .doc(auth().currentUser.uid)
+    .doc(auth()?.currentUser?.uid)
     .update({paymentMethod: true})
     .then(() => {
       console.log('User payment Method set to true');
+      return true;
+    })
+    .catch(error => {
+      console.log(error);
+      return false;
+    });
+};
+
+export const updateProfile = (
+  userName,
+  AboutYou,
+  PastExperience,
+  Reference,
+) => {
+  console.log('updateProfile');
+  return firestore()
+    .collection('Users')
+    .doc(auth()?.currentUser?.uid)
+    .update({name: userName, AboutYou, PastExperience, Reference})
+    .then(() => {
+      console.log('Profile Updated');
       return true;
     })
     .catch(error => {
