@@ -50,7 +50,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: '2%',
     paddingHorizontal: 20,
-    borderColor: '#25251C80',
+
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
   inputFieldText: {
     fontFamily: 'Poppins-SemiBold',

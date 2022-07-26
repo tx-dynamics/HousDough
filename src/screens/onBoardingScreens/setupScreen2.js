@@ -106,7 +106,7 @@ function SetupScreen2({navigation}) {
           <Video
             repeat={true}
             paused={true}
-            // resizeMode={'contain'}
+            resizeMode={'contain'}
             controls={true}
             source={{
               uri: VideoLink,

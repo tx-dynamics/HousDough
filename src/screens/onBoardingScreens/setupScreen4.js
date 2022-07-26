@@ -31,7 +31,7 @@ function SetupScreen4({navigation}) {
   const onBoadrdingDispatch = useDispatch();
 
   useEffect(() => {
-    console.log(AboutYou, PastExperience, Reference);
+    console.log(userType);
   }, []);
 
   return (
@@ -155,20 +155,19 @@ Note: If you don't have any previous experience write about what venues you want
                 duration: 3000,
               });
             else {
+              let _data = {
+                location,
+                Postcode,
+                VideoLink,
+                Skills,
+                AboutYou,
+              };
+              // If user is worker including PastExperience, Reference, properties
+              if (userType == 0) {
+                _data = {..._data, PastExperience, Reference};
+              }
               setIsLoading(true);
-              setOnBoarding(
-                userType,
-                {
-                  location,
-                  Postcode,
-                  VideoLink,
-                  Skills,
-                  AboutYou,
-                  PastExperience,
-                  Reference,
-                },
-                uid,
-              ).then(data => {
+              setOnBoarding(userType, _data, uid).then(data => {
                 setIsLoading(false);
                 if (data) {
                   showMessage({

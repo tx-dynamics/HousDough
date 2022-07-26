@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
 import {Formik} from 'formik';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
-
+import {useSelector} from 'react-redux';
 import Header3 from '../../components/headers/Header3';
 import colorScheme from '../../globalStyles/colorScheme';
 import Button2 from '../../components/buttons/button2';
@@ -10,6 +10,8 @@ import InputField from '../../components/inputFields/InputField';
 import ErrorText from '../../components/ErrorText';
 
 function PaymentMethod({navigation}) {
+  const {Plan} = useSelector(state => state.userPayment);
+
   return (
     <KeyboardAwareScrollView contentContainerStyle={styles.container}>
       {/* Header */}
@@ -30,7 +32,7 @@ function PaymentMethod({navigation}) {
           style={{
             flexDirection: 'row',
             alignItems: 'center',
-            height: 100,
+            height: '27%',
             marginTop: '3%',
             marginBottom: '7%',
           }}>
@@ -51,7 +53,7 @@ function PaymentMethod({navigation}) {
               justifyContent: 'flex-start',
               paddingVertical: '4%',
             }}>
-            <Text style={styles.text2}>Standard</Text>
+            <Text style={styles.text2}>{Plan}</Text>
             <Text style={styles.text3}>
               Get Access Upto 100 Skilled Profiles
             </Text>
@@ -89,12 +91,12 @@ function PaymentMethod({navigation}) {
           console.log(values);
         }}>
         {formikProps => (
-          <View style={{marginTop: 20, paddingHorizontal: '5%'}}>
-            <Text style={styles.text1}>
+          <View style={{marginTop: '15%', paddingHorizontal: '5%'}}>
+            {/* <Text style={styles.text1}>
               Please Enter Email Below For The Invoices
-            </Text>
+            </Text> */}
             <InputField
-              title={'Enter Your Email'}
+              title={'Email Below For The Invoices'}
               value={formikProps.values.email}
               icon={require('../../../assets/icons/email.png')}
               onChangeText={formikProps.handleChange('email')}

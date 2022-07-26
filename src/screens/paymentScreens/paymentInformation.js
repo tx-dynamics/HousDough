@@ -2,6 +2,7 @@ import React, {useState, useContext} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import {showMessage, hideMessage} from 'react-native-flash-message';
+import {useSelector, useDispatch} from 'react-redux';
 import {Formik} from 'formik';
 import Header3 from '../../components/headers/Header3';
 import InputField3 from '../../components/inputFields/InputField3';
@@ -11,14 +12,14 @@ import {UserContext} from '../../contextApi/contextApi';
 import {setPaymentMethod} from '../../firebase/updateFuctions';
 import ErrorText from '../../components/ErrorText';
 import {paymentInformationSchema} from '../../validations/paymentValidations';
+import LoaderModal from '../../components/Modals/loaderModal';
 
 function PaymentInformation({navigation}) {
   const {setPaymentDone, userType} = useContext(UserContext);
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
-  // const [fieldFocus, setFieldFocus] = useState(false);
-  // const [fieldFocus1, setFieldFocus1] = useState(false);
-  // const [fieldFocus2, setFieldFocus2] = useState(false);
-  // const [fieldFocus3, setFieldFocus3] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const {email} = useSelector(state => state.userProfile);
+  const {Plan} = useSelector(state => state.userPayment);
 
   return (
     <KeyboardAwareScrollView contentContainerStyle={styles.container}>
@@ -49,13 +50,15 @@ function PaymentInformation({navigation}) {
             expDate: '',
             saveInfo: false,
           }}
-          // validationSchema={paymentInformationSchema}
+          validationSchema={paymentInformationSchema}
           onSubmit={value => {
             console.log(value);
-            setPaymentMethod(userType).then(res => {
+            setIsLoading(true);
+            setPaymentMethod(userType, email, Plan, value).then(res => {
+              setIsLoading(false);
               if (res) {
                 showMessage({
-                  message: `Payment`,
+                  message: `Payment Successfully`,
                   description: `Payment Setup Successfully!`,
                   type: 'success',
                   duration: 3000,
@@ -63,8 +66,8 @@ function PaymentInformation({navigation}) {
                 setPaymentDone(true);
               } else {
                 showMessage({
-                  message: `Payment`,
-                  description: `Something Went Wrong!`,
+                  message: `Payment Failed`,
+                  description: `Something Went Wrong! Please Enter Correct Information`,
                   type: 'danger',
                   duration: 3000,
                 });
@@ -96,12 +99,12 @@ function PaymentInformation({navigation}) {
                 {/* Card Number */}
                 <InputField3
                   title={'Card Number'}
-                  placeHolder={'1234 5678 4325 2343'}
+                  placeHolder={'1234567843252343'}
                   width={'90%'}
                   value={formikProps.values.cardNumber}
                   onChangeText={formikProps.handleChange('cardNumber')}
                   onBlur={formikProps.handleBlur('cardNumber')}
-                  keyboardType={'number-pad'}
+                  keyboardType={'phone-pad'}
                 />
                 {formikProps.touched.cardNumber && (
                   <View style={{width: '80%'}}>
@@ -124,18 +127,18 @@ function PaymentInformation({navigation}) {
                   value={formikProps.values.cvv}
                   onChangeText={formikProps.handleChange('cvv')}
                   onBlur={formikProps.handleBlur('cvv')}
-                  keyboardType={'number-pad'}
+                  keyboardType={'phone-pad'}
                 />
 
                 {/* Expiration Date */}
                 <InputField3
                   title={'Expiration Date'}
-                  placeHolder={'08/2023'}
+                  placeHolder={'08/22'}
                   width={'47%'}
                   value={formikProps.values.expDate}
                   onChangeText={formikProps.handleChange('expDate')}
                   onBlur={formikProps.handleBlur('expDate')}
-                  keyboardType={'number-pad'}
+                  keyboardType={'phone-pad'}
                 />
               </View>
               {formikProps.touched.cvv && (
@@ -193,7 +196,7 @@ function PaymentInformation({navigation}) {
                   // marginHorizontal: '5%',
                   // marginBottom: '5%',
                   position: 'absolute',
-                  bottom: '13%',
+                  bottom: '5%',
                   width: '90%',
                   alignSelf: 'center',
                 }}>
@@ -206,6 +209,7 @@ function PaymentInformation({navigation}) {
           )}
         </Formik>
       </View>
+      <LoaderModal Visibility={isLoading} />
     </KeyboardAwareScrollView>
   );
 }

@@ -1,7 +1,6 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-import {UserContext} from '../contextApi/contextApi';
 
 // This Function Is for Creatinon of new User
 export const signup = async (values, userType) => {

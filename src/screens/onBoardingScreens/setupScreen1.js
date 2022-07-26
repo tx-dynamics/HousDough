@@ -100,11 +100,14 @@ function SetupScreen1({navigation}) {
 
               setIsLoading(false);
             },
-            error => alert(error.message),
+            error => {
+              alert(error.message);
+              setIsLoading(false);
+            },
             {
-              enableHighAccuracy: true,
-              timeout: 20000,
-              maximumAge: 1000,
+              enableHighAccuracy: false,
+              timeout: 5000,
+              maximumAge: 10000,
             },
           );
         }}

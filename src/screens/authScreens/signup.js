@@ -80,7 +80,7 @@ function Signup({navigation}) {
               icon={require('../../../assets/icons/user.png')}
               onChangeText={formikProps.handleChange('name')}
               ShowPassword={true}
-              onBlur={formikProps.handleBlur('email')}
+              onBlur={formikProps.handleBlur('name')}
             />
             {/*Name Error */}
             {formikProps.touched.name && (

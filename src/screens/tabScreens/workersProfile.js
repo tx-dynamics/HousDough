@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import Video from 'react-native-video';
 import Geocoder from 'react-native-geocoding';
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {showMessage, hideMessage} from 'react-native-flash-message';
 import Header3 from '../../components/headers/Header3';
 import HomeCard from '../../components/homeCard';
@@ -64,18 +64,18 @@ function WorkersProfile({navigation}) {
   };
 
   useEffect(() => {
-    // console.log(
-    //   '=>',
-    //   location,
-    //   email,
-    //   userName,
-    //   Postcode,
-    //   VideoLink,
-    //   Skills,
-    //   AboutYou,
-    //   PastExperience,
-    //   Reference,
-    // );
+    console.log(
+      '=> Worker Profile',
+      location,
+      email,
+      userName,
+      Postcode,
+      VideoLink,
+      Skills,
+      AboutYou,
+      PastExperience,
+      Reference,
+    );
     getAreaAndCity(location?.Latitude, location?.Longitude).then(data => {
       // console.log(data);
       setAddress(data);

@@ -26,7 +26,9 @@ function ChoosePlan1({navigation}) {
     const temp = [];
 
     console.log(ArrayIndex);
-    paymentDispatch(setPlan({Plan: ArrayIndex ? 'Premium' : 'Standard'}));
+    paymentDispatch(
+      setPlan({Plan: ArrayIndex ? 'Premium Plan' : 'Standard Plan'}),
+    );
 
     planButtonData.forEach((element, index) => {
       ArrayIndex !== index

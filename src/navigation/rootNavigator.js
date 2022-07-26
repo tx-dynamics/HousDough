@@ -49,12 +49,15 @@ function RootNavigator() {
           ? setPaymentDone(res?.paymentMethod)
           : setPaymentDone(true);
 
+        console.log('setLocation', res);
         userDispatch(
           setLocation({
             Latitude: res?.location?.Latitude,
             Longitude: res?.location?.Longitude,
           }),
         );
+        console.log('setPostCode==============================', res);
+
         userDispatch(setPostCode({Postcode: res?.Postcode}));
         userDispatch(setVideoLink({VideoLink: res?.VideoLink}));
         userDispatch(setName({userName: res?.name}));
