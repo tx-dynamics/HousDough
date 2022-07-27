@@ -12,14 +12,16 @@ import {
   setAboutYou,
   setPastExperience,
   setReference,
-} from '../../redux/features/onBoadrdingSlice';
+} from '../../redux/features/userSlice';
 import LoaderMessageModal from '../../components/Modals/loaderMessageModal';
 
 function SetupScreen4({navigation}) {
-  const {userType, setOnBoardingDone, setPaymentDone} = useContext(UserContext);
+  const {userType, setOnBoardingDone, setPaymentDone, onBoardingDone} =
+    useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
-  const {email, uid} = useSelector(state => state.userProfile);
   const {
+    email,
+    uid,
     location,
     Postcode,
     VideoLink,
@@ -27,11 +29,12 @@ function SetupScreen4({navigation}) {
     AboutYou,
     PastExperience,
     Reference,
-  } = useSelector(state => state.onBoadrding);
-  const onBoadrdingDispatch = useDispatch();
+  } = useSelector(state => state.userProfile);
+  const userDispatch = useDispatch();
 
   useEffect(() => {
-    console.log(userType);
+    console.log('setupScreen 4');
+    console.log('userType', userType, onBoardingDone);
   }, []);
 
   return (
@@ -64,9 +67,7 @@ function SetupScreen4({navigation}) {
             placeholderTextColor={colors.black}
             multiline={true}
             value={AboutYou}
-            onChangeText={txt =>
-              onBoadrdingDispatch(setAboutYou({AboutYou: txt}))
-            }
+            onChangeText={txt => userDispatch(setAboutYou({AboutYou: txt}))}
           />
         </View>
         {/* Your Past Experience */}
@@ -96,7 +97,7 @@ Note: If you don't have any previous experience write about what venues you want
                 multiline={true}
                 value={PastExperience}
                 onChangeText={txt =>
-                  onBoadrdingDispatch(setPastExperience({PastExperience: txt}))
+                  userDispatch(setPastExperience({PastExperience: txt}))
                 }
               />
             </View>
@@ -115,7 +116,7 @@ Note: If you don't have any previous experience write about what venues you want
                 multiline={true}
                 value={Reference}
                 onChangeText={txt =>
-                  onBoadrdingDispatch(setReference({Reference: txt}))
+                  userDispatch(setReference({Reference: txt}))
                 }
               />
             </View>

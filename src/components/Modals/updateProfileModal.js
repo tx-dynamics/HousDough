@@ -7,6 +7,7 @@ import {
   Dimensions,
   ActivityIndicator,
   ScrollView,
+  Pressable,
 } from 'react-native';
 import {useDispatch} from 'react-redux';
 import colors from '../../globalStyles/colorScheme';
@@ -28,12 +29,13 @@ const UpdateProfileModal = ({
   AboutYou,
   PastExperience,
   Reference,
+  onPress2,
 }) => {
   const userDispatch = useDispatch();
 
   return (
     <Modal visible={Visibility} transparent={true} animationType={'fade'}>
-      <View style={styles.container}>
+      <Pressable onPress={onPress2} style={styles.container}>
         <View style={styles.modal}>
           <Text style={styles.text}>Update Your Profile</Text>
           <ScrollView>
@@ -77,7 +79,7 @@ const UpdateProfileModal = ({
           </ScrollView>
           <Button2 onPress={onPress} text={'Update'} />
         </View>
-      </View>
+      </Pressable>
     </Modal>
   );
 };

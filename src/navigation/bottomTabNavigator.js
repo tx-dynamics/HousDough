@@ -12,7 +12,7 @@ import WorkersProfile from '../screens/tabScreens/workersProfile';
 const Tab = createBottomTabNavigator();
 
 function BottomTabNavigator() {
-  const {userType, setUserType} = useContext(UserContext);
+  const {userType} = useContext(UserContext);
 
   return (
     <Tab.Navigator

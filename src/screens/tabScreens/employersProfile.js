@@ -22,7 +22,7 @@ import UpdateProfileModal from '../../components/Modals/updateProfileModal';
 import {updateProfile} from '../../firebase/updateFuctions';
 
 function EmployersProfile({navigation}) {
-  const {userType, setUserType} = useContext(UserContext);
+  const {userType} = useContext(UserContext);
   const [updatingModal, setupdatingModal] = useState(false);
   const [address, setAddress] = useState('Location');
 
@@ -134,6 +134,9 @@ function EmployersProfile({navigation}) {
         AboutYou={AboutYou}
         PastExperience={PastExperience}
         Reference={Reference}
+        onPress2={() => {
+          setupdatingModal(false);
+        }}
         onPress={() => {
           setupdatingModal(false);
           console.log('Update');

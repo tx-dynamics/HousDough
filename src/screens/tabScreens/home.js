@@ -7,7 +7,7 @@ import HomeCard from '../../components/homeCard';
 import {UserContext} from '../../contextApi/contextApi';
 import {logout} from '../../firebase/authFunctions';
 function Home({navigation}) {
-  const {userType, setUserType} = useContext(UserContext);
+  const {userType} = useContext(UserContext);
 
   const renderItem = ({item}) => (
     <HomeCard

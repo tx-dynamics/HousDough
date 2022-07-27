@@ -9,17 +9,18 @@ import colors from '../../globalStyles/colorScheme';
 import ImagePicker from 'react-native-image-crop-picker';
 import ImagePickerModal from '../../components/Modals/imagePickerModal';
 import {UserContext} from '../../contextApi/contextApi';
-import {setVideoLink} from '../../redux/features/onBoadrdingSlice';
+import {setVideoLink} from '../../redux/features/userSlice';
 
 function SetupScreen2({navigation}) {
   // Image picker modal viability state
   const [ModalVisibility, setmodalVisibility] = useState(false);
-  const {userType, setUserType} = useContext(UserContext);
-  const {VideoLink} = useSelector(state => state.onBoadrding);
-  const onBoadrdingDispatch = useDispatch();
+  const {userType} = useContext(UserContext);
+  const {VideoLink, email, location} = useSelector(state => state.userProfile);
+  const userDispatch = useDispatch();
 
   useEffect(() => {
-    console.log('VideoLink', VideoLink);
+    console.log('setupScreen 2');
+    console.log('VideoLink', userType, location, VideoLink);
   }, []);
 
   //To Open Camera
@@ -32,7 +33,7 @@ function SetupScreen2({navigation}) {
     })
       .then(image => {
         console.log(image);
-        onBoadrdingDispatch(setVideoLink({VideoLink: image.path}));
+        userDispatch(setVideoLink({VideoLink: image.path}));
         showMessage({
           message: 'Media Selected',
           type: 'success',
@@ -56,7 +57,7 @@ function SetupScreen2({navigation}) {
     })
       .then(image => {
         console.log('openGallery', image);
-        onBoadrdingDispatch(
+        userDispatch(
           setVideoLink({
             VideoLink: image[0].path,
           }),

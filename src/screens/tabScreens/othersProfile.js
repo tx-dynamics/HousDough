@@ -16,7 +16,7 @@ import VideoCard from '../../components/videoCard';
 import {UserContext} from '../../contextApi/contextApi';
 
 function OthersProfile({navigation}) {
-  const {userType, setUserType} = useContext(UserContext);
+  const {userType} = useContext(UserContext);
 
   return (
     <View style={styles.container}>

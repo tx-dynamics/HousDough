@@ -6,15 +6,18 @@ import Header1 from '../../components/headers/Header1';
 import Button3 from '../../components/buttons/button3';
 import Button4 from '../../components/buttons/button4';
 import {UserContext} from '../../contextApi/contextApi';
-import {setUserSkills} from '../../redux/features/onBoadrdingSlice';
+import {setUserSkills} from '../../redux/features/userSlice';
 
 function SetupScreen3({navigation}) {
-  const {userType, setUserType} = useContext(UserContext);
-  const {Skills} = useSelector(state => state.onBoadrding);
-  const onBoadrdingDispatch = useDispatch();
+  const {userType} = useContext(UserContext);
+  const {Skills} = useSelector(state => state.userProfile);
+  const userDispatch = useDispatch();
 
   useEffect(() => {
+    console.log('setupScreen 3');
+
     console.log('Skills', Skills);
+    console.log('userType', userType);
   }, []);
 
   // This is dummy data
@@ -36,7 +39,7 @@ function SetupScreen3({navigation}) {
     });
     setSkills(temp);
 
-    onBoadrdingDispatch(
+    userDispatch(
       setUserSkills({
         Skills: temp.filter(e => e[1] == true).map(item => item[0]),
       }),

@@ -17,7 +17,7 @@ import colors from '../../globalStyles/colorScheme';
 import Button3 from '../../components/buttons/button3';
 import {UserContext} from '../../contextApi/contextApi';
 import LoaderModal from '../../components/Modals/loaderModal';
-import {setLocation, setPostCode} from '../../redux/features/onBoadrdingSlice';
+import {setLocation, setPostCode} from '../../redux/features/userSlice';
 
 const getAreaAndCity = async (currentLatitude, currentLongitude) => {
   const result = await Geocoder.from(currentLatitude, currentLongitude)
@@ -43,17 +43,17 @@ const getAreaAndCity = async (currentLatitude, currentLongitude) => {
 };
 
 function SetupScreen1({navigation}) {
-  const {userType, setUserType} = useContext(UserContext);
+  const {userType} = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
   const [address, setAddress] = useState('');
-  const onBoadrdingDispatch = useDispatch();
-  const {location, Postcode} = useSelector(state => state.onBoadrding);
-  const {uid} = useSelector(state => state.userProfile);
+  const userDispatch = useDispatch();
+  const {location, Postcode, uid} = useSelector(state => state.userProfile);
 
   Geocoder.init('AIzaSyD3BToDj_z_1ZLuhdDSURQplj3_9IgQSis'); // use a valid API key
 
   useEffect(() => {
-    console.log('onBoadrdingData', userType);
+    console.log('setupScreen 1');
+    console.log('userType', userType);
   }, []);
 
   return (
@@ -81,7 +81,7 @@ function SetupScreen1({navigation}) {
               );
               //getting the Latitude from the location json
               const currentLatitude = JSON.stringify(position.coords.latitude);
-              onBoadrdingDispatch(
+              userDispatch(
                 setLocation({
                   Latitude: currentLatitude,
                   Longitude: currentLongitude,
@@ -132,9 +132,7 @@ function SetupScreen1({navigation}) {
             style={styles.text}
             placeholder="Enter Your Postcode"
             value={Postcode}
-            onChangeText={txt =>
-              onBoadrdingDispatch(setPostCode({Postcode: txt}))
-            }
+            onChangeText={txt => userDispatch(setPostCode({Postcode: txt}))}
           />
         </View>
       ) : null}

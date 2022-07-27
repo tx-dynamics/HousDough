@@ -34,6 +34,7 @@ function RootNavigator() {
 
   // Handle user state changes
   function onAuthStateChanged(user) {
+    console.log('onAuthStateChanged', user);
     setUser(user);
     userDispatch(setUid({uid: user?.uid})); //setting UID in redux
     userDispatch(setEmail({email: user?.email})); //setting email in redux
@@ -42,7 +43,7 @@ function RootNavigator() {
 
     getUserInfo()
       .then(res => {
-        console.log('getUserInfo', res);
+        console.log('getUserInfo res', res);
         setUserType(res?.userType);
         setOnBoardingDone(res?.onBoarding);
         res?.userType
@@ -58,15 +59,17 @@ function RootNavigator() {
         );
         console.log('setPostCode==============================', res);
 
-        userDispatch(setPostCode({Postcode: res?.Postcode}));
-        userDispatch(setVideoLink({VideoLink: res?.VideoLink}));
-        userDispatch(setName({userName: res?.name}));
-        userDispatch(setUserSkills({Skills: res?.Skills}));
-        userDispatch(setAboutYou({AboutYou: res?.AboutYou}));
-        userDispatch(setPastExperience({PastExperience: res?.PastExperience}));
-        userDispatch(setReference({Reference: res?.Reference}));
+        userDispatch(setPostCode({Postcode: res?.Postcode || null}));
+        userDispatch(setVideoLink({VideoLink: res?.VideoLink || null}));
+        userDispatch(setName({userName: res?.name || null}));
+        userDispatch(setUserSkills({Skills: res?.Skills || []}));
+        userDispatch(setAboutYou({AboutYou: res?.AboutYou || ''}));
+        userDispatch(
+          setPastExperience({PastExperience: res?.PastExperience || ''}),
+        );
+        userDispatch(setReference({Reference: res?.Reference || ''}));
       })
-      .catch(error => console.log(error));
+      .catch(error => console.log('getUserInfo', error));
   }
 
   useEffect(() => {
