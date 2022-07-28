@@ -53,7 +53,7 @@ function SetupScreen1({navigation}) {
 
   useEffect(() => {
     console.log('setupScreen 1');
-    console.log('userType', userType);
+    console.log('userType', userType, location, Postcode, uid);
   }, []);
 
   return (

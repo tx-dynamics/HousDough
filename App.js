@@ -15,7 +15,7 @@ function App() {
   // This useEffect is stop font scalling
 
   useEffect(() => {
-    // logout();
+    logout();
     console.log('App Use Effect');
     Text.defaultProps = Text.defaultProps || {};
     Text.defaultProps.allowFontScaling = false;

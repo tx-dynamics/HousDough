@@ -44,7 +44,7 @@ function RootNavigator() {
     getUserInfo()
       .then(res => {
         console.log('getUserInfo res', res);
-        setUserType(res?.userType);
+        setUserType(prv => res?.userType || prv);
         setOnBoardingDone(res?.onBoarding);
         res?.userType
           ? setPaymentDone(res?.paymentMethod)
@@ -53,8 +53,8 @@ function RootNavigator() {
         console.log('setLocation', res);
         userDispatch(
           setLocation({
-            Latitude: res?.location?.Latitude,
-            Longitude: res?.location?.Longitude,
+            Latitude: res?.location?.Latitude || null,
+            Longitude: res?.location?.Longitude || null,
           }),
         );
         console.log('setPostCode==============================', res);

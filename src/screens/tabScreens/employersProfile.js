@@ -146,7 +146,7 @@ function EmployersProfile({navigation}) {
               if (res) {
                 showMessage({
                   message: `Profile Updated`,
-                  description: `Your name is updated to ${userName} Successfully!`,
+                  description: `${userName} Your profile is updated Successfully!`,
                   type: 'success',
                   duration: 3000,
                 });
