@@ -19,6 +19,7 @@ function ChoosePlan1({navigation}) {
 
   useEffect(() => {
     console.log('setPlan', Plan);
+    // Plan !== null && changeStatus(Plan === 'Standard Plan' ? 0 : 1);
   }, []);
 
   // This function is to change state of skills buttons on toggle

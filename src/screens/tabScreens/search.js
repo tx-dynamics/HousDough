@@ -3,14 +3,27 @@ import {View, Text, StyleSheet, Image} from 'react-native';
 import Header2 from '../../components/headers/Header2';
 import InputField2 from '../../components/inputFields/InputField2';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
+import {useSelector} from 'react-redux';
+
 import Button4 from '../../components/buttons/button4';
 import colors from '../../globalStyles/colorScheme';
-
-import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
+import MapView, {PROVIDER_GOOGLE, Marker, Circle} from 'react-native-maps';
 
 function Search() {
+  const {
+    location,
+    email,
+    userName,
+    Postcode,
+    VideoLink,
+    Skills,
+    AboutYou,
+    PastExperience,
+    Reference,
+  } = useSelector(state => state.userProfile);
+  console.log('Search', location);
   const [distance, setDistance] = useState([
-    ['5 Km', false],
+    ['5 Km', true],
     ['10 Km', false],
   ]);
   // This function is to change state of skills buttons on toggle
@@ -63,16 +76,18 @@ function Search() {
         <MapView
           provider={PROVIDER_GOOGLE} // remove if not using Google Maps
           style={styles.map}
+          mapType={'standard'}
+          showsUserLocation={true}
           region={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
+            latitude: parseInt(location.Latitude),
+            longitude: parseInt(location.Longitude),
+            latitudeDelta: 0.2,
+            longitudeDelta: 0.2,
           }}>
           <Marker
             coordinate={{
-              latitude: 37.78825,
-              longitude: -122.4324,
+              latitude: parseInt(location.Latitude),
+              longitude: parseInt(location.Longitude),
             }}>
             <Image
               source={require('../../../assets/images/p5.jpg')}
@@ -80,6 +95,28 @@ function Search() {
               style={styles.markerIcon}
             />
           </Marker>
+          {/* 0.3621936 for 5km */}
+          {/* <Marker
+            coordinate={{
+              latitude: parseInt(location.Latitude) + 0.3621936,
+              longitude: parseInt(location.Longitude),
+            }}>
+            <Image
+              source={require('../../../assets/images/p5.jpg')}
+              //resizeMode={'contain'}
+              style={styles.markerIcon}
+            />
+          </Marker> */}
+          <MapView.Circle
+            center={{
+              latitude: parseInt(location.Latitude),
+              longitude: parseInt(location.Longitude),
+            }}
+            radius={distance[1][1] ? 10 * 1000 : 5 * 1000}
+            strokeWidth={2}
+            strokeColor={'#05d1ff'}
+            fillColor="rgba(37, 186, 250, 0.4)"
+          />
         </MapView>
       </View>
     </KeyboardAwareScrollView>

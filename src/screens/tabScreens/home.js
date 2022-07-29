@@ -6,35 +6,18 @@ import colors from '../../globalStyles/colorScheme';
 import HomeCard from '../../components/homeCard';
 import {UserContext} from '../../contextApi/contextApi';
 import {logout} from '../../firebase/authFunctions';
+import {getHomeData} from '../../firebase/getFunctions';
+
 function Home({navigation}) {
   const {userType} = useContext(UserContext);
-
-  const renderItem = ({item}) => (
-    <HomeCard
-      onPress={() => {
-        userType
-          ? navigation.navigate('Profile')
-          : navigation.navigate('OthersProfile');
-      }}
-      item={item}
-      ImageSource={item[1]}
-      UserType={userType}
-      Home={true}
-    />
-  );
+  const [Data, setData] = useState([]);
 
   useEffect(() => {
     console.log('userType:', userType);
+    getHomeData(userType).then(data => setData(data));
   }, []);
 
   // Dummy Data
-
-  const [Data, setData] = useState([
-    [1, require('../../../assets/images/img1.png'), 'Kathryn Murphy'],
-    [2, require('../../../assets/images/img2.png'), 'Wade Warren'],
-    [3, require('../../../assets/images/img3.png'), 'Robert Fox'],
-    [4, require('../../../assets/images/img4.png'), 'Jacob Jones'],
-  ]);
 
   return (
     <View style={styles.container}>
@@ -68,14 +51,37 @@ function Home({navigation}) {
       </View>
       {/* Middle */}
 
-      <View style={{flex: 1, paddingHorizontal: '5%'}}>
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          data={Data}
-          renderItem={renderItem}
-          keyExtractor={item => item[0]}
-        />
-      </View>
+      {Data.length ? (
+        <View style={{flex: 1, paddingHorizontal: '5%'}}>
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            data={Data}
+            renderItem={({item, index}) => (
+              <HomeCard
+                onPress={() => {
+                  userType
+                    ? navigation.navigate('Profile', {userData: Data[index]})
+                    : navigation.navigate('OthersProfile', {
+                        userData: Data[index],
+                      });
+                }}
+                item={item}
+              />
+            )}
+            keyExtractor={item => item.email}
+          />
+        </View>
+      ) : (
+        <View
+          style={{
+            flex: 1,
+            paddingHorizontal: '5%',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <Text style={styles.text1}>No Data Available To Display!!!</Text>
+        </View>
+      )}
     </View>
   );
 }
@@ -95,6 +101,6 @@ const styles = StyleSheet.create({
     color: colors.black,
     fontFamily: 'Poppins-Medium',
     fontSize: 18,
-    width: '100%',
+    // width: '100%',
   },
 });

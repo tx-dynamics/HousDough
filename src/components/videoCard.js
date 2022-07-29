@@ -14,7 +14,7 @@ import VideoPlayer from 'react-native-video-controls';
 
 import colorScheme from '../globalStyles/colorScheme';
 
-const VideoCard = ({item, onPress, UserType, Home, ImageSource, VideoUri}) => (
+const VideoCard = ({onPress, VideoUri}) => (
   <VideoPlayer
     repeat={true}
     paused={true}

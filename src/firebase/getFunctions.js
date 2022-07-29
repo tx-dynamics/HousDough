@@ -17,3 +17,23 @@ export const getUserInfo = async () => {
       return null;
     });
 };
+
+// This function is to get users
+
+export const getHomeData = async userType => {
+  console.log('getHomeData');
+  const temp = [];
+  await firestore()
+    .collection('Users')
+    .where('userType', '!=', userType)
+    .get()
+    .then(data => {
+      data.forEach((item, index) => {
+        console.log(index, item.data());
+        temp.push(item.data());
+      });
+    })
+    .catch(error => console.log('getHomeData', error));
+
+  return temp;
+};

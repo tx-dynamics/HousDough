@@ -1,11 +1,30 @@
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import storage from '@react-native-firebase/storage';
+import {createThumbnail} from 'react-native-create-thumbnail';
 
 export const setOnBoarding = async (userType, userData, uid) => {
   console.log('setOnBoarding', userData);
 
-  const reference = storage().ref(`/usersMedia/${uid}`);
+  createThumbnail({
+    url: userData.VideoLink,
+    timeStamp: 5000,
+  })
+    .then(response => {
+      const thumbnailReference = storage().ref(`/usersVideosThumbnail/${uid}`);
+
+      console.log('response.path', response.path);
+
+      thumbnailReference.putFile(response.path).then(async () => {
+        console.log('Image uploaded to the bucket!');
+        userData.thumbnail = await storage()
+          .ref(`/usersVideosThumbnail/${uid}`)
+          .getDownloadURL();
+      });
+    })
+    .catch(err => console.log({err}));
+
+  const reference = storage().ref(`/usersVideos/${uid}`);
   // uploads file
   const task = reference.putFile(userData.VideoLink);
 
@@ -18,10 +37,10 @@ export const setOnBoarding = async (userType, userData, uid) => {
 
   return task
     .then(async () => {
-      console.log('Image uploaded to the bucket!');
+      console.log('Video uploaded to the bucket!');
 
       userData.VideoLink = await storage()
-        .ref(`/usersMedia/${uid}`)
+        .ref(`/usersVideos/${uid}`)
         .getDownloadURL();
 
       return firestore()

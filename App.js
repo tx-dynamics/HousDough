@@ -7,7 +7,6 @@ import {UserProvider} from './src/contextApi/contextApi';
 import {store} from './src/redux/stores/store';
 //import {StripeProvider} from '@stripe/stripe-react-native';
 import {logout} from './src/firebase/authFunctions';
-
 // const publishableKey =
 //   'pk_test_51LNZqVB4V2Xg8qCiEBroGh3IjmI7VcQFftYUW5Jx8lKRVEsFUsClNc2smqrUi16p7oQHBA9Q2Di8l91bPvOKSn1900ocJ1hyVI';
 
@@ -16,6 +15,7 @@ function App() {
 
   useEffect(() => {
     // logout();
+
     console.log('App Use Effect');
     Text.defaultProps = Text.defaultProps || {};
     Text.defaultProps.allowFontScaling = false;
