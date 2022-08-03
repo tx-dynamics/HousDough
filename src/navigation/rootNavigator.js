@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {View, Text, SafeAreaView} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import {NavigationContainer} from '@react-navigation/native';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import AuthNavigator from './authNavigator';
 import MainNavigator from './mainNavigator';
 import {UserContext} from '../contextApi/contextApi';
@@ -29,12 +29,18 @@ function RootNavigator() {
   const [isLoading, setIsLoading] = useState(true);
   const userDispatch = useDispatch();
 
-  const {user, setUser, setUserType, setOnBoardingDone, setPaymentDone} =
-    useContext(UserContext);
+  const {
+    user,
+    userType,
+    setUser,
+    setUserType,
+    setOnBoardingDone,
+    setPaymentDone,
+  } = useContext(UserContext);
 
   // Handle user state changes
   function onAuthStateChanged(user) {
-    console.log('onAuthStateChanged', user);
+    // console.log('onAuthStateChanged', user);
     setUser(user);
     userDispatch(setUid({uid: user?.uid})); //setting UID in redux
     userDispatch(setEmail({email: user?.email})); //setting email in redux
@@ -44,20 +50,20 @@ function RootNavigator() {
     getUserInfo()
       .then(res => {
         console.log('getUserInfo res', res);
-        setUserType(prv => res?.userType || prv);
+        setUserType(res?.userType);
         setOnBoardingDone(res?.onBoarding);
         res?.userType
           ? setPaymentDone(res?.paymentMethod)
           : setPaymentDone(true);
 
-        console.log('setLocation', res);
+        // console.log('setLocation', res);
         userDispatch(
           setLocation({
             Latitude: res?.location?.Latitude || null,
             Longitude: res?.location?.Longitude || null,
           }),
         );
-        console.log('setPostCode==============================', res);
+        // console.log('setPostCode==============================', res);
 
         userDispatch(setPostCode({Postcode: res?.Postcode || null}));
         userDispatch(setVideoLink({VideoLink: res?.VideoLink || null}));
@@ -74,7 +80,7 @@ function RootNavigator() {
 
   useEffect(() => {
     //This is for splash screen
-    console.log('user', user);
+    console.log('userType', userType);
     setTimeout(() => {
       setIsLoading(false);
     }, 3000);

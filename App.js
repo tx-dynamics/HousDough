@@ -27,11 +27,7 @@ function App() {
     <Provider store={store}>
       {/* ContextApi Provider */}
       <UserProvider>
-        {/* <StripeProvider
-          publishableKey={publishableKey}
-          merchantIdentifier="merchant.identifier"> */}
         <RootNavigator />
-        {/* </StripeProvider> */}
       </UserProvider>
       {/* GLOBAL FLASH MESSAGE COMPONENT INSTANCE */}
       <FlashMessage position="top" />

@@ -6,17 +6,18 @@ import {
   Image,
   TextInput,
   Dimensions,
+  onSubmitEditing,
 } from 'react-native';
 import colors from '../../globalStyles/colorScheme';
 
 const InputField2 = ({
   title,
   value,
-
   onChangeText,
-
   autoCapitalize,
   onBlur,
+  onSubmitEditing,
+  onFocus,
 }) => {
   return (
     <View style={styles.inputField}>
@@ -31,6 +32,8 @@ const InputField2 = ({
         autoCapitalize={autoCapitalize}
         autoComplete={'off'}
         onBlur={onBlur}
+        onSubmitEditing={onSubmitEditing}
+        onFocus={onFocus}
       />
     </View>
   );

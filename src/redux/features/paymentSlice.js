@@ -8,10 +8,6 @@ export const paymentSlice = createSlice({
   name: 'payment',
   initialState,
   reducers: {
-    // setLocation: (state, action) => {
-    //   state.location.Latitude = action.payload.Latitude;
-    //   state.location.Longitude = action.payload.Longitude;
-    // },
     setPlan: (state, action) => {
       state.Plan = action.payload.Plan;
     },

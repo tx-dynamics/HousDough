@@ -1,13 +1,27 @@
-import React, {useState} from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Text, StyleSheet, Image, Modal, Dimensions} from 'react-native';
 import Header2 from '../../components/headers/Header2';
 import InputField2 from '../../components/inputFields/InputField2';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import {useSelector} from 'react-redux';
-
 import Button4 from '../../components/buttons/button4';
 import colors from '../../globalStyles/colorScheme';
 import MapView, {PROVIDER_GOOGLE, Marker, Circle} from 'react-native-maps';
+import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
+import {
+  searchUsersOnMapPostcode,
+  searchUsersOnMapArea,
+} from '../../firebase/getFunctions';
+
+// const getGeohashRange = (
+//   latitude,
+//   longitude,
+//   distance, // KM
+// ) => {
+//   // 37.400362038352526, -122.03442819346913  //5 km awway location point
+//   const latitudeDegres = 0.021731561647474; // degrees latitude per km
+//   const longitudeDegres = 0.04949380653087; // degrees longitude per km
+// };
 
 function Search() {
   const {
@@ -21,7 +35,11 @@ function Search() {
     PastExperience,
     Reference,
   } = useSelector(state => state.userProfile);
-  console.log('Search', location);
+
+  const [searchedUser, setSearchedUser] = useState([]);
+  const [searchModal, setSearchModal] = useState(false);
+  const [searchBarText, setSearchBarText] = useState('');
+
   const [distance, setDistance] = useState([
     ['5 Km', true],
     ['10 Km', false],
@@ -51,7 +69,83 @@ function Search() {
       </View>
 
       {/* Search Bar */}
-      <InputField2 title={'Enter Your Suburb Or Postcode'} />
+      <InputField2
+        title={'Enter Your Suburb Or Postcode'}
+        value={searchBarText}
+        // onChangeText={() => {
+        //   setSearchModal(true);
+        // }}
+        onFocus={() => {
+          setSearchModal(true);
+        }}
+        onChangeText={() => {
+          setSearchModal(true);
+        }}
+        // onSubmitEditing={event => {
+        //   // console.log(typeof event.nativeEvent.text);
+        // searchUsersOnMap(event.nativeEvent.text).then(data => {
+        //   console.log('searchUsersOnMap', data);
+        //   setSearchedUser(data);
+        // });
+        // }}
+      />
+
+      {/* GooglePlacesAutocomplete */}
+      <Modal visible={searchModal} animationType={'slide'}>
+        <View
+          style={{backgroundColor: 'white', flex: 1, paddingHorizontal: '5%'}}>
+          <GooglePlacesAutocomplete
+            placeholder="Enter Your Suburb Or Postcode"
+            renderDescription={row =>
+              row.description || row.formatted_address || row.name
+            }
+            fetchDetails={true}
+            keepResultsAfterBlur={true}
+            returnKeyType={'Search'}
+            textInputProps={{
+              onSubmitEditing: event => {
+                setSearchBarText(event.nativeEvent.text);
+                searchUsersOnMapPostcode(event.nativeEvent.text).then(data => {
+                  setSearchedUser(data);
+                });
+                setSearchModal(false);
+              },
+            }}
+            onPress={(data, details = null) => {
+              // 'details' is provided when fetchDetails = true
+              console.log('=>>>>>>>>>>', details.geometry.location);
+
+              const {lat, lng} = details.geometry.location;
+              searchUsersOnMapArea(lat, lng).then(data => {
+                setSearchedUser(data);
+              });
+              setSearchBarText(data.description);
+              setSearchModal(false);
+            }}
+            onFail={error => console.error(error)}
+            GooglePlacesSearchQuery={{
+              rankby: 'distance',
+            }}
+            query={{
+              key: 'AIzaSyDt9GY0qjMwSFvi-ODbrRJFZg3wCwtZofc',
+              language: 'en',
+            }}
+            styles={{
+              textInputContainer: {marginTop: '5%'},
+              textInput: {
+                height: Dimensions.get('window').height / 13,
+                color: '#5d5d5d',
+                fontSize: 16,
+                backgroundColor: '#F4F4F4',
+                borderRadius: 48,
+              },
+              predefinedPlacesDescription: {
+                color: colors.primary,
+              },
+            }}
+          />
+        </View>
+      </Modal>
       {/* Area Radius Filter */}
       <View
         style={{
@@ -70,6 +164,8 @@ function Search() {
           />
         ))}
       </View>
+      {/* temp View for spacing */}
+      <View style={{margin: '1%'}} />
       {/* Map */}
 
       <View style={{flex: 1}}>
@@ -77,17 +173,17 @@ function Search() {
           provider={PROVIDER_GOOGLE} // remove if not using Google Maps
           style={styles.map}
           mapType={'standard'}
-          showsUserLocation={true}
+          // showsUserLocation={true}
           region={{
-            latitude: parseInt(location.Latitude),
-            longitude: parseInt(location.Longitude),
-            latitudeDelta: 0.2,
-            longitudeDelta: 0.2,
+            latitude: parseFloat(location.Latitude),
+            longitude: parseFloat(location.Longitude),
+            latitudeDelta: 0.28,
+            longitudeDelta: 0.28,
           }}>
           <Marker
             coordinate={{
-              latitude: parseInt(location.Latitude),
-              longitude: parseInt(location.Longitude),
+              latitude: parseFloat(location.Latitude),
+              longitude: parseFloat(location.Longitude),
             }}>
             <Image
               source={require('../../../assets/images/p5.jpg')}
@@ -95,28 +191,34 @@ function Search() {
               style={styles.markerIcon}
             />
           </Marker>
-          {/* 0.3621936 for 5km */}
-          {/* <Marker
+
+          {/* Searched Users Markers */}
+          {searchedUser?.map((item, index) => (
+            <Marker
+              onPress={() => console.log(item)}
+              key={index}
+              coordinate={{
+                latitude: parseFloat(item.location.Latitude),
+                longitude: parseFloat(item.location.Longitude),
+              }}></Marker>
+          ))}
+
+          <Marker
             coordinate={{
-              latitude: parseInt(location.Latitude) + 0.3621936,
-              longitude: parseInt(location.Longitude),
-            }}>
-            <Image
-              source={require('../../../assets/images/p5.jpg')}
-              //resizeMode={'contain'}
-              style={styles.markerIcon}
-            />
-          </Marker> */}
-          <MapView.Circle
+              latitude: 37.4418834,
+              longitude: -122.1430195,
+            }}></Marker>
+
+          {/* <MapView.Circle
             center={{
-              latitude: parseInt(location.Latitude),
-              longitude: parseInt(location.Longitude),
+              latitude: parseFloat(location.Latitude),
+              longitude: parseFloat(location.Longitude),
             }}
             radius={distance[1][1] ? 10 * 1000 : 5 * 1000}
             strokeWidth={2}
             strokeColor={'#05d1ff'}
             fillColor="rgba(37, 186, 250, 0.4)"
-          />
+          /> */}
         </MapView>
       </View>
     </KeyboardAwareScrollView>
