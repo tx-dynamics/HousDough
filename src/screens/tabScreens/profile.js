@@ -107,7 +107,10 @@ function Profile({navigation, route}) {
             </View>
           </View>
           {/* message2 */}
-          <Pressable onPress={() => setupdatingModal(true)}>
+          <Pressable
+            onPress={() =>
+              navigation.navigate('Chat', {senderUid: userData?.uid})
+            }>
             <Image
               source={require('../../../assets/icons/message2.png')}
               resizeMode={'contain'}

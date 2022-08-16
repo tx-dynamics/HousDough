@@ -10,6 +10,7 @@ import {getUserInfo} from '../firebase/getFunctions';
 import Splash from '../screens/authScreens/splash';
 import LoaderModal from '../components/Modals/loaderModal';
 import Splash2 from '../screens/authScreens/splash2';
+
 import {
   setUid,
   setEmail,

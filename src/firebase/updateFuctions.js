@@ -144,3 +144,16 @@ export const updateProfile = (
       return false;
     });
 };
+
+// this function is send chat messages
+export async function addToArray(collection, doc, array, value) {
+  await firestore()
+    .collection(collection)
+    .doc(doc)
+    .set(
+      {
+        [array]: firestore.FieldValue.arrayUnion(value),
+      },
+      {merge: true},
+    );
+}

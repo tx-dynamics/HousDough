@@ -14,7 +14,10 @@ function Home({navigation}) {
 
   useEffect(() => {
     console.log('userType:', userType);
-    getHomeData(userType).then(data => setData(data));
+    getHomeData(userType).then(data => {
+      setData(data);
+      // console.log('==>>', Data);
+    });
   }, []);
 
   // Dummy Data
@@ -69,6 +72,8 @@ function Home({navigation}) {
               />
             )}
             keyExtractor={item => item.email}
+            // Placeholder for bottom margin
+            ListFooterComponent={() => <View style={{marginVertical: '15%'}} />}
           />
         </View>
       ) : (

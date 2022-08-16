@@ -6,13 +6,14 @@ import {
   Image,
   ScrollView,
   Pressable,
+  TextInput,
 } from 'react-native';
 import colorScheme from '../../globalStyles/colorScheme';
 
-const ChatSendButton = () => (
+const ChatSendButton = ({onSend, Message, onChangeText}) => (
   <View style={styles.container}>
     {/* Left */}
-    <View style={{flexDirection: 'row'}}>
+    <View style={{flexDirection: 'row', alignItems: 'center'}}>
       {/* camera */}
       <Image
         source={require('../../../assets/icons/camera2.png')}
@@ -20,9 +21,12 @@ const ChatSendButton = () => (
         style={{width: 18.33, height: 20}}
       />
       {/* Message */}
-      <View style={{height: 20, alignItems: 'center'}}>
-        <Text style={styles.text1}>Message</Text>
-      </View>
+      <TextInput
+        placeholder="Message"
+        onChangeText={onChangeText}
+        value={Message}
+        style={styles.text1}
+      />
     </View>
     {/* Right */}
     <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -33,12 +37,13 @@ const ChatSendButton = () => (
         style={{width: 16, height: 16, marginRight: 20}}
       />
       {/* Next Arrow */}
-
-      <Image
-        source={require('../../../assets/icons/next_arrow.png')}
-        resizeMode={'contain'}
-        style={{width: 23.57, height: 22.66}}
-      />
+      <Pressable onPress={onSend}>
+        <Image
+          source={require('../../../assets/icons/next_arrow.png')}
+          resizeMode={'contain'}
+          style={{width: 23.57, height: 22.66}}
+        />
+      </Pressable>
     </View>
   </View>
 );
@@ -48,7 +53,7 @@ export default ChatSendButton;
 const styles = StyleSheet.create({
   container: {
     width: '90%',
-    height: 55,
+    // height: 55,
     borderWidth: 1,
     borderColor: colorScheme.primary,
     borderRadius: 46,
@@ -64,5 +69,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginLeft: 20,
     color: '#514F4F',
+    width: 180,
   },
 });

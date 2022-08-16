@@ -44,17 +44,13 @@ const UpdateProfileModal = ({
               ShowPassword={true}
               value={userName}
               title={'Name'}
-              onChangeText={txt =>
-                userDispatch(setName({userName: txt.trim()}))
-              }
+              onChangeText={txt => userDispatch(setName({userName: txt}))}
             />
             <Inputfield4
               ShowPassword={true}
               value={AboutYou}
               title={'About You'}
-              onChangeText={txt =>
-                userDispatch(setAboutYou({AboutYou: txt.trim()}))
-              }
+              onChangeText={txt => userDispatch(setAboutYou({AboutYou: txt}))}
             />
             {PastExperience !== '' && (
               <Inputfield4

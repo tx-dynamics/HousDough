@@ -1,41 +1,66 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
+import {useSelector} from 'react-redux';
+import firestore from '@react-native-firebase/firestore';
 import Header3 from '../../components/headers/Header3';
 import MessagesCard from '../../components/messageCard';
+import {getConversations} from '../../firebase/getFunctions';
 
 function Messages({navigation}) {
   // Message Dummy Data
+  const {uid} = useSelector(state => state.userProfile);
 
-  const [messages, setMessages] = useState([
-    [
-      'Danny Hopkins',
-      'dannylove@gmail.com',
-      '08:43',
-      8,
-      require(`../../../assets/images/p1.jpg`),
-    ],
-    [
-      'Bobby Langford',
-      'Will do super, thank you',
-      'Tue',
-      5,
-      require(`../../../assets/images/p3.jpg`),
-    ],
-    [
-      'William Wiles',
-      'Uploaded File',
-      'Sun',
-      0,
-      require(`../../../assets/images/p2.jpg`),
-    ],
-    [
-      'James Edelen',
-      'Here is another tutorial, if you',
-      '23 Mar',
-      0,
-      require(`../../../assets/images/p6.jpg`),
-    ],
-  ]);
+  const [messages, setMessages] = useState([]);
+
+  // This function is to get all the conversations
+
+  const getConversations = async uid => {
+    console.log('getConversations', uid);
+
+    const temp = [];
+    try {
+      await firestore()
+        .collection('chats')
+        .doc(uid)
+        .get()
+        .then(res => {
+          let _Data = res.data();
+          console.log(_Data);
+
+          let _Data2 = Object.values(_Data);
+          _Data2 = _Data2[0];
+          _Data2 = _Data2[_Data2.length - 1];
+
+          // console.log(_Data2.text);
+          _Data = Object.keys(_Data);
+          console.log(_Data);
+          _Data.forEach((item, index) => {
+            console.log('++++++', item);
+
+            firestore()
+              .collection('Users')
+              .doc(item)
+              .get()
+              .then(_res => {
+                const userData = _res.data();
+                temp.push({
+                  userName: userData.name,
+                });
+                if (index == _Data.length - 1) {
+                  console.log(temp);
+                  setMessages(temp);
+                }
+              });
+          });
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getConversations(uid);
+  }, []);
   return (
     <View style={styles.container}>
       <Header3
@@ -45,8 +70,11 @@ function Messages({navigation}) {
       {messages.map((item, index) => (
         <MessagesCard
           key={index}
-          Data={item}
-          onPress={() => navigation.navigate('Chat', {screen: 'Messages'})}
+          Data={messages[index]}
+          onPress={
+            () => console.log(messages)
+            // navigation.navigate('Chat', {senderUid: messages[index]?.uid})
+          }
         />
       ))}
     </View>

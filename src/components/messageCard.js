@@ -9,22 +9,28 @@ import {
 } from 'react-native';
 import colorScheme from '../globalStyles/colorScheme';
 
-const MessagesCard = ({Data, onPress}) => (
+const MessagesCard = ({onPress, Data}) => (
   <Pressable onPress={onPress}>
     <View style={styles.container}>
       <View style={{flexDirection: 'row'}}>
-        <Image source={Data[4]} style={styles.image} />
+        <Image
+          source={{
+            uri: 'https://cdn.iconscout.com/icon/free/png-256/account-avatar-profile-human-man-user-30448.png',
+          }}
+          resizeMode={'contain'}
+          style={styles.image}
+        />
         <View>
-          <Text style={styles.text1}>{Data[0]}</Text>
-          <Text style={styles.text2}>{Data[1]}</Text>
+          <Text style={styles.text1}>{Data.userName}</Text>
+          <Text style={styles.text2}>{'Will do super, thank you'}</Text>
         </View>
       </View>
 
       <View style={{alignItems: 'flex-end'}}>
-        <Text style={styles.text2}>{Data[2]}</Text>
+        <Text style={styles.text2}>{'08:43'}</Text>
 
-        <View style={{...styles.notification, opacity: Data[3] == 0 ? 0 : 1}}>
-          <Text style={styles.text3}>{Data[3]}</Text>
+        <View style={{...styles.notification, opacity: 0 ? 0 : 1}}>
+          <Text style={styles.text3}>{3}</Text>
         </View>
       </View>
     </View>
@@ -46,7 +52,6 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 50,
-    backgroundColor: 100,
     marginRight: '5%',
   },
   text1: {

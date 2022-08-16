@@ -29,8 +29,10 @@ export const getHomeData = async userType => {
     .get()
     .then(data => {
       data.forEach((item, index) => {
-        console.log(index, item.data());
-        temp.push(item.data());
+        // console.log('index', item.id, item.data());
+        const _Data = item.data();
+        _Data.uid = item.id;
+        temp.push(_Data);
       });
     })
     .catch(error => console.log('getHomeData', error));
