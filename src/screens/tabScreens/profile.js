@@ -26,7 +26,6 @@ function Profile({navigation, route}) {
   Geocoder.init('AIzaSyD3BToDj_z_1ZLuhdDSURQplj3_9IgQSis'); // use a valid API key
 
   const getAreaAndCity = async (currentLatitude, currentLongitude) => {
-    console.log('getAreaAndCity');
     const result = await Geocoder.from(currentLatitude, currentLongitude)
       .then(json => {
         const addressComponent = json.results[0];

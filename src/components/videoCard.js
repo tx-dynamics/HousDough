@@ -7,7 +7,6 @@ import {
   Pressable,
   ImageBackground,
   Image,
-  ActivityIndicator,
 } from 'react-native';
 import Video from 'react-native-video';
 import VideoPlayer from 'react-native-video-controls';

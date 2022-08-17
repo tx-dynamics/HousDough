@@ -157,3 +157,18 @@ export async function addToArray(collection, doc, array, value) {
       {merge: true},
     );
 }
+
+// This function is to update messages unseen field
+
+export const updateUnseen = async (uid, senderUid, messages) => {
+  console.log('updateUnseen', uid, senderUid, messages);
+
+  messages.map((item, index) => (item.unseen = false));
+  await firestore()
+    .collection('chats')
+    .doc(uid)
+    .set({
+      [senderUid]: messages,
+    })
+    .then(() => console.log('All messages seen'));
+};

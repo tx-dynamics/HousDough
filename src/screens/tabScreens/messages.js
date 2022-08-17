@@ -1,21 +1,31 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  ActivityIndicator,
+} from 'react-native';
 import {useSelector} from 'react-redux';
 import firestore from '@react-native-firebase/firestore';
+import {useIsFocused} from '@react-navigation/native';
 import Header3 from '../../components/headers/Header3';
 import MessagesCard from '../../components/messageCard';
 import {getConversations} from '../../firebase/getFunctions';
+import colors from '../../globalStyles/colorScheme';
 
 function Messages({navigation}) {
   // Message Dummy Data
+  const isFocused = useIsFocused();
   const {uid} = useSelector(state => state.userProfile);
-
   const [messages, setMessages] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   // This function is to get all the conversations
 
   const getConversations = async uid => {
-    console.log('getConversations', uid);
+    // console.log('getConversations', uid);
 
     const temp = [];
     try {
@@ -25,29 +35,32 @@ function Messages({navigation}) {
         .get()
         .then(res => {
           let _Data = res.data();
-          console.log(_Data);
 
-          let _Data2 = Object.values(_Data);
-          _Data2 = _Data2[0];
-          _Data2 = _Data2[_Data2.length - 1];
+          //Return null in case of no conversations
+          if (!_Data) return;
 
-          // console.log(_Data2.text);
-          _Data = Object.keys(_Data);
-          console.log(_Data);
+          _Data = Object.entries(_Data);
+
           _Data.forEach((item, index) => {
-            console.log('++++++', item);
-
+            const _Messages = item[1];
+            // console.log('==++==++==>>', _Messages);
+            const unseenMessages = item[1].filter(
+              e => e.unseen === true && e.user._id === 2,
+            ).length;
+            const lastMessages = _Messages[_Messages.length - 1];
             firestore()
               .collection('Users')
-              .doc(item)
+              .doc(item[0])
               .get()
               .then(_res => {
                 const userData = _res.data();
                 temp.push({
                   userName: userData.name,
+                  lastMessages,
+                  unseenMessages,
+                  id: item[0],
                 });
                 if (index == _Data.length - 1) {
-                  console.log(temp);
                   setMessages(temp);
                 }
               });
@@ -59,24 +72,50 @@ function Messages({navigation}) {
   };
 
   useEffect(() => {
-    getConversations(uid);
-  }, []);
+    getConversations(uid).then(() => setIsLoading(false));
+
+    return () => {
+      setIsLoading(true);
+    };
+  }, [isFocused]);
   return (
     <View style={styles.container}>
       <Header3
         onPress={() => navigation.navigate('BottomTabNavigator')}
         text={'Messages'}
       />
-      {messages.map((item, index) => (
-        <MessagesCard
-          key={index}
-          Data={messages[index]}
-          onPress={
-            () => console.log(messages)
-            // navigation.navigate('Chat', {senderUid: messages[index]?.uid})
-          }
-        />
-      ))}
+
+      {isLoading ? (
+        <ActivityIndicator size={'small'} color={colors.secondary} />
+      ) : messages.length > 0 ? (
+        messages.map((item, index) => (
+          <MessagesCard
+            key={index}
+            Data={messages[index]}
+            onPress={() =>
+              navigation.navigate('Chat', {
+                senderUid: messages[index].id,
+              })
+            }
+          />
+        ))
+      ) : (
+        <View
+          style={{
+            flex: 1,
+
+            alignItems: 'center',
+            justifyContent: 'center',
+            paddingBottom: '40%',
+          }}>
+          <Image
+            source={require('../../../assets/icons/Messages-bro.png')}
+            resizeMode="contain"
+            style={{height: '50%', width: '90%'}}
+          />
+          <Text style={styles.text1}>You Have No Messages!</Text>
+        </View>
+      )}
     </View>
   );
 }
@@ -86,5 +125,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
+  },
+  text1: {
+    color: colors.black,
+    fontFamily: 'Poppins-Medium',
+    fontSize: 18,
+    // width: '100%',
   },
 });

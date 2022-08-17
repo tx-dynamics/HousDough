@@ -15,11 +15,11 @@ const ChatSendButton = ({onSend, Message, onChangeText}) => (
     {/* Left */}
     <View style={{flexDirection: 'row', alignItems: 'center'}}>
       {/* camera */}
-      <Image
+      {/* <Image
         source={require('../../../assets/icons/camera2.png')}
         resizeMode={'contain'}
         style={{width: 18.33, height: 20}}
-      />
+      /> */}
       {/* Message */}
       <TextInput
         placeholder="Message"
@@ -31,11 +31,11 @@ const ChatSendButton = ({onSend, Message, onChangeText}) => (
     {/* Right */}
     <View style={{flexDirection: 'row', alignItems: 'center'}}>
       {/* Plus */}
-      <Image
+      {/* <Image
         source={require('../../../assets/icons/plus2.png')}
         resizeMode={'contain'}
         style={{width: 16, height: 16, marginRight: 20}}
-      />
+      /> */}
       {/* Next Arrow */}
       <Pressable onPress={onSend}>
         <Image
@@ -69,6 +69,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginLeft: 20,
     color: '#514F4F',
-    width: 180,
+    width: '85%',
   },
 });

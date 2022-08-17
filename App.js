@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, Text, TextInput} from 'react-native';
+import {View, Text, TextInput, StatusBar} from 'react-native';
 import {Provider} from 'react-redux';
 import FlashMessage from 'react-native-flash-message';
 import RootNavigator from './src/navigation/rootNavigator';
@@ -31,6 +31,8 @@ function App() {
       </UserProvider>
       {/* GLOBAL FLASH MESSAGE COMPONENT INSTANCE */}
       <FlashMessage position="top" />
+      {/* StatusBar */}
+      {/* <StatusBar  barStyle="light-content" backgroundColor={'white'} /> */}
     </Provider>
   );
 }

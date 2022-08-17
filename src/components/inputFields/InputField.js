@@ -20,7 +20,11 @@ const InputField = ({
         {/* Profile Icon */}
         {icon ? (
           <View>
-            <Image resizeMode={'contain'} source={icon} style={{width: 20}} />
+            <Image
+              resizeMode={'contain'}
+              source={icon}
+              style={{width: 20, height: '30%'}}
+            />
           </View>
         ) : null}
         {/* text */}

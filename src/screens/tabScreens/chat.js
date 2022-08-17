@@ -1,9 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  Pressable,
+  Keyboard,
+} from 'react-native';
 import {useSelector} from 'react-redux';
 import {GiftedChat} from 'react-native-gifted-chat';
 import firestore from '@react-native-firebase/firestore';
-import {addToArray} from '../../firebase/updateFuctions';
+import {addToArray, updateUnseen} from '../../firebase/updateFuctions';
 import Header3 from '../../components/headers/Header3';
 import ChatCard from '../../components/chatCard';
 import ChatSendButton from '../../components/buttons/chatSendButton';
@@ -14,6 +22,7 @@ function Chat({navigation, route}) {
   const {uid} = useSelector(state => state.userProfile);
   const [messages, setMessages] = useState([]);
   const [typedMessages, setTypedMessages] = useState('');
+  const [initial, setInitial] = useState(true);
 
   const getMessages = async () => {
     await firestore()
@@ -25,7 +34,7 @@ function Chat({navigation, route}) {
         let _data = await doc.data();
 
         if (!_data) return;
-        console.log('_data', _data);
+        // console.log('_data', _data);
         _data = _data[senderUid];
         setMessages(_data?.reverse());
       });
@@ -48,11 +57,27 @@ function Chat({navigation, route}) {
   useEffect(() => {
     console.log('Chat', senderUid);
     getMessages();
+
+    return () => {
+      console.log('unmount');
+
+      setMessages([]);
+    };
   }, []);
+
+  useEffect(() => {
+    if (initial && messages.length > 0) {
+      setInitial(false);
+      updateUnseen(uid, senderUid, messages.reverse());
+    }
+  }, [messages]);
+
   return (
     <View style={styles.container}>
       <Header3 onPress={() => navigation.goBack()} text={'Chat'} />
-      <View style={{flex: 1, paddingBottom: '10%'}}>
+      <Pressable
+        style={{flex: 1, paddingBottom: '10%'}}
+        onPress={() => Keyboard.dismiss()}>
         <GiftedChat
           messages={messages}
           user={{
@@ -74,6 +99,7 @@ function Chat({navigation, route}) {
                       _id: new Date(),
                       text: typedMessages,
                       createdAt: new Date(),
+                      unseen: true,
                       user: {
                         _id: 1,
                       },
@@ -84,7 +110,7 @@ function Chat({navigation, route}) {
             );
           }}
         />
-      </View>
+      </Pressable>
     </View>
   );
 }

@@ -7,6 +7,7 @@ import {
   ScrollView,
   Pressable,
 } from 'react-native';
+import moment from 'moment';
 import colorScheme from '../globalStyles/colorScheme';
 
 const MessagesCard = ({onPress, Data}) => (
@@ -22,15 +23,21 @@ const MessagesCard = ({onPress, Data}) => (
         />
         <View>
           <Text style={styles.text1}>{Data.userName}</Text>
-          <Text style={styles.text2}>{'Will do super, thank you'}</Text>
+          <Text style={styles.text2}>{Data?.lastMessages.text}</Text>
         </View>
       </View>
 
       <View style={{alignItems: 'flex-end'}}>
-        <Text style={styles.text2}>{'08:43'}</Text>
+        <Text style={styles.text2}>
+          {moment(Data.lastMessages.createdAt).fromNow(true)}
+        </Text>
 
-        <View style={{...styles.notification, opacity: 0 ? 0 : 1}}>
-          <Text style={styles.text3}>{3}</Text>
+        <View
+          style={{
+            ...styles.notification,
+            opacity: Data.unseenMessages ? 1 : 0,
+          }}>
+          <Text style={styles.text3}>{Data.unseenMessages}</Text>
         </View>
       </View>
     </View>

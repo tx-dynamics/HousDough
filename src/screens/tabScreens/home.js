@@ -7,16 +7,18 @@ import HomeCard from '../../components/homeCard';
 import {UserContext} from '../../contextApi/contextApi';
 import {logout} from '../../firebase/authFunctions';
 import {getHomeData} from '../../firebase/getFunctions';
+import LoaderModal from '../../components/Modals/loaderModal';
 
 function Home({navigation}) {
   const {userType} = useContext(UserContext);
   const [Data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     console.log('userType:', userType);
     getHomeData(userType).then(data => {
       setData(data);
-      // console.log('==>>', Data);
+      setIsLoading(false);
     });
   }, []);
 
@@ -76,7 +78,7 @@ function Home({navigation}) {
             ListFooterComponent={() => <View style={{marginVertical: '15%'}} />}
           />
         </View>
-      ) : (
+      ) : !isLoading ? (
         <View
           style={{
             flex: 1,
@@ -86,7 +88,9 @@ function Home({navigation}) {
           }}>
           <Text style={styles.text1}>No Data Available To Display!!!</Text>
         </View>
-      )}
+      ) : null}
+      {/* Loader */}
+      <LoaderModal Visibility={isLoading} />
     </View>
   );
 }
@@ -94,6 +98,7 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'white',
   },
   topText: {
     flexDirection: 'row',

@@ -76,15 +76,13 @@ function RootNavigator() {
         );
         userDispatch(setReference({Reference: res?.Reference || ''}));
       })
-      .catch(error => console.log('getUserInfo', error));
+      .catch(error => console.log('getUserInfo', error))
+      .finally(() => setIsLoading(false));
   }
 
   useEffect(() => {
     //This is for splash screen
     console.log('userType', userType);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
 
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
     return subscriber; // unsubscribe on unmount
