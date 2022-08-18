@@ -70,16 +70,19 @@ export const searchUsersOnMapPostcode = async Postcode => {
 export const searchUsersOnMapArea = async (lat, lng) => {
   console.log('searchUsersOnMapArea', lat, lng);
 
-  const northlat = lat + 0.1;
-  const southlat = lat - 0.1;
-  const eastlng = lng + 0.1;
-  const westlng = lng - 0.1;
+  let northlat = lat + 0.03;
+  let southlat = lat - 0.03;
+  let eastlng = lng + 0.03;
+  let westlng = lng - 0.03;
+
+  northlat = northlat.toString();
+  southlat = southlat.toString();
 
   console.log('===<>', northlat, southlat, eastlng, westlng);
   return await firestore()
     .collection('Users')
     .where('location.Latitude', '<=', northlat)
-    // .where('location.Latitude', '>=', southlat)
+    .where('location.Latitude', '>=', southlat)
     .get()
     .then(data => {
       console.log('then');
@@ -89,8 +92,15 @@ export const searchUsersOnMapArea = async (lat, lng) => {
       }
       const temp = [];
       data.forEach((item, index) => {
-        console.log(index, item.data());
-        temp.push(item.data());
+        const _Data = item.data();
+
+        if (
+          parseFloat(_Data.location.Longitude) <= eastlng &&
+          parseFloat(_Data.location.Longitude) >= westlng
+        ) {
+          console.log(index, item.id, _Data.location);
+          temp.push(_Data);
+        }
       });
       return temp;
       // console.log('=>', data);
