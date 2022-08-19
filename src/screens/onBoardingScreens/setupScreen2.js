@@ -10,6 +10,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import ImagePickerModal from '../../components/Modals/imagePickerModal';
 import {UserContext} from '../../contextApi/contextApi';
 import {setVideoLink} from '../../redux/features/userSlice';
+import moment from 'moment';
 
 function SetupScreen2({navigation}) {
   // Image picker modal viability state
@@ -32,7 +33,18 @@ function SetupScreen2({navigation}) {
       mediaType: 'video',
     })
       .then(image => {
-        console.log(image);
+        console.log('++++', image);
+        if (image.duration / 1000 > 45) {
+          showMessage({
+            message: `Video Duration Exceeds`,
+            description: `Video Lenght is ${moment(image.duration).format(
+              'mm:ss',
+            )}. Video Lenght Cannot Exceeds 45 Seconds. Please upload Again`,
+            type: 'danger',
+            duration: 5000,
+          });
+          return;
+        }
         userDispatch(setVideoLink({VideoLink: image.path}));
         showMessage({
           message: 'Media Selected',
@@ -52,14 +64,25 @@ function SetupScreen2({navigation}) {
   //To Open Gallery
   const openGallery = () => {
     ImagePicker.openPicker({
-      multiple: true,
-      mediaType: !userType ? 'video' : 'any',
+      multiple: false,
+      mediaType: 'video',
     })
       .then(image => {
         console.log('openGallery', image);
+        if (image.duration / 1000 > 45) {
+          showMessage({
+            message: `Video Duration Exceeds`,
+            description: `Video Lenght is ${moment(image.duration).format(
+              'mm:ss',
+            )}. Video Lenght Cannot Exceeds 45 Seconds. Please upload Again`,
+            type: 'danger',
+            duration: 5000,
+          });
+          return;
+        }
         userDispatch(
           setVideoLink({
-            VideoLink: image[0].path,
+            VideoLink: image.path,
           }),
         );
         showMessage({

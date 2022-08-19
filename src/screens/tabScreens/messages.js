@@ -88,17 +88,19 @@ function Messages({navigation}) {
       {isLoading ? (
         <ActivityIndicator size={'small'} color={colors.secondary} />
       ) : messages.length > 0 ? (
-        messages.map((item, index) => (
-          <MessagesCard
-            key={index}
-            Data={messages[index]}
-            onPress={() =>
-              navigation.navigate('Chat', {
-                senderUid: messages[index].id,
-              })
-            }
-          />
-        ))
+        <ScrollView>
+          {messages.map((item, index) => (
+            <MessagesCard
+              key={index}
+              Data={messages[index]}
+              onPress={() =>
+                navigation.navigate('Chat', {
+                  senderUid: messages[index].id,
+                })
+              }
+            />
+          ))}
+        </ScrollView>
       ) : (
         <View
           style={{

@@ -76,3 +76,17 @@ export const signin = async values => {
     });
   return response;
 };
+
+//This is to reset user password
+
+export const handleForgetPassword = async email => {
+  await auth()
+    .sendPasswordResetEmail(email)
+    .then(function (user) {
+      return true;
+    })
+    .catch(function (error) {
+      console.log(error.message);
+      return false;
+    });
+};

@@ -155,30 +155,30 @@ function Signup({navigation}) {
               text={'Sign up'}
             />
             {/* or */}
-            {!formikProps.errors.name &&
+            {/* {!formikProps.errors.name &&
             !formikProps.errors.email &&
             !formikProps.errors.password &&
             !formikProps.errors.confirmPassword ? (
               <View style={{alignSelf: 'center', margin: 10}}>
                 <Text style={{color: '#5B5B5B', fontSize: 18}}>or</Text>
               </View>
-            ) : null}
+            ) : null} */}
             {/* Facebook & Instagram */}
-            {!formikProps.errors.name &&
+            {/* {!formikProps.errors.name &&
             !formikProps.errors.email &&
             !formikProps.errors.password &&
             !formikProps.errors.confirmPassword ? (
-              <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-                {/* Facebook Icon */}
-                <Pressable onPress={() => console.log('Facebook')}>
+              <View style={{flexDirection: 'row', justifyContent: 'center'}}> */}
+            {/* Facebook Icon */}
+            {/* <Pressable onPress={() => console.log('Facebook')}>
                   <Image
                     source={require('../../../assets/icons/facebook.png')}
                     resizeMode={'contain'}
                     style={{width: 40, height: 40, marginHorizontal: 15}}
                   />
-                </Pressable>
-                {/* Instagram Icon */}
-                <Pressable onPress={() => console.log('Facebook')}>
+                </Pressable> */}
+            {/* Instagram Icon */}
+            {/* <Pressable onPress={() => console.log('Facebook')}>
                   <Image
                     source={require('../../../assets/icons/instagram.png')}
                     resizeMode={'contain'}
@@ -186,7 +186,7 @@ function Signup({navigation}) {
                   />
                 </Pressable>
               </View>
-            ) : null}
+            ) : null} */}
           </View>
         )}
       </Formik>

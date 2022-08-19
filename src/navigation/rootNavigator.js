@@ -66,7 +66,7 @@ function RootNavigator() {
         );
         // console.log('setPostCode==============================', res);
 
-        userDispatch(setPostCode({Postcode: res?.Postcode || null}));
+        userDispatch(setPostCode({Postcode: res?.Postcode || ''}));
         userDispatch(setVideoLink({VideoLink: res?.VideoLink || null}));
         userDispatch(setName({userName: res?.name || null}));
         userDispatch(setUserSkills({Skills: res?.Skills || []}));
@@ -75,9 +75,13 @@ function RootNavigator() {
           setPastExperience({PastExperience: res?.PastExperience || ''}),
         );
         userDispatch(setReference({Reference: res?.Reference || ''}));
+        console.log('then');
       })
       .catch(error => console.log('getUserInfo', error))
-      .finally(() => setIsLoading(false));
+      .finally(() => {
+        console.log('Finally');
+        setIsLoading(false);
+      });
   }
 
   useEffect(() => {

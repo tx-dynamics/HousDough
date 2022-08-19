@@ -26,7 +26,6 @@ function ChoosePlan1({navigation}) {
   const changeStatus = ArrayIndex => {
     const temp = [];
 
-    console.log(ArrayIndex);
     paymentDispatch(
       setPlan({Plan: ArrayIndex ? 'Premium Plan' : 'Standard Plan'}),
     );
@@ -34,12 +33,7 @@ function ChoosePlan1({navigation}) {
     planButtonData.forEach((element, index) => {
       ArrayIndex !== index
         ? temp.push([element[0], element[1], (element[2] = false), element[3]])
-        : temp.push([
-            element[0],
-            element[1],
-            (element[2] = !element[2]),
-            element[3],
-          ]);
+        : temp.push([element[0], element[1], (element[2] = true), element[3]]);
     });
     setPlanButtonData(temp);
   };

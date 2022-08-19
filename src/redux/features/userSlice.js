@@ -8,7 +8,7 @@ const initialState = {
     Latitude: null,
     Longitude: null,
   },
-  Postcode: null,
+  Postcode: '',
   VideoLink: null,
   Skills: [],
   AboutYou: '',

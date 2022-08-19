@@ -10,7 +10,7 @@ export const paymentInformationSchema = yup.object().shape({
     .label('Card number')
     .max(16, 'Maximum 16 Digits')
     .required(),
-  cvv: yup.string().label('CVC').min(3).max(4).required(),
+  cvv: yup.string().label('CVV').min(3).max(4).required(),
   expDate: yup
     .string()
     .required('Please enter your Expiration Date')

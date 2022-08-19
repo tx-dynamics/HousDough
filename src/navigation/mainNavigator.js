@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {View, Text} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import OnBoardNavigator from './onboardNavigator';
@@ -9,15 +9,20 @@ import Chat from '../screens/tabScreens/chat';
 import OthersProfile from '../screens/tabScreens/othersProfile';
 import Profile from '../screens/tabScreens/profile';
 
+import LoaderModal from '../components/Modals/loaderModal';
+
 import {UserContext} from '../contextApi/contextApi';
 const Stack = createNativeStackNavigator(); //Stack Navigator for Main Stack Created
 
 function MainNavigator() {
   const {onBoardingDone, setOnBoardingDone, paymentDone, setPaymentDone} =
     useContext(UserContext);
+
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
     <Stack.Navigator
-      initialRouteName="Splash"
+      initialRouteName="OnBoardNavigator"
       screenOptions={{
         headerShown: false,
         animation: 'slide_from_bottom',

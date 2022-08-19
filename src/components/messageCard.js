@@ -23,7 +23,9 @@ const MessagesCard = ({onPress, Data}) => (
         />
         <View>
           <Text style={styles.text1}>{Data.userName}</Text>
-          <Text style={styles.text2}>{Data?.lastMessages.text}</Text>
+          <Text numberOfLines={1} style={styles.text4}>
+            {Data?.lastMessages.text}
+          </Text>
         </View>
       </View>
 
@@ -35,7 +37,7 @@ const MessagesCard = ({onPress, Data}) => (
         <View
           style={{
             ...styles.notification,
-            opacity: Data.unseenMessages ? 1 : 0,
+            opacity: Data.unseenMessages ? 0 : 0,
           }}>
           <Text style={styles.text3}>{Data.unseenMessages}</Text>
         </View>
@@ -75,6 +77,12 @@ const styles = StyleSheet.create({
     color: 'white',
     fontFamily: 'Poppins-Regular',
     fontSize: 12,
+  },
+  text4: {
+    color: 'rgba(0, 0, 0, 0.5)',
+    fontFamily: 'Poppins-Regular',
+    fontSize: 12,
+    width: 200,
   },
   notification: {
     backgroundColor: colorScheme.secondary,

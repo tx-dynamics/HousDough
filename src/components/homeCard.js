@@ -40,7 +40,7 @@ const HomeCard = ({item, onPress}) => {
   };
 
   useEffect(() => {
-    getAreaAndCity(item.location.Latitude, item.location.Longitude);
+    getAreaAndCity(item?.location?.Latitude, item?.location?.Longitude);
   }, []);
 
   return (

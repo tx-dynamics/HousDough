@@ -34,9 +34,11 @@ function Chat({navigation, route}) {
         let _data = await doc.data();
 
         if (!_data) return;
-        // console.log('_data', _data);
+
         _data = _data[senderUid];
-        setMessages(_data?.reverse());
+        console.log('------->', _data);
+        _data = _data.reverse();
+        setMessages(_data);
       });
   };
 
@@ -54,6 +56,13 @@ function Chat({navigation, route}) {
     messages[0].user._id = 1;
   }
 
+  // useEffect(() => {
+  //   if (initial && messages.length > 0) {
+  //     setInitial(false);
+  //     updateUnseen(uid, senderUid, messages);
+  //   }
+  // }, [messages]);
+
   useEffect(() => {
     console.log('Chat', senderUid);
     getMessages();
@@ -64,13 +73,6 @@ function Chat({navigation, route}) {
       setMessages([]);
     };
   }, []);
-
-  useEffect(() => {
-    if (initial && messages.length > 0) {
-      setInitial(false);
-      updateUnseen(uid, senderUid, messages.reverse());
-    }
-  }, [messages]);
 
   return (
     <View style={styles.container}>

@@ -56,7 +56,7 @@ function OthersProfile({navigation, route}) {
     <View style={styles.container}>
       <Header3
         onPress={() => navigation.navigate('Home')}
-        text={'Employers Profile'}
+        text={'Employeers Profile'}
       />
       <ScrollView>
         {/* Top Video */}

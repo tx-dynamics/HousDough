@@ -53,7 +53,7 @@ function SetupScreen1({navigation}) {
 
   useEffect(() => {
     console.log('setupScreen 1');
-    console.log('userType', userType, location, Postcode, uid);
+    console.log('userType', Postcode);
   }, []);
 
   return (
@@ -132,7 +132,10 @@ function SetupScreen1({navigation}) {
             style={styles.text}
             placeholder="Enter Your Postcode"
             value={Postcode}
-            onChangeText={txt => userDispatch(setPostCode({Postcode: txt}))}
+            onChangeText={txt => {
+              userDispatch(setPostCode({Postcode: txt}));
+              console.log('Postcode', Postcode, txt);
+            }}
           />
         </View>
       ) : null}
@@ -147,7 +150,7 @@ function SetupScreen1({navigation}) {
                 type: 'info',
                 duration: 3000,
               });
-            } else if (Postcode == null && userType == 0)
+            } else if (Postcode == '' && userType == 0)
               showMessage({
                 message: `Postcode Required `,
                 description: `Please Enter Postcode!`,

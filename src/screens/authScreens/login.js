@@ -8,15 +8,18 @@ import InputField from '../../components/inputFields/InputField';
 import AuthHeader from '../../components/headers/authHeader';
 import Button1 from '../../components/buttons/button1';
 import {UserContext} from '../../contextApi/contextApi';
-import {signin} from '../../firebase/authFunctions';
+import {signin, handleForgetPassword} from '../../firebase/authFunctions';
 import {loginSchema} from '../../validations/authValidations';
 import ErrorText from '../../components/ErrorText';
 import LoaderModal from '../../components/Modals/loaderModal';
+import ForgetPasswordModal from '../../components/Modals/forgetPasswordModal';
 
 function Login({navigation}) {
   const {setUser} = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
+  const [forgetPassModal, setforgetPassModal] = useState(false);
   const [serverError, setServerError] = useState(null);
+  const [forgetPassEmail, setforgetPassEmail] = useState('');
 
   useEffect(() => {
     //UseEffect Clean up function
@@ -98,9 +101,7 @@ function Login({navigation}) {
 
             {/* Forgot Password */}
             <Pressable
-              onPress={() => {
-                console.log('Forgot Password');
-              }}
+              onPress={() => setforgetPassModal(true)}
               style={styles.forgotPassword}>
               <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
             </Pressable>
@@ -113,28 +114,28 @@ function Login({navigation}) {
             />
 
             {/* or */}
-            <View style={{alignSelf: 'center', margin: 10}}>
+            {/* <View style={{alignSelf: 'center', margin: 10}}>
               <Text style={{color: '#5B5B5B', fontSize: 18}}>or</Text>
-            </View>
+            </View> */}
             {/* Facebook & Instagram */}
-            <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-              {/* Facebook Icon */}
-              <Pressable onPress={() => console.log('Facebook')}>
+            {/* <View style={{flexDirection: 'row', justifyContent: 'center'}}> */}
+            {/* Facebook Icon */}
+            {/* <Pressable onPress={() => console.log('Facebook')}>
                 <Image
                   source={require('../../../assets/icons/facebook.png')}
                   resizeMode={'contain'}
                   style={{width: 40, height: 40, marginHorizontal: 15}}
                 />
-              </Pressable>
-              {/* Instagram Icon */}
-              <Pressable onPress={() => console.log('Facebook')}>
+              </Pressable> */}
+            {/* Instagram Icon */}
+            {/* <Pressable onPress={() => console.log('Facebook')}>
                 <Image
                   source={require('../../../assets/icons/instagram.png')}
                   resizeMode={'contain'}
                   style={{width: 40, height: 40, marginHorizontal: 15}}
                 />
               </Pressable>
-            </View>
+            </View> */}
           </View>
         )}
       </Formik>
@@ -164,7 +165,6 @@ function Login({navigation}) {
                 color: colors.primary,
                 fontFamily: 'Poppins-Bold',
               }}>
-              {' '}
               Sign Up
             </Text>
           </View>
@@ -172,6 +172,34 @@ function Login({navigation}) {
       </View>
       {/* Loader */}
       <LoaderModal Visibility={isLoading} />
+      {/* Forget Password Modal */}
+      <ForgetPasswordModal
+        Visibility={forgetPassModal}
+        onPress={() => setforgetPassModal(false)}
+        onPress2={() => {
+          forgetPassEmail && setforgetPassModal(false);
+          forgetPassEmail &&
+            handleForgetPassword(forgetPassEmail).then(res => {
+              if (res) {
+                showMessage({
+                  message: `Forgot Password Email Sent`,
+                  description: `Please Check ${forgetPassEmail} inbox/Scam for the resent password email`,
+                  type: 'success',
+                  duration: 5000,
+                });
+              } else {
+                showMessage({
+                  message: `Forgot Password Email Error`,
+                  description: `Something Went Wrong! Please Try Again`,
+                  type: 'danger',
+                  duration: 5000,
+                });
+              }
+            });
+        }}
+        forgotEmail={forgetPassEmail}
+        onChangeText={txt => setforgetPassEmail(txt)}
+      />
     </KeyboardAwareScrollView>
   );
 }
