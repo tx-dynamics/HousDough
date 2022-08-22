@@ -80,7 +80,7 @@ export const signin = async values => {
 //This is to reset user password
 
 export const handleForgetPassword = async email => {
-  await auth()
+  return auth()
     .sendPasswordResetEmail(email)
     .then(function (user) {
       return true;

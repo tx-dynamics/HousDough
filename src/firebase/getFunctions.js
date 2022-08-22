@@ -40,7 +40,7 @@ export const getHomeData = async userType => {
   return temp;
 };
 
-export const searchUsersOnMapPostcode = async Postcode => {
+export const searchUsersOnMapPostcode = async (Postcode, userType) => {
   console.log('searchUsersOnMapPostcode', Postcode);
 
   return await firestore()
@@ -55,8 +55,12 @@ export const searchUsersOnMapPostcode = async Postcode => {
       }
       const temp = [];
       data.forEach((item, index) => {
-        console.log(index, item.data());
-        temp.push(item.data());
+        const _Data = item.data();
+
+        if (_Data.userType != userType) {
+          console.log('---------------------', index, _Data);
+          temp.push(_Data);
+        }
       });
       return temp;
       // console.log('=>', data);
@@ -67,7 +71,7 @@ export const searchUsersOnMapPostcode = async Postcode => {
     });
 };
 
-export const searchUsersOnMapArea = async (lat, lng) => {
+export const searchUsersOnMapArea = async (lat, lng, userType) => {
   console.log('searchUsersOnMapArea', lat, lng);
 
   let northlat = lat + 0.03;
@@ -96,7 +100,8 @@ export const searchUsersOnMapArea = async (lat, lng) => {
 
         if (
           parseFloat(_Data.location.Longitude) <= eastlng &&
-          parseFloat(_Data.location.Longitude) >= westlng
+          parseFloat(_Data.location.Longitude) >= westlng &&
+          _Data.userType != userType
         ) {
           console.log(index, item.id, _Data.location);
           temp.push(_Data);

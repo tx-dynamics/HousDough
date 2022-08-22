@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {
   View,
   Text,
@@ -15,8 +15,6 @@ import Header2 from '../../components/headers/Header2';
 import InputField2 from '../../components/inputFields/InputField2';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import {useSelector} from 'react-redux';
-import Button4 from '../../components/buttons/button4';
-import colors from '../../globalStyles/colorScheme';
 import MapView, {
   PROVIDER_GOOGLE,
   Marker,
@@ -24,10 +22,13 @@ import MapView, {
   Callout,
 } from 'react-native-maps';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
+import Button4 from '../../components/buttons/button4';
+import colors from '../../globalStyles/colorScheme';
 import {
   searchUsersOnMapPostcode,
   searchUsersOnMapArea,
 } from '../../firebase/getFunctions';
+import {UserContext} from '../../contextApi/contextApi';
 
 function Search({navigation}) {
   const {
@@ -46,6 +47,7 @@ function Search({navigation}) {
   const [searchModal, setSearchModal] = useState(false);
   const [searchBarText, setSearchBarText] = useState('');
   const [focusPoint, setFocusPoint] = useState(location);
+  const {userType} = useContext(UserContext);
 
   return (
     <KeyboardAwareScrollView contentContainerStyle={styles.container}>
@@ -62,7 +64,9 @@ function Search({navigation}) {
 
       {/* Search Bar */}
       <InputField2
-        title={'Enter Your Suburb Or Postcode'}
+        title={
+          userType ? 'Enter Your Suburb Or Postcode' : 'Enter Your Suburb '
+        }
         value={searchBarText}
         onFocus={() => {
           setSearchModal(true);
@@ -89,9 +93,15 @@ function Search({navigation}) {
               autoFocus: true,
               onSubmitEditing: event => {
                 setSearchBarText(event.nativeEvent.text);
-                searchUsersOnMapPostcode(event.nativeEvent.text).then(data => {
-                  setSearchedUser(data);
-                });
+                searchUsersOnMapPostcode(event.nativeEvent.text, userType).then(
+                  data => {
+                    const _Data = data;
+                    if (_Data == []) return;
+                    const {Latitude, Longitude} = _Data[0]?.location;
+                    setFocusPoint({Latitude: Latitude, Longitude: Longitude});
+                    setSearchedUser(_Data);
+                  },
+                );
                 setSearchModal(false);
               },
             }}
@@ -100,9 +110,9 @@ function Search({navigation}) {
               console.log('=>>>>>>>>>>', details.geometry.location);
 
               const {lat, lng} = details.geometry.location;
-              searchUsersOnMapArea(lat, lng).then(data => {
+              searchUsersOnMapArea(lat, lng, userType).then(data => {
                 // console.log(lat, lng);
-                // console.log(data);
+                console.log('setFocusPoint', lat, lng);
 
                 setFocusPoint({Latitude: lat, Longitude: lng});
                 setSearchedUser(data);
@@ -144,7 +154,9 @@ function Search({navigation}) {
               longitude: parseFloat(location.Longitude),
             }}>
             <Image
-              source={require('../../../assets/images/p5.jpg')}
+              source={{
+                uri: 'https://cdn.iconscout.com/icon/free/png-256/account-avatar-profile-human-man-user-30448.png',
+              }}
               style={styles.markerIcon}
             />
           </Marker>
@@ -162,10 +174,10 @@ function Search({navigation}) {
                 tooltip={true}
                 onPress={() => {
                   item.userType
-                    ? navigation.navigate('Profile', {userData: item})
-                    : navigation.navigate('OthersProfile', {
+                    ? navigation.navigate('OthersProfile', {
                         userData: item,
-                      });
+                      })
+                    : navigation.navigate('Profile', {userData: item});
                 }}>
                 <View>
                   <View style={styles.calloutContainer}>
@@ -214,6 +226,9 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
     borderRadius: 40,
+    borderWidth: 1,
+    borderColor: colors.black,
+    backgroundColor: 'white',
   },
   textContainer: {
     backgroundColor: '#FAFAFA',

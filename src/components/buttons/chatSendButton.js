@@ -58,7 +58,6 @@ const styles = StyleSheet.create({
     borderColor: colorScheme.primary,
     borderRadius: 46,
     alignSelf: 'center',
-    marginBottom: '5%',
     justifyContent: 'space-between',
     flexDirection: 'row',
     paddingHorizontal: '5%',

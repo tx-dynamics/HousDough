@@ -31,15 +31,16 @@ function SetupScreen2({navigation}) {
       width: 300,
       height: 400,
       mediaType: 'video',
+      compressImageQuality: 0.6,
     })
       .then(image => {
         console.log('++++', image);
-        if (image.duration / 1000 > 45) {
+        if (image.duration / 1000 > 46) {
           showMessage({
             message: `Video Duration Exceeds`,
-            description: `Video Lenght is ${moment(image.duration).format(
+            description: `Video Length is ${moment(image.duration).format(
               'mm:ss',
-            )}. Video Lenght Cannot Exceeds 45 Seconds. Please upload Again`,
+            )}. Video Length Cannot Exceeds 45 Seconds. Please upload Again`,
             type: 'danger',
             duration: 5000,
           });
@@ -66,15 +67,16 @@ function SetupScreen2({navigation}) {
     ImagePicker.openPicker({
       multiple: false,
       mediaType: 'video',
+      compressImageQuality: 0.6,
     })
       .then(image => {
         console.log('openGallery', image);
-        if (image.duration / 1000 > 45) {
+        if (image.duration / 1000 > 46) {
           showMessage({
             message: `Video Duration Exceeds`,
-            description: `Video Lenght is ${moment(image.duration).format(
+            description: `Video Length is ${moment(image.duration).format(
               'mm:ss',
-            )}. Video Lenght Cannot Exceeds 45 Seconds. Please upload Again`,
+            )}. Video Length Cannot Exceeds 45 Seconds. Please upload Again`,
             type: 'danger',
             duration: 5000,
           });
@@ -96,7 +98,7 @@ function SetupScreen2({navigation}) {
         showMessage({
           message: error.message,
           type: 'danger',
-          duration: 3000,
+          duration: 10000,
         });
       });
   };

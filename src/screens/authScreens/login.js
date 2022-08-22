@@ -185,8 +185,9 @@ function Login({navigation}) {
                   message: `Forgot Password Email Sent`,
                   description: `Please Check ${forgetPassEmail} inbox/Scam for the resent password email`,
                   type: 'success',
-                  duration: 5000,
+                  duration: 7000,
                 });
+                setforgetPassEmail('');
               } else {
                 showMessage({
                   message: `Forgot Password Email Error`,
