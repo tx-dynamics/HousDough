@@ -3,6 +3,8 @@ import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {showMessage, hideMessage} from 'react-native-flash-message';
 import Video from 'react-native-video';
+import VideoPlayer from 'react-native-video-controls';
+
 import Header1 from '../../components/headers/Header1';
 import Button3 from '../../components/buttons/button3';
 import colors from '../../globalStyles/colorScheme';
@@ -15,6 +17,7 @@ import moment from 'moment';
 function SetupScreen2({navigation}) {
   // Image picker modal viability state
   const [ModalVisibility, setmodalVisibility] = useState(false);
+  const [videoPlayerControls, setVideoPlayerControls] = useState(true);
   const {userType} = useContext(UserContext);
   const {VideoLink, email, location} = useSelector(state => state.userProfile);
   const userDispatch = useDispatch();
@@ -129,11 +132,10 @@ function SetupScreen2({navigation}) {
       ) : (
         <View
           style={{...styles.imagePlaceholder, backgroundColor: colors.black}}>
-          <Video
-            repeat={true}
-            paused={true}
+          <VideoPlayer
+            disableBack
+            // paused={true}
             resizeMode={'contain'}
-            controls={true}
             source={{
               uri: VideoLink,
             }} // Can be a URL or a local file.

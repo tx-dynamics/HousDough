@@ -3,12 +3,18 @@ import auth from '@react-native-firebase/auth';
 import storage from '@react-native-firebase/storage';
 import {createThumbnail} from 'react-native-create-thumbnail';
 
-export const setOnBoarding = async (userType, userData, uid) => {
+export const setOnBoarding = async (
+  userType,
+  userData,
+  uid,
+  setProfileSetupProgress,
+) => {
   console.log('setOnBoarding', userData);
 
   createThumbnail({
     url: userData.VideoLink,
-    timeStamp: 5000,
+    // Frame at 5th sec of video
+    timeStamp: 1000,
   })
     .then(response => {
       const thumbnailReference = storage().ref(`/usersVideosThumbnail/${uid}`);
@@ -32,6 +38,7 @@ export const setOnBoarding = async (userType, userData, uid) => {
     const total = taskSnapshot.totalBytes;
     const done = taskSnapshot.bytesTransferred;
     const percentage = (done / total) * 100;
+    setProfileSetupProgress(percentage);
     console.log('percentage', (done / total) * 100);
   });
 

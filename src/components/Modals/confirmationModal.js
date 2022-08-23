@@ -22,34 +22,38 @@ import {
   setReference,
 } from '../../redux/features/userSlice';
 
-const ForgetPasswordModal = ({
+const ConfirmationModal = ({
   Visibility,
   onPress,
   onChangeText,
   forgotEmail,
-  onPress2,
+  onPressYes,
+  onPressNo,
 }) => {
   return (
     <Modal visible={Visibility} transparent={true} animationType={'fade'}>
       <Pressable onPress={onPress} style={styles.container}>
         <View style={styles.modal}>
-          <Text style={styles.text}>
-            Please Enter Your Email Below To Reset The Password
-          </Text>
-          <Inputfield
-            ShowPassword={true}
-            value={forgotEmail}
-            title={'Email'}
-            onChangeText={onChangeText}
-          />
+          {/* top Text */}
+          <Text style={styles.text}>Are you sure you want to log out?</Text>
 
-          <Button2 text={'Done'} onPress={onPress2} />
+          {/* Buttons */}
+          <View style={styles.buttonContainer}>
+            {/* Yes */}
+            <View style={{width: '45%'}}>
+              <Button2 text={'Yes'} onPress={onPressYes} />
+            </View>
+            {/* No */}
+            <View style={{width: '45%'}}>
+              <Button2 text={'No'} onPress={onPressNo} />
+            </View>
+          </View>
         </View>
       </Pressable>
     </Modal>
   );
 };
-export default ForgetPasswordModal;
+export default ConfirmationModal;
 
 const styles = StyleSheet.create({
   container: {
@@ -61,16 +65,16 @@ const styles = StyleSheet.create({
   modal: {
     backgroundColor: 'white',
     width: '85%',
-    height: Dimensions.get('window').height * 0.35,
+    height: Dimensions.get('window').height * 0.3,
     borderRadius: 20,
     paddingHorizontal: '5%',
     justifyContent: 'space-evenly',
     paddingVertical: '5%',
   },
   text: {
-    color: colors.black,
+    color: colors.primary,
     fontFamily: 'Poppins-Medium',
-    fontSize: 16,
+    fontSize: 20,
     alignSelf: 'center',
     marginVertical: '5%',
   },
@@ -78,5 +82,9 @@ const styles = StyleSheet.create({
     color: colors.black,
     fontFamily: 'Poppins-Medium',
     fontSize: 14,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });

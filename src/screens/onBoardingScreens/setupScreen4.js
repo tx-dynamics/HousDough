@@ -19,6 +19,7 @@ function SetupScreen4({navigation}) {
   const {userType, setOnBoardingDone, setPaymentDone, onBoardingDone} =
     useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
+  const [profileSetupProgress, setProfileSetupProgress] = useState(0);
   const {
     email,
     uid,
@@ -168,26 +169,28 @@ Note: If you don't have any previous experience write about what venues you want
                 _data = {..._data, PastExperience, Reference};
               }
               setIsLoading(true);
-              setOnBoarding(userType, _data, uid).then(data => {
-                setIsLoading(false);
-                if (data) {
-                  showMessage({
-                    message: `Profile Setup`,
-                    description: `Profile Setup Successfully!`,
-                    type: 'success',
-                    duration: 3000,
-                  });
-                  !userType && setPaymentDone(true);
-                  setOnBoardingDone(true);
-                } else {
-                  showMessage({
-                    message: `Profile Setup`,
-                    description: `Something Went Wrong!`,
-                    type: 'danger',
-                    duration: 3000,
-                  });
-                }
-              });
+              setOnBoarding(userType, _data, uid, setProfileSetupProgress).then(
+                data => {
+                  setIsLoading(false);
+                  if (data) {
+                    showMessage({
+                      message: `Profile Setup`,
+                      description: `Profile Setup Successfully!`,
+                      type: 'success',
+                      duration: 3000,
+                    });
+                    !userType && setPaymentDone(true);
+                    setOnBoardingDone(true);
+                  } else {
+                    showMessage({
+                      message: `Profile Setup`,
+                      description: `Something Went Wrong!`,
+                      type: 'danger',
+                      duration: 3000,
+                    });
+                  }
+                },
+              );
             }
           }}
           text={'Done'}
@@ -198,6 +201,7 @@ Note: If you don't have any previous experience write about what venues you want
       <LoaderMessageModal
         message={'You Profile is setting up, This might take a while'}
         Visibility={isLoading}
+        progressPercentage={profileSetupProgress}
       />
     </KeyboardAwareScrollView>
   );

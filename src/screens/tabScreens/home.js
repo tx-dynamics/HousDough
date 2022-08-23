@@ -8,11 +8,14 @@ import {UserContext} from '../../contextApi/contextApi';
 import {logout} from '../../firebase/authFunctions';
 import {getHomeData} from '../../firebase/getFunctions';
 import LoaderModal from '../../components/Modals/loaderModal';
+import ConfirmationModal from '../../components/Modals/confirmationModal';
 
 function Home({navigation}) {
   const {userType} = useContext(UserContext);
   const [Data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [ConfirmationModalVisible, setConfirmationModalVisible] =
+    useState(true);
 
   useEffect(() => {
     console.log('userType:', userType);
@@ -29,16 +32,7 @@ function Home({navigation}) {
       {/* Header */}
       <HomeHeader
         onPress={() => navigation.navigate('Messages')}
-        onPressLogout={() =>
-          logout().then(() => {
-            showMessage({
-              message: `Logout`,
-              description: `You Logged Out Successfully!`,
-              type: 'success',
-              duration: 3000,
-            });
-          })
-        }
+        onPressLogout={() => setConfirmationModalVisible(true)}
       />
       {/* Top Text */}
       <View style={styles.topText}>
@@ -91,6 +85,22 @@ function Home({navigation}) {
       ) : null}
       {/* Loader */}
       <LoaderModal Visibility={isLoading} />
+      {/* Confirmation Modal For Logout */}
+      <ConfirmationModal
+        Visibility={ConfirmationModalVisible}
+        onPress={() => setConfirmationModalVisible(false)}
+        onPressYes={() =>
+          logout().then(() => {
+            showMessage({
+              message: `Logout`,
+              description: `You Logged Out Successfully!`,
+              type: 'success',
+              duration: 3000,
+            });
+          })
+        }
+        onPressNo={() => setConfirmationModalVisible(false)}
+      />
     </View>
   );
 }
@@ -111,6 +121,5 @@ const styles = StyleSheet.create({
     color: colors.black,
     fontFamily: 'Poppins-Medium',
     fontSize: 18,
-    // width: '100%',
   },
 });

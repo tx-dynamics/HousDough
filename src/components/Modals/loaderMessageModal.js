@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import colors from '../../globalStyles/colorScheme';
 
-const LoaderMessageModal = ({Visibility, message}) => (
+const LoaderMessageModal = ({Visibility, message, progressPercentage}) => (
   <Modal visible={Visibility} transparent={true} animationType={'fade'}>
     <View style={styles.container}>
       <View style={styles.modal}>
@@ -21,6 +21,9 @@ const LoaderMessageModal = ({Visibility, message}) => (
         />
         <Text style={styles.text}>{message}</Text>
         <ActivityIndicator size={'large'} color={colors.secondary} />
+        <Text style={[styles.text, {color: colors.primary}]}>{`${parseInt(
+          progressPercentage,
+        )} %`}</Text>
       </View>
     </View>
   </Modal>
