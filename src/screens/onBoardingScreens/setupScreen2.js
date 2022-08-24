@@ -37,7 +37,7 @@ function SetupScreen2({navigation}) {
       compressImageQuality: 0.6,
     })
       .then(image => {
-        console.log('++++', image);
+        console.log('++++', image, image.duration);
         if (image.duration / 1000 > 46) {
           showMessage({
             message: `Video Duration Exceeds`,
@@ -65,6 +65,7 @@ function SetupScreen2({navigation}) {
         });
       });
   };
+
   //To Open Gallery
   const openGallery = () => {
     ImagePicker.openPicker({
@@ -85,6 +86,7 @@ function SetupScreen2({navigation}) {
           });
           return;
         }
+
         userDispatch(
           setVideoLink({
             VideoLink: image.path,
@@ -133,8 +135,9 @@ function SetupScreen2({navigation}) {
         <View
           style={{...styles.imagePlaceholder, backgroundColor: colors.black}}>
           <VideoPlayer
-            disableBack
-            // paused={true}
+            disableBack={true}
+            disableVolume={true}
+            paused={true}
             resizeMode={'contain'}
             source={{
               uri: VideoLink,

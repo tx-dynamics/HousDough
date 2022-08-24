@@ -23,7 +23,6 @@ function Chat({navigation, route}) {
   const [messages, setMessages] = useState([]);
   const [typedMessages, setTypedMessages] = useState('');
   const [initial, setInitial] = useState(true);
-  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
 
   const getMessages = async () => {
     await firestore()
@@ -38,8 +37,8 @@ function Chat({navigation, route}) {
 
         _data = _data[senderUid];
         console.log('------->', _data);
-        _data = _data.reverse();
-        setMessages(_data);
+        _data = _data?.reverse();
+        _data && setMessages(_data);
       });
   };
 
@@ -75,33 +74,12 @@ function Chat({navigation, route}) {
     };
   }, []);
 
-  // For Keyboard Handling
-
-  useEffect(() => {
-    const keyboardDidShowListener = Keyboard.addListener(
-      'keyboardDidShow',
-      () => {
-        setKeyboardVisible(true); // or some other action
-      },
-    );
-    const keyboardDidHideListener = Keyboard.addListener(
-      'keyboardDidHide',
-      () => {
-        setKeyboardVisible(false); // or some other action
-      },
-    );
-
-    return () => {
-      keyboardDidHideListener.remove();
-      keyboardDidShowListener.remove();
-    };
-  }, []);
-
   return (
     <View style={styles.container}>
       <Header3 onPress={() => navigation.goBack()} text={'Chat'} />
+
       <Pressable
-        style={{flex: 1, paddingBottom: isKeyboardVisible ? '15%' : '10%'}}
+        style={{flex: 1, paddingBottom: '15%'}}
         onPress={() => Keyboard.dismiss()}>
         <GiftedChat
           messages={messages}

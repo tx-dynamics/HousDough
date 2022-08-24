@@ -105,7 +105,7 @@ function OthersProfile({navigation, route}) {
           {/* message2 */}
           <Pressable
             onPress={() =>
-              navigation.navigate('Chat', {senderUid: userData?.uid})
+              navigation.navigate('Chat', {senderUid: userData.uid})
             }>
             <Image
               source={require('../../../assets/icons/message2.png')}

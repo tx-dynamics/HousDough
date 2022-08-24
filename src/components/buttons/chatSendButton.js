@@ -53,7 +53,6 @@ export default ChatSendButton;
 const styles = StyleSheet.create({
   container: {
     width: '90%',
-    // height: 55,
     borderWidth: 1,
     borderColor: colorScheme.primary,
     borderRadius: 46,

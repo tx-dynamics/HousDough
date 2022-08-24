@@ -7,6 +7,7 @@ const ErrorText = ({text}) => {
       style={{
         flexDirection: 'row',
         alignItems: 'flex-start',
+        paddingHorizontal: '2%',
       }}>
       <Image
         source={require('../../assets/icons/error.png')}

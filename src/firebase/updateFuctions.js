@@ -2,6 +2,7 @@ import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import storage from '@react-native-firebase/storage';
 import {createThumbnail} from 'react-native-create-thumbnail';
+import {Video} from 'react-native-compressor';
 
 export const setOnBoarding = async (
   userType,
@@ -10,6 +11,17 @@ export const setOnBoarding = async (
   setProfileSetupProgress,
 ) => {
   console.log('setOnBoarding', userData);
+
+  const result = await Video.compress(
+    userData.VideoLink,
+    {
+      compressionMethod: 'auto',
+    },
+    progress => {
+      console.log('Compression Progress: ', progress);
+      setProfileSetupProgress(percentage / 2);
+    },
+  );
 
   createThumbnail({
     url: userData.VideoLink,
@@ -32,13 +44,13 @@ export const setOnBoarding = async (
 
   const reference = storage().ref(`/usersVideos/${uid}`);
   // uploads file
-  const task = reference.putFile(userData.VideoLink);
+  const task = reference.putFile(result);
 
   task.on('state_changed', taskSnapshot => {
     const total = taskSnapshot.totalBytes;
     const done = taskSnapshot.bytesTransferred;
     const percentage = (done / total) * 100;
-    setProfileSetupProgress(percentage);
+    setProfileSetupProgress(50 + percentage / 2);
     console.log('percentage', (done / total) * 100);
   });
 
@@ -138,6 +150,7 @@ export const updateProfile = (
   Reference,
 ) => {
   console.log('updateProfile');
+
   return firestore()
     .collection('Users')
     .doc(auth()?.currentUser?.uid)

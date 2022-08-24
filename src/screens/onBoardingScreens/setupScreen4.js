@@ -199,7 +199,7 @@ Note: If you don't have any previous experience write about what venues you want
       </View>
       {/* Loader */}
       <LoaderMessageModal
-        message={'You Profile is setting up, This might take a while'}
+        message={'Your Profile is setting up, This might take a while'}
         Visibility={isLoading}
         progressPercentage={profileSetupProgress}
       />

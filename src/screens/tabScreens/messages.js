@@ -61,6 +61,9 @@ function Messages({navigation}) {
                   id: item[0],
                 });
                 if (index == _Data.length - 1) {
+                  temp.sort((a, b) => {
+                    return b.lastMessages.createdAt - a.lastMessages.createdAt;
+                  });
                   setMessages(temp);
                 }
               });

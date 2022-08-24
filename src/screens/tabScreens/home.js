@@ -15,7 +15,7 @@ function Home({navigation}) {
   const [Data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [ConfirmationModalVisible, setConfirmationModalVisible] =
-    useState(true);
+    useState(false);
 
   useEffect(() => {
     console.log('userType:', userType);

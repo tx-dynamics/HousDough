@@ -82,7 +82,9 @@ function Search({navigation}) {
           onPress={() => setSearchModal(false)}
           style={{backgroundColor: 'white', flex: 1, paddingHorizontal: '5%'}}>
           <GooglePlacesAutocomplete
-            placeholder="Enter Your Suburb Or Postcode"
+            placeholder={
+              userType ? 'Enter Your Suburb Or Postcode' : 'Enter Your Suburb '
+            }
             renderDescription={row =>
               row.description || row.formatted_address || row.name
             }

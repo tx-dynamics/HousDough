@@ -73,7 +73,7 @@ function EmployersProfile({navigation}) {
     <View style={styles.container}>
       <Header3
         onPress={() => navigation.navigate('Home')}
-        text={'Employers Profile'}
+        text={`Employer's Profile`}
       />
       <ScrollView>
         {/* Top Video */}

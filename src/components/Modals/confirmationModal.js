@@ -14,7 +14,7 @@ import colors from '../../globalStyles/colorScheme';
 import Inputfield from '../inputFields/InputField';
 import Inputfield4 from '../inputFields/InputField4';
 
-import Button2 from '../buttons/button2';
+import Button2 from '../buttons/button4';
 import {
   setName,
   setAboutYou,
@@ -40,12 +40,12 @@ const ConfirmationModal = ({
           {/* Buttons */}
           <View style={styles.buttonContainer}>
             {/* Yes */}
-            <View style={{width: '45%'}}>
-              <Button2 text={'Yes'} onPress={onPressYes} />
+            <View style={{width: '47%'}}>
+              <Button2 text={'Yes'} onPress={onPressYes} selected={true} />
             </View>
             {/* No */}
-            <View style={{width: '45%'}}>
-              <Button2 text={'No'} onPress={onPressNo} />
+            <View style={{width: '47%'}}>
+              <Button2 text={'No'} onPress={onPressNo} selected={true} />
             </View>
           </View>
         </View>
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   modal: {
     backgroundColor: 'white',
     width: '85%',
-    height: Dimensions.get('window').height * 0.3,
+    height: Dimensions.get('window').height * 0.25,
     borderRadius: 20,
     paddingHorizontal: '5%',
     justifyContent: 'space-evenly',
@@ -86,5 +86,6 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    paddingLeft: '4%',
   },
 });
