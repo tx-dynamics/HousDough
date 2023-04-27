@@ -7,7 +7,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import colors from '../../globalStyles/colorScheme';
 import Button2 from '../../components/buttons/button2';
 import {UserContext} from '../../contextApi/contextApi';
-import {setOnBoarding} from '../../firebase/updateFuctions';
+// import {setOnBoarding} from '../../firebase/updateFuctions';
 import {
   setAboutYou,
   setPastExperience,
@@ -169,28 +169,28 @@ Note: If you don't have any previous experience write about what venues you want
                 _data = {..._data, PastExperience, Reference};
               }
               setIsLoading(true);
-              setOnBoarding(userType, _data, uid, setProfileSetupProgress).then(
-                data => {
-                  setIsLoading(false);
-                  if (data) {
-                    showMessage({
-                      message: `Profile Setup`,
-                      description: `Profile Setup Successfully!`,
-                      type: 'success',
-                      duration: 3000,
-                    });
-                    !userType && setPaymentDone(true);
-                    setOnBoardingDone(true);
-                  } else {
-                    showMessage({
-                      message: `Profile Setup`,
-                      description: `Something Went Wrong!`,
-                      type: 'danger',
-                      duration: 3000,
-                    });
-                  }
-                },
-              );
+              // setOnBoarding(userType, _data, uid, setProfileSetupProgress).then(
+              //   data => {
+              //     setIsLoading(false);
+              //     if (data) {
+              //       showMessage({
+              //         message: `Profile Setup`,
+              //         description: `Profile Setup Successfully!`,
+              //         type: 'success',
+              //         duration: 3000,
+              //       });
+              //       !userType && setPaymentDone(true);
+              //       setOnBoardingDone(true);
+              //     } else {
+              //       showMessage({
+              //         message: `Profile Setup`,
+              //         description: `Something Went Wrong!`,
+              //         type: 'danger',
+              //         duration: 3000,
+              //       });
+              //     }
+              //   },
+              // );
             }
           }}
           text={'Done'}
