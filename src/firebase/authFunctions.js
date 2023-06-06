@@ -8,7 +8,7 @@ export const signup = async (values, userType) => {
   const {email, password, name} = values;
   let response = auth()
     .createUserWithEmailAndPassword(email, password)
-    .then(userData => {
+    .then(async userData => {
       return firestore()
         .collection('Users')
         .doc(userData.user.uid)
@@ -26,6 +26,7 @@ export const signup = async (values, userType) => {
       console.log('User account created & signed in!');
     })
     .catch(error => {
+      console.log("errorrr", error);
       if (error.code === 'auth/email-already-in-use') {
         return 'That email address is already in use!';
       }

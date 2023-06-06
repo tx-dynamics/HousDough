@@ -1,21 +1,21 @@
-import React, {useContext, useState, useEffect} from 'react';
-import {View, Text, StyleSheet, Pressable, Image} from 'react-native';
-import {Formik} from 'formik';
+import React, { useContext, useState, useEffect } from 'react';
+import { View, Text, StyleSheet, Pressable, Image } from 'react-native';
+import { Formik } from 'formik';
 import auth from '@react-native-firebase/auth';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
-import {showMessage, hideMessage} from 'react-native-flash-message';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
+import { showMessage, hideMessage } from 'react-native-flash-message';
 import colors from '../../globalStyles/colorScheme';
 import InputField from '../../components/inputFields/InputField';
 import AuthHeader from '../../components/headers/authHeader';
 import Button1 from '../../components/buttons/button1';
-import {UserContext} from '../../contextApi/contextApi';
-import {signup} from '../../firebase/authFunctions';
-import {signupSchema} from '../../validations/authValidations';
+import { UserContext } from '../../contextApi/contextApi';
+import { signup } from '../../firebase/authFunctions';
+import { signupSchema } from '../../validations/authValidations';
 import ErrorText from '../../components/ErrorText';
 import LoaderModal from '../../components/Modals/loaderModal';
 
-function Signup({navigation}) {
-  const {setOnBoardingDone, setPaymentDone, userType} = useContext(UserContext);
+function Signup({ navigation }) {
+  const { setOnBoardingDone, setPaymentDone, userType } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
   const [serverError, setServerError] = useState(null);
 
@@ -52,9 +52,10 @@ function Signup({navigation}) {
           ShowConfirmPassword: false,
         }}
         validationSchema={signupSchema}
-        onSubmit={(values, {resetForm}) => {
+        onSubmit={(values, { resetForm }) => {
           setOnBoardingDone(null);
-          setPaymentDone(null);
+          setPaymentDone(null)
+            // console.log("error", values)
           setIsLoading(true);
           signup(values, userType).then(res => {
             setIsLoading(false);
@@ -69,10 +70,12 @@ function Signup({navigation}) {
             } else {
               setServerError(res);
             }
-          });
+          }).catch((err) =>
+            console.log("error", err)
+          );
         }}>
         {formikProps => (
-          <View style={{flex: 1, marginTop: '5%'}}>
+          <View style={{ flex: 1, marginTop: '5%' }}>
             {/* Name Input */}
             <InputField
               title={'Name'}
