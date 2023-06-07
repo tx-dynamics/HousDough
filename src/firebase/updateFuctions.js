@@ -1,94 +1,94 @@
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
-// import storage from '@react-native-firebase/storage';
-import {createThumbnail} from 'react-native-create-thumbnail';
-import {Video} from 'react-native-compressor';
+import storage from '@react-native-firebase/storage';
+import { createThumbnail } from 'react-native-create-thumbnail';
+import { Video } from 'react-native-compressor';
 
-// export const setOnBoarding = async (
-//   userType,
-//   userData,
-//   uid,
-//   setProfileSetupProgress,
-// ) => {
-//   console.log('setOnBoarding', userData);
+export const setOnBoarding = async (
+  userType,
+  userData,
+  uid,
+  setProfileSetupProgress,
+) => {
+  console.log('setOnBoarding', userData);
 
-//   const result = await Video.compress(
-//     userData.VideoLink,
-//     {
-//       compressionMethod: 'auto',
-//     },
-//     progress => {
-//       console.log('Compression Progress: ', progress);
-//       setProfileSetupProgress(percentage / 2);
-//     },
-//   );
+  const result = await Video.compress(
+    userData.VideoLink,
+    {
+      compressionMethod: 'auto',
+    },
+    progress => {
+      console.log('Compression Progress: ', progress);
+      setProfileSetupProgress(percentage / 2);
+    },
+  );
 
-//   createThumbnail({
-//     url: userData.VideoLink,
-//     // Frame at 5th sec of video
-//     timeStamp: 1000,
-//   })
-//     .then(response => {
-//       const thumbnailReference = storage().ref(`/usersVideosThumbnail/${uid}`);
+  createThumbnail({
+    url: userData.VideoLink,
+    // Frame at 5th sec of video
+    timeStamp: 1000,
+  })
+    .then(response => {
+      const thumbnailReference = storage().ref(`/usersVideosThumbnail/${uid}`);
 
-//       console.log('response.path', response.path);
+      console.log('response.path', response.path);
 
-//       thumbnailReference.putFile(response.path).then(async () => {
-//         console.log('Image uploaded to the bucket!');
-//         userData.thumbnail = await storage()
-//           .ref(`/usersVideosThumbnail/${uid}`)
-//           .getDownloadURL();
-//       });
-//     })
-//     .catch(err => console.log({err}));
+      thumbnailReference.putFile(response.path).then(async () => {
+        console.log('Image uploaded to the bucket!');
+        userData.thumbnail = await storage()
+          .ref(`/usersVideosThumbnail/${uid}`)
+          .getDownloadURL();
+      });
+    })
+    .catch(err => console.log({ err }));
 
-//   const reference = storage().ref(`/usersVideos/${uid}`);
-//   // uploads file
-//   const task = reference.putFile(result);
+  const reference = storage().ref(`/usersVideos/${uid}`);
+  // uploads file
+  const task = reference.putFile(result);
 
-//   task.on('state_changed', taskSnapshot => {
-//     const total = taskSnapshot.totalBytes;
-//     const done = taskSnapshot.bytesTransferred;
-//     const percentage = (done / total) * 100;
-//     setProfileSetupProgress(50 + percentage / 2);
-//     console.log('percentage', (done / total) * 100);
-//   });
+  task.on('state_changed', taskSnapshot => {
+    const total = taskSnapshot.totalBytes;
+    const done = taskSnapshot.bytesTransferred;
+    const percentage = (done / total) * 100;
+    setProfileSetupProgress(50 + percentage / 2);
+    console.log('percentage', (done / total) * 100);
+  });
 
-//   return task
-//     .then(async () => {
-//       console.log('Video uploaded to the bucket!');
+  return task
+    .then(async () => {
+      console.log('Video uploaded to the bucket!');
 
-//       userData.VideoLink = await storage()
-//         .ref(`/usersVideos/${uid}`)
-//         .getDownloadURL();
+      userData.VideoLink = await storage()
+        .ref(`/usersVideos/${uid}`)
+        .getDownloadURL();
 
-//       return firestore()
-//         .collection('Users')
-//         .doc(auth()?.currentUser?.uid)
-//         .set(
-//           {
-//             onBoarding: true,
-//             ...userData,
-//           },
-//           {merge: true},
-//         )
-//         .then(() => {
-//           console.log('User OnBoarding set to true');
-//           return true;
-//         })
-//         .catch(error => {
-//           console.log(error);
-//           return false;
-//         });
-//     })
-//     .catch(error => {
-//       console.log(error);
-//       return false;
-//     });
-// };
+      return firestore()
+        .collection('Users')
+        .doc(auth()?.currentUser?.uid)
+        .set(
+          {
+            onBoarding: true,
+            ...userData,
+          },
+          { merge: true },
+        )
+        .then(() => {
+          console.log('User OnBoarding set to true');
+          return true;
+        })
+        .catch(error => {
+          console.log(error);
+          return false;
+        });
+    })
+    .catch(error => {
+      console.log(error);
+      return false;
+    });
+};
 
 export const setPaymentMethod = async (userType, email, Plan, value) => {
-  const {cardNumber, cvv, expDate, name} = value;
+  const { cardNumber, cvv, expDate, name } = value;
   // console.log('setPaymentMethod', email, Plan, value);
 
   var myHeaders = new Headers();
@@ -126,7 +126,7 @@ export const setPaymentMethod = async (userType, email, Plan, value) => {
         return firestore()
           .collection('Users')
           .doc(auth()?.currentUser?.uid)
-          .update({paymentMethod: true})
+          .update({ paymentMethod: true })
           .then(() => {
             console.log('User payment Method set to true');
             return true;
@@ -154,7 +154,7 @@ export const updateProfile = (
   return firestore()
     .collection('Users')
     .doc(auth()?.currentUser?.uid)
-    .update({name: userName, AboutYou, PastExperience, Reference})
+    .update({ name: userName, AboutYou, PastExperience, Reference })
     .then(() => {
       console.log('Profile Updated');
       return true;
@@ -174,7 +174,7 @@ export async function addToArray(collection, doc, array, value) {
       {
         [array]: firestore.FieldValue.arrayUnion(value),
       },
-      {merge: true},
+      { merge: true },
     );
 }
 

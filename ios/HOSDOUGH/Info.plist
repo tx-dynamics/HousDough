@@ -20,6 +20,17 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.709116724835-p0qq3pvdibhos4k859m5jdbmls2b4p7f</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -44,7 +55,9 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We are accessing the location of the user to show user a relevent data accrording to his location</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>To access the photo of user for profile mangment </string>
+	<string>To access the photo of user for profile mangmeznt </string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>To access the microhpone for recording video </string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Poppins-Bold.ttf</string>

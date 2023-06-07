@@ -1,25 +1,25 @@
-import React, {useState, useContext} from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
-import {showMessage, hideMessage} from 'react-native-flash-message';
-import {useSelector, useDispatch} from 'react-redux';
-import {Formik} from 'formik';
+import React, { useState, useContext } from 'react';
+import { View, Text, StyleSheet, Image } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
+import { showMessage, hideMessage } from 'react-native-flash-message';
+import { useSelector, useDispatch } from 'react-redux';
+import { Formik } from 'formik';
 import Header3 from '../../components/headers/Header3';
 import InputField3 from '../../components/inputFields/InputField3';
 import CheckBox from '@react-native-community/checkbox';
 import Button2 from '../../components/buttons/button2';
-import {UserContext} from '../../contextApi/contextApi';
-import {setPaymentMethod} from '../../firebase/updateFuctions';
+import { UserContext } from '../../contextApi/contextApi';
+import { setPaymentMethod } from '../../firebase/updateFuctions';
 import ErrorText from '../../components/ErrorText';
-import {paymentInformationSchema} from '../../validations/paymentValidations';
+import { paymentInformationSchema } from '../../validations/paymentValidations';
 import LoaderModal from '../../components/Modals/loaderModal';
 
-function PaymentInformation({navigation}) {
-  const {setPaymentDone, userType} = useContext(UserContext);
+function PaymentInformation({ navigation }) {
+  const { setPaymentDone, userType } = useContext(UserContext);
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const {email} = useSelector(state => state.userProfile);
-  const {Plan} = useSelector(state => state.userPayment);
+  const { email } = useSelector(state => state.userProfile);
+  const { Plan } = useSelector(state => state.userPayment);
 
   return (
     <KeyboardAwareScrollView contentContainerStyle={styles.container}>
@@ -29,7 +29,7 @@ function PaymentInformation({navigation}) {
         onPress={() => navigation.navigate('PaymentMethod')}
       />
 
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         {/*  Credit Card*/}
         <Image
           source={require('../../../assets/images/CreditCard.png')}
@@ -75,9 +75,9 @@ function PaymentInformation({navigation}) {
             });
           }}>
           {formikProps => (
-            <View style={{flex: 1}}>
+            <View style={{ flex: 1 }}>
               {/* Name And Credit Card */}
-              <View style={{alignItems: 'center'}}>
+              <View style={{ alignItems: 'center' }}>
                 {/* Name */}
                 <InputField3
                   title={'Name'}
@@ -86,12 +86,12 @@ function PaymentInformation({navigation}) {
                   value={formikProps.values.name}
                   onChangeText={formikProps.handleChange('name')}
                   onBlur={formikProps.handleBlur('name')}
-                  // keyboardType={'number-pad'}
+                // keyboardType={'number-pad'}
                 />
 
                 {/* Name ErrorText */}
                 {formikProps.touched.name && (
-                  <View style={{width: '80%'}}>
+                  <View style={{ width: '80%' }}>
                     <ErrorText text={formikProps.errors.name} />
                   </View>
                 )}
@@ -107,7 +107,7 @@ function PaymentInformation({navigation}) {
                   keyboardType={'phone-pad'}
                 />
                 {formikProps.touched.cardNumber && (
-                  <View style={{width: '80%'}}>
+                  <View style={{ width: '80%' }}>
                     <ErrorText text={formikProps.errors.cardNumber} />
                   </View>
                 )}
@@ -138,7 +138,7 @@ function PaymentInformation({navigation}) {
                   value={formikProps.values.expDate}
                   onChangeText={formikProps.handleChange('expDate')}
                   onBlur={formikProps.handleBlur('expDate')}
-                  keyboardType={'phone-pad'}
+                // keyboardType={'phone-pad'}
                 />
               </View>
               {formikProps.touched.cvv && (
@@ -177,7 +177,7 @@ function PaymentInformation({navigation}) {
                       !formikProps.values.saveInfo,
                     );
                   }}
-                  tintColors={{true: 'black', false: 'black'}}
+                  tintColors={{ true: 'black', false: 'black' }}
                 />
                 <Text style={styles.text1}>Save credit card Information</Text>
               </View>

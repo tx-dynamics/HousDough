@@ -21,11 +21,13 @@ export const getUserInfo = async () => {
 // This function is to get users
 
 export const getHomeData = async userType => {
-  console.log('getHomeData', userType);
+  let userTypee = userType == undefined ? 0 : userType
+  console.log('getHomeData', userTypee);
+
   const temp = [];
   await firestore()
     .collection('Users')
-    .where('userType', '!=', userType)
+    .where('userType', '!=', userTypee)
     .get()
     .then(data => {
       data.forEach((item, index) => {

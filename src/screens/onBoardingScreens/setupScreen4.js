@@ -1,13 +1,13 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {View, Text, StyleSheet, TextInput, ScrollView} from 'react-native';
+import React, { useContext, useEffect, useState } from 'react';
+import { View, Text, StyleSheet, TextInput, ScrollView } from 'react-native';
 import Header1 from '../../components/headers/Header1';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
-import {showMessage, hideMessage} from 'react-native-flash-message';
-import {useSelector, useDispatch} from 'react-redux';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
+import { showMessage, hideMessage } from 'react-native-flash-message';
+import { useSelector, useDispatch } from 'react-redux';
 import colors from '../../globalStyles/colorScheme';
 import Button2 from '../../components/buttons/button2';
-import {UserContext} from '../../contextApi/contextApi';
-// import {setOnBoarding} from '../../firebase/updateFuctions';
+import { UserContext } from '../../contextApi/contextApi';
+import { setOnBoarding } from '../../firebase/updateFuctions';
 import {
   setAboutYou,
   setPastExperience,
@@ -15,8 +15,8 @@ import {
 } from '../../redux/features/userSlice';
 import LoaderMessageModal from '../../components/Modals/loaderMessageModal';
 
-function SetupScreen4({navigation}) {
-  const {userType, setOnBoardingDone, setPaymentDone, onBoardingDone} =
+function SetupScreen4({ navigation }) {
+  const { userType, setOnBoardingDone, setPaymentDone, onBoardingDone } =
     useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
   const [profileSetupProgress, setProfileSetupProgress] = useState(0);
@@ -68,7 +68,7 @@ function SetupScreen4({navigation}) {
             placeholderTextColor={colors.black}
             multiline={true}
             value={AboutYou}
-            onChangeText={txt => userDispatch(setAboutYou({AboutYou: txt}))}
+            onChangeText={txt => userDispatch(setAboutYou({ AboutYou: txt }))}
           />
         </View>
         {/* Your Past Experience */}
@@ -98,7 +98,7 @@ Note: If you don't have any previous experience write about what venues you want
                 multiline={true}
                 value={PastExperience}
                 onChangeText={txt =>
-                  userDispatch(setPastExperience({PastExperience: txt}))
+                  userDispatch(setPastExperience({ PastExperience: txt }))
                 }
               />
             </View>
@@ -117,7 +117,7 @@ Note: If you don't have any previous experience write about what venues you want
                 multiline={true}
                 value={Reference}
                 onChangeText={txt =>
-                  userDispatch(setReference({Reference: txt}))
+                  userDispatch(setReference({ Reference: txt }))
                 }
               />
             </View>
@@ -125,7 +125,7 @@ Note: If you don't have any previous experience write about what venues you want
         ) : null}
       </ScrollView>
       {/* bottom space filler */}
-      <View style={{height: '10%'}} />
+      <View style={{ height: '10%' }} />
       {/* Done Button */}
 
       <View
@@ -166,31 +166,31 @@ Note: If you don't have any previous experience write about what venues you want
               };
               // If user is worker including PastExperience, Reference, properties
               if (userType == 0) {
-                _data = {..._data, PastExperience, Reference};
+                _data = { ..._data, PastExperience, Reference };
               }
               setIsLoading(true);
-              // setOnBoarding(userType, _data, uid, setProfileSetupProgress).then(
-              //   data => {
-              //     setIsLoading(false);
-              //     if (data) {
-              //       showMessage({
-              //         message: `Profile Setup`,
-              //         description: `Profile Setup Successfully!`,
-              //         type: 'success',
-              //         duration: 3000,
-              //       });
-              //       !userType && setPaymentDone(true);
-              //       setOnBoardingDone(true);
-              //     } else {
-              //       showMessage({
-              //         message: `Profile Setup`,
-              //         description: `Something Went Wrong!`,
-              //         type: 'danger',
-              //         duration: 3000,
-              //       });
-              //     }
-              //   },
-              // );
+              setOnBoarding(userType, _data, uid, setProfileSetupProgress).then(
+                data => {
+                  setIsLoading(false);
+                  if (data) {
+                    showMessage({
+                      message: `Profile Setup`,
+                      description: `Profile Setup Successfully!`,
+                      type: 'success',
+                      duration: 3000,
+                    });
+                    !userType && setPaymentDone(true);
+                    setOnBoardingDone(true);
+                  } else {
+                    showMessage({
+                      message: `Profile Setup`,
+                      description: `Something Went Wrong!`,
+                      type: 'danger',
+                      duration: 3000,
+                    });
+                  }
+                },
+              );
             }
           }}
           text={'Done'}

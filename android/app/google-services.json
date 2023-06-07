@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "409861501376",
-    "project_id": "hosdough-bd7e6",
-    "storage_bucket": "hosdough-bd7e6.appspot.com"
+    "project_number": "709116724835",
+    "project_id": "hous-dough",
+    "storage_bucket": "hous-dough.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:409861501376:android:f986adea63cd9ca31ed825",
+        "mobilesdk_app_id": "1:709116724835:android:25e0992398d0736cf21a56",
         "android_client_info": {
           "package_name": "com.hosdough"
         }
       },
       "oauth_client": [
         {
-          "client_id": "409861501376-th8n089ga1r8c5ftj3qmkgvkufu5esip.apps.googleusercontent.com",
+          "client_id": "709116724835-7hjhq1frf95hl1lb9l7k8i800gmcue6k.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDTpx6D2eghGIpWV-YZqRZPZgMNKvWeKZw"
+          "current_key": "AIzaSyDrh9In2e9TnLvDx5E4R4fp0j_bNKgRKEw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "409861501376-th8n089ga1r8c5ftj3qmkgvkufu5esip.apps.googleusercontent.com",
+              "client_id": "709116724835-7hjhq1frf95hl1lb9l7k8i800gmcue6k.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

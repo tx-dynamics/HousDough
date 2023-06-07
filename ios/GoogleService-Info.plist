@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>539689229979-u3g6ep1et5hdf4vnrf190cbeiknj6953.apps.googleusercontent.com</string>
+	<string>709116724835-p0qq3pvdibhos4k859m5jdbmls2b4p7f.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.539689229979-u3g6ep1et5hdf4vnrf190cbeiknj6953</string>
+	<string>com.googleusercontent.apps.709116724835-p0qq3pvdibhos4k859m5jdbmls2b4p7f</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBz9jMSuxJPj0WoFQyIbUs-CjAozf2ZQ5Q</string>
+	<string>AIzaSyAK5_Vg77ai5GZhwbvo_dEm1xMvfeitNh4</string>
 	<key>GCM_SENDER_ID</key>
-	<string>539689229979</string>
+	<string>709116724835</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>org.reactjs.native.example.HOSDOUGH</string>
+	<string>org.reactjs.native.example.HOSDOUGHTx</string>
 	<key>PROJECT_ID</key>
-	<string>hosdough-624e7</string>
+	<string>hous-dough</string>
 	<key>STORAGE_BUCKET</key>
-	<string>hosdough-624e7.appspot.com</string>
+	<string>hous-dough.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:539689229979:ios:36f49b02353c05f565b03e</string>
+	<string>1:709116724835:ios:f0ec051e0d395a09f21a56</string>
 </dict>
 </plist>
