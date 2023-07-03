@@ -1,16 +1,16 @@
-import React, {useState, useContext, useEffect} from 'react';
-import {View, Text, StyleSheet, ImageBackground} from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
-import {showMessage, hideMessage} from 'react-native-flash-message';
+import React, { useState, useContext, useEffect } from 'react';
+import { View, Text, StyleSheet, ImageBackground } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+import { showMessage, hideMessage } from 'react-native-flash-message';
 import Header1 from '../../components/headers/Header1';
 import Button3 from '../../components/buttons/button3';
 import Button4 from '../../components/buttons/button4';
-import {UserContext} from '../../contextApi/contextApi';
-import {setUserSkills} from '../../redux/features/userSlice';
+import { UserContext } from '../../contextApi/contextApi';
+import { setUserSkills } from '../../redux/features/userSlice';
 
-function SetupScreen3({navigation}) {
-  const {userType} = useContext(UserContext);
-  const {Skills} = useSelector(state => state.userProfile);
+function SetupScreen3({ navigation }) {
+  const { userType } = useContext(UserContext);
+  const { Skills } = useSelector(state => state.userProfile);
   const userDispatch = useDispatch();
 
   useEffect(() => {
@@ -53,7 +53,7 @@ function SetupScreen3({navigation}) {
       {/* Header */}
       <Header1
         text={
-          userType ? 'Select Skills You Are Looking For' : 'Select Your Skills'
+          userType === 1 ? 'Select Skills You Are Looking For' : 'Select Your Skills'
         }
         light={true}
         Screen={3}
@@ -75,16 +75,16 @@ function SetupScreen3({navigation}) {
       </View>
 
       {/* Next Arrow Button */}
-      <View style={{position: 'absolute', bottom: '10%', right: '5%'}}>
+      <View style={{ position: 'absolute', bottom: '10%', right: '5%' }}>
         <Button3
           onPress={() => {
             Skills.length === 0
               ? showMessage({
-                  message: `Skills Requires`,
-                  description: `Please Select Atleast One Skill`,
-                  type: 'info',
-                  duration: 3000,
-                })
+                message: `Skills Requires`,
+                description: `Please Select Atleast One Skill`,
+                type: 'info',
+                duration: 3000,
+              })
               : navigation.navigate('SetupScreen4');
           }}
         />

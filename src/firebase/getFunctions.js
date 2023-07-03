@@ -22,8 +22,7 @@ export const getUserInfo = async () => {
 
 export const getHomeData = async userType => {
   let userTypee = userType == undefined ? 0 : userType
-  console.log('getHomeData', userTypee);
-
+  console.log(userTypee, '2222222');
   const temp = [];
   await firestore()
     .collection('Users')

@@ -19,11 +19,12 @@ const InputField3 = ({
   value,
   onChangeText,
   keyboardType,
+  maxLength
 }) => {
   return (
-    <View style={{width: width}}>
+    <View style={{ width: width }}>
       <Text style={styles.text1}>{title}</Text>
-      <View style={{...styles.inputField, borderWidth: focused ? 1 : 0}}>
+      <View style={{ ...styles.inputField, borderWidth: focused ? 1 : 0 }}>
         <TextInput
           placeholder={placeHolder}
           style={styles.inputFieldText}
@@ -32,6 +33,7 @@ const InputField3 = ({
           value={value}
           onChangeText={onChangeText}
           keyboardType={keyboardType}
+          maxLength={maxLength}
         />
       </View>
     </View>

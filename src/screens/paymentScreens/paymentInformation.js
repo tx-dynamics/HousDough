@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
-import { showMessage, hideMessage } from 'react-native-flash-message';
+import FlashMessage, { showMessage, hideMessage } from 'react-native-flash-message';
 import { useSelector, useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import Header3 from '../../components/headers/Header3';
@@ -13,6 +13,9 @@ import { setPaymentMethod } from '../../firebase/updateFuctions';
 import ErrorText from '../../components/ErrorText';
 import { paymentInformationSchema } from '../../validations/paymentValidations';
 import LoaderModal from '../../components/Modals/loaderModal';
+import { Publish_Key, Secret_Key } from '@env'
+import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 
 function PaymentInformation({ navigation }) {
   const { setPaymentDone, userType } = useContext(UserContext);
@@ -20,6 +23,110 @@ function PaymentInformation({ navigation }) {
   const [isLoading, setIsLoading] = useState(false);
   const { email } = useSelector(state => state.userProfile);
   const { Plan } = useSelector(state => state.userPayment);
+  const CURRENCY = 'USD';
+  var CARD_TOKEN = null;
+
+  const getCreditCardToken = async (value) => {
+    const cardDetails = {
+      'card[number]': value?.cardNumber,
+      'card[exp_month]': value?.expDate.slice(0, 2),
+      'card[exp_year]': value?.expDate.slice(3, 5),
+      'card[cvc]': value?.cvv,
+    }
+    return fetch('https://api.stripe.com/v1/tokens', {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: `Bearer ${Publish_Key}`,
+      },
+      method: 'post',
+      body: Object.keys(cardDetails)
+        .map(key => key + '=' + cardDetails[key])
+        .join('&'),
+    })
+      .then(response => response.json())
+      .catch(error => console.log(error));
+  };
+
+  const subscribeUser = (creditCardToken) => {
+    return new Promise(resolve => {
+      CARD_TOKEN = creditCardToken.id;
+      setTimeout(() => {
+        resolve({ status: true });
+      }, 1000);
+    });
+  }
+
+  const charges = async () => {
+    const card = {
+      amount: (Plan === 'Standard Plan' ? 25 : 100) * 100,
+      currency: CURRENCY,
+      source: CARD_TOKEN,
+      description: email,
+    };
+    return fetch('https://api.stripe.com/v1/charges', {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: `Bearer ${Secret_Key}`,
+      },
+      method: 'post',
+      body: Object.keys(card)
+        .map(key => key + '=' + card[key])
+        .join('&'),
+    }).then(response => response.json());
+  };
+
+  const onSubmit = async (value) => {
+    setIsLoading(true);
+    let creditCardToken;
+    try {
+      // Create a credit card token
+      creditCardToken = await getCreditCardToken(value);
+      // return
+      // console.log('creditCardToken', creditCardToken);
+      if (creditCardToken.error) {
+        showMessage(creditCardToken.error.message);
+        setIsLoading(false);
+        return;
+      }
+    } catch (e) {
+      console.log('e', e);
+      setIsLoading(false);
+      return;
+    }
+    const { error } = await subscribeUser(creditCardToken);
+    try {
+      if (error) {
+        showMessage(error);
+        setIsLoading(false);
+      } else {
+        let pament_data = await charges();
+        if (pament_data.status == 'succeeded') {
+          firestore()
+            .collection('Users')
+            .doc(auth()?.currentUser?.uid)
+            .update({ paymentMethod: true })
+            .then(() => {
+              console.log('User payment Method set to true');
+              return true;
+            })
+            .catch(error => {
+              console.log(error);
+              return false;
+            });
+          setIsLoading(false);
+          setPaymentDone(true)
+        } else {
+          setIsLoading(false);
+          let str = pament_data?.error?.message;
+          showMessage('Your card was declined.');
+        }
+      }
+    } catch (error) {
+      console.log('error Payment=> . ', error);
+    }
+  };
 
   return (
     <KeyboardAwareScrollView contentContainerStyle={styles.container}>
@@ -28,6 +135,7 @@ function PaymentInformation({ navigation }) {
         text={'Payment Information'}
         onPress={() => navigation.navigate('PaymentMethod')}
       />
+      <LoaderModal Visibility={isLoading} />
 
       <View style={{ flex: 1 }}>
         {/*  Credit Card*/}
@@ -51,29 +159,31 @@ function PaymentInformation({ navigation }) {
             saveInfo: false,
           }}
           validationSchema={paymentInformationSchema}
-          onSubmit={value => {
-            console.log(value);
-            setIsLoading(true);
-            setPaymentMethod(userType, email, Plan, value).then(res => {
-              setIsLoading(false);
-              if (res) {
-                showMessage({
-                  message: `Payment Successfully`,
-                  description: `Payment Setup Successfully!`,
-                  type: 'success',
-                  duration: 3000,
-                });
-                setPaymentDone(true);
-              } else {
-                showMessage({
-                  message: `Payment Failed`,
-                  description: `Something Went Wrong! Please Enter Correct Information`,
-                  type: 'danger',
-                  duration: 3000,
-                });
-              }
-            });
-          }}>
+          onSubmit={(value) => onSubmit(value)}
+        // onSubmit={value => {
+        //   console.log(value);
+        //   setIsLoading(true);
+        //   setPaymentMethod(userType, email, Plan, value).then(res => {
+        //     setIsLoading(false);
+        //     if (res) {
+        //       showMessage({
+        //         message: `Payment Successfully`,
+        //         description: `Payment Setup Successfully!`,
+        //         type: 'success',
+        //         duration: 3000,
+        //       });
+        //       setPaymentDone(true);
+        //     } else {
+        //       showMessage({
+        //         message: `Payment Failed`,
+        //         description: `Something Went Wrong! Please Enter Correct Information`,
+        //         type: 'danger',
+        //         duration: 3000,
+        //       });
+        //     }
+        //   });
+        // }}
+        >
           {formikProps => (
             <View style={{ flex: 1 }}>
               {/* Name And Credit Card */}
@@ -101,6 +211,7 @@ function PaymentInformation({ navigation }) {
                   title={'Card Number'}
                   placeHolder={'1234567843252343'}
                   width={'90%'}
+                  maxLength={16}
                   value={formikProps.values.cardNumber}
                   onChangeText={formikProps.handleChange('cardNumber')}
                   onBlur={formikProps.handleBlur('cardNumber')}
@@ -122,8 +233,9 @@ function PaymentInformation({ navigation }) {
                 {/* CVV */}
                 <InputField3
                   title={'CVV'}
-                  placeHolder={'1234'}
+                  placeHolder={'123'}
                   width={'47%'}
+                  maxLength={3}
                   value={formikProps.values.cvv}
                   onChangeText={formikProps.handleChange('cvv')}
                   onBlur={formikProps.handleBlur('cvv')}

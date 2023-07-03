@@ -1,8 +1,8 @@
-import React, {createContext, useState} from 'react';
+import React, { createContext, useState } from 'react';
 
 export const UserContext = createContext();
 
-export const UserProvider = ({children}) => {
+export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [userType, setUserType] = useState(null);
   const [onBoardingDone, setOnBoardingDone] = useState(null);

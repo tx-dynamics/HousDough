@@ -73,7 +73,7 @@ function SetupScreen4({ navigation }) {
         </View>
         {/* Your Past Experience */}
 
-        {!userType ? (
+        {userType === 0 ? (
           <View>
             <Text style={styles.text1}>Your Past Experience</Text>
             {/* About You Text  */}
@@ -106,7 +106,7 @@ Note: If you don't have any previous experience write about what venues you want
         ) : null}
         {/* Reference */}
 
-        {!userType ? (
+        {userType === 0 ? (
           <View>
             <Text style={styles.text1}>Reference</Text>
             <View style={styles.box}>
@@ -179,7 +179,7 @@ Note: If you don't have any previous experience write about what venues you want
                       type: 'success',
                       duration: 3000,
                     });
-                    !userType && setPaymentDone(true);
+                    userType === 0 && setPaymentDone(true);
                     setOnBoardingDone(true);
                   } else {
                     showMessage({

@@ -4,8 +4,8 @@ import firestore from '@react-native-firebase/firestore';
 
 // This Function Is for Creatinon of new User
 export const signup = async (values, userType) => {
-  console.log('userType', userType);
-  const {email, password, name} = values;
+  console.log(userType, '111111');
+  const { email, password, name } = values;
   let response = auth()
     .createUserWithEmailAndPassword(email, password)
     .then(async userData => {
@@ -56,7 +56,7 @@ export const logout = async () => {
 //This Function is to Signin User
 
 export const signin = async values => {
-  const {email, password} = values;
+  const { email, password } = values;
 
   let response = auth()
     .signInWithEmailAndPassword(email, password)

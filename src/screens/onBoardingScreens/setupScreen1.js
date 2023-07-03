@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -7,17 +7,17 @@ import {
   TextInput,
   Pressable,
 } from 'react-native';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
-import {showMessage, hideMessage} from 'react-native-flash-message';
-import {useSelector, useDispatch} from 'react-redux';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
+import { showMessage, hideMessage } from 'react-native-flash-message';
+import { useSelector, useDispatch } from 'react-redux';
 import Geolocation from '@react-native-community/geolocation';
 import Geocoder from 'react-native-geocoding';
 import Header1 from '../../components/headers/Header1';
 import colors from '../../globalStyles/colorScheme';
 import Button3 from '../../components/buttons/button3';
-import {UserContext} from '../../contextApi/contextApi';
+import { UserContext } from '../../contextApi/contextApi';
 import LoaderModal from '../../components/Modals/loaderModal';
-import {setLocation, setPostCode} from '../../redux/features/userSlice';
+import { setLocation, setPostCode } from '../../redux/features/userSlice';
 
 const getAreaAndCity = async (currentLatitude, currentLongitude) => {
   const result = await Geocoder.from(currentLatitude, currentLongitude)
@@ -35,28 +35,27 @@ const getAreaAndCity = async (currentLatitude, currentLongitude) => {
           addressComponent.address_components.length - 3
         ].long_name;
       console.log(Area, City);
-      return {Area, City};
+      return { Area, City };
     })
     .catch(error => console.log('Geocoder', error));
 
   return result;
 };
 
-function SetupScreen1({navigation}) {
-  const {userType} = useContext(UserContext);
+function SetupScreen1({ navigation }) {
+  const { userType } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
   const [address, setAddress] = useState('');
   const userDispatch = useDispatch();
-  const {location, Postcode, uid} = useSelector(state => state.userProfile);
+  const { location, Postcode, uid } = useSelector(state => state.userProfile);
 
   Geocoder.init('AIzaSyD3BToDj_z_1ZLuhdDSURQplj3_9IgQSis'); // use a valid API key
 
   useEffect(() => {
-    console.log('setupScreen 1');
-    console.log('userType', Postcode);
   }, []);
 
   return (
+    console.log(userType, '-222222222'),
     <KeyboardAwareScrollView contentContainerStyle={styles.container}>
       {/* Header */}
       <Header1 text={'Share Your Location'} Screen={1} />
@@ -120,27 +119,27 @@ function SetupScreen1({navigation}) {
         <Text style={styles.text}>
           {address
             ? address
-            : userType
-            ? 'Add Your Venue Location'
-            : 'Use My Current Location'}
+            : userType === 1
+              ? 'Add Your Venue Location'
+              : 'Use My Current Location'}
         </Text>
       </Pressable>
       {/* Enter Your Postcode */}
-      {!userType ? (
+      {userType === 0 ? (
         <View style={styles.locationCard}>
           <TextInput
             style={styles.text}
             placeholder="Enter Your Postcode"
             value={Postcode}
             onChangeText={txt => {
-              userDispatch(setPostCode({Postcode: txt}));
+              userDispatch(setPostCode({ Postcode: txt }));
               console.log('Postcode', Postcode, txt);
             }}
           />
         </View>
       ) : null}
       {/* Next Arrow Button */}
-      <View style={{position: 'absolute', bottom: '10%', right: '5%'}}>
+      <View style={{ position: 'absolute', bottom: '10%', right: '5%' }}>
         <Button3
           onPress={() => {
             if (location.Latitude == null) {

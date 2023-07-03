@@ -1,16 +1,16 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
-import {Formik} from 'formik';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
-import {useSelector} from 'react-redux';
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
+import { Formik } from 'formik';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
+import { useSelector } from 'react-redux';
 import Header3 from '../../components/headers/Header3';
 import colorScheme from '../../globalStyles/colorScheme';
 import Button2 from '../../components/buttons/button2';
 import InputField from '../../components/inputFields/InputField';
 import ErrorText from '../../components/ErrorText';
 
-function PaymentMethod({navigation}) {
-  const {Plan} = useSelector(state => state.userPayment);
+function PaymentMethod({ navigation }) {
+  const { Plan } = useSelector(state => state.userPayment);
 
   return (
     <KeyboardAwareScrollView contentContainerStyle={styles.container}>
@@ -24,7 +24,7 @@ function PaymentMethod({navigation}) {
       </View>
 
       {/* Middle */}
-      <View style={{paddingHorizontal: '5%', flex: 1}}>
+      <View style={{ paddingHorizontal: '5%', flex: 1 }}>
         <Text style={styles.text1}>Package</Text>
         {/* Top location Card */}
 
@@ -80,18 +80,18 @@ function PaymentMethod({navigation}) {
             justifyContent: 'space-between',
           }}>
           <Text style={styles.text1}>Total Payment</Text>
-          <Text style={styles.text4}>$25.00</Text>
+          <Text style={styles.text4}>${Plan === 'Standard Plan' ? 25 : 100}</Text>
         </View>
       </View>
 
       {/* Invoices Email Field */}
       <Formik
-        initialValues={{email: ''}}
+        initialValues={{ email: '' }}
         onSubmit={values => {
           console.log(values);
         }}>
         {formikProps => (
-          <View style={{marginTop: '15%', paddingHorizontal: '5%'}}>
+          <View style={{ marginTop: '15%', paddingHorizontal: '5%' }}>
             {/* <Text style={styles.text1}>
               Please Enter Email Below For The Invoices
             </Text> */}
@@ -114,7 +114,7 @@ function PaymentMethod({navigation}) {
       </Formik>
 
       {/* Next Button */}
-      <View style={{marginHorizontal: '5%', marginBottom: '5%'}}>
+      <View style={{ marginHorizontal: '5%', marginBottom: '5%' }}>
         <Button2
           text={'Next'}
           onPress={() => navigation.navigate('PaymentInformation')}
