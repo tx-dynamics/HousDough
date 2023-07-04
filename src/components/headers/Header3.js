@@ -1,32 +1,60 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
+import { View, Text, StyleSheet, Image, Pressable, TouchableOpacity, Alert } from 'react-native';
 
 import colors from '../../globalStyles/colorScheme';
 
-const Header3 = ({text, onPress}) => (
-  <View style={styles.container}>
-    {/* Back Arrow Icon */}
-    {
-      <Pressable
+const Header3 = (props) => {
+  const { text, onPress, onPressTwo } = props
+  return (
+    <View style={styles.container}>
+      {/* Back Arrow Icon */}
+      {
+
+        <Pressable
+          style={{
+            height: '90%',
+            width: '6%',
+            justifyContent: 'center',
+          }}
+          onPress={onPress}>
+          <Image
+            source={require('../../../assets/icons/back_arrow.png')}
+            resizeMode={'contain'}
+            style={{ width: '100%' }}
+          />
+        </Pressable>
+      }
+
+      <Text style={styles.text1}>{text}</Text>
+      {/* Placeholder */}
+      <TouchableOpacity
         style={{
-          height: '90%',
-          width: '6%',
+          height: '100%',
+          width: '8%',
           justifyContent: 'center',
         }}
-        onPress={onPress}>
+        onPress={onPressTwo}
+      // onPress={() => Alert.alert('Delte user', 'Are you sure you want to delete this user',
+      //   [
+      //     {
+      //       text: "Cancel",
+      //       onPress: () => console.log("Cancel Pressed"),
+      //       style: "cancel"
+      //     },
+      //     { text: "OK", onPress: () => onPressTwo() }
+      //   ]
+      // )}
+      >
         <Image
-          source={require('../../../assets/icons/back_arrow.png')}
+          source={require('../../../assets/icons/deleteUser.png')}
           resizeMode={'contain'}
-          style={{width: '100%'}}
+          style={{ width: '100%' }}
         />
-      </Pressable>
-    }
+      </TouchableOpacity>
+    </View>
+  )
 
-    <Text style={styles.text1}>{text}</Text>
-    {/* Placeholder */}
-    <Text> {'   '}</Text>
-  </View>
-);
+}
 
 export default Header3;
 

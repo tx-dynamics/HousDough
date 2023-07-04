@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -7,22 +7,24 @@ import {
   ScrollView,
   Pressable,
   Dimensions,
+  Alert,
 } from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Geocoder from 'react-native-geocoding';
-import {showMessage, hideMessage} from 'react-native-flash-message';
+import { showMessage, hideMessage } from 'react-native-flash-message';
 
 import Header3 from '../../components/headers/Header3';
 import HomeCard from '../../components/homeCard';
 import colors from '../../globalStyles/colorScheme';
 import Button4 from '../../components/buttons/button4';
 import VideoCard from '../../components/videoCard';
-import {UserContext} from '../../contextApi/contextApi';
+import { UserContext } from '../../contextApi/contextApi';
 import UpdateProfileModal from '../../components/Modals/updateProfileModal';
-import {updateProfile} from '../../firebase/updateFuctions';
+import { updateProfile } from '../../firebase/updateFuctions';
+import { firebase } from '@react-native-firebase/firestore';
 
-function EmployersProfile({navigation}) {
-  const {userType} = useContext(UserContext);
+function EmployersProfile({ navigation }) {
+  const { userType } = useContext(UserContext);
   const [updatingModal, setupdatingModal] = useState(false);
   const [address, setAddress] = useState('Location');
 
@@ -56,7 +58,7 @@ function EmployersProfile({navigation}) {
             addressComponent.address_components.length - 3
           ].long_name;
         // console.log(Area, City);
-        return {Area, City};
+        return { Area, City };
       })
       .catch(error => console.log('Geocoder', error));
 
@@ -69,15 +71,37 @@ function EmployersProfile({navigation}) {
     });
   });
 
+  const deleteUser = async () => {
+    firebase
+      .auth().currentUser.delete()
+      .then(() => {
+        showMessage('Successfully deleted user')
+      })
+      .catch((error) => {
+        showMessage('Please login again to delete this user')
+      });
+
+  }
+
   return (
     <View style={styles.container}>
       <Header3
         onPress={() => navigation.navigate('Home')}
         text={`Employer's Profile`}
+        onPressTwo={() => Alert.alert('Delte user', 'Are you sure you want to delete this user',
+          [
+            {
+              text: "Cancel",
+              onPress: () => console.log("Cancel Pressed"),
+              style: "cancel"
+            },
+            { text: "Delete", onPress: () => deleteUser() }
+          ]
+        )}
       />
       <ScrollView>
         {/* Top Video */}
-        <View style={{marginHorizontal: '5%'}}>
+        <View style={{ marginHorizontal: '5%' }}>
           <VideoCard VideoUri={VideoLink} />
         </View>
         {/* Image and Info */}
@@ -89,12 +113,12 @@ function EmployersProfile({navigation}) {
             alignItems: 'center',
             marginBottom: '5%',
           }}>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             {/* Profile Image */}
 
             <View>
               <Text style={styles.text2}>{userName}</Text>
-              <View style={{flexDirection: 'row'}}>
+              <View style={{ flexDirection: 'row' }}>
                 <Image
                   source={require('../../../assets/icons/pin.png')}
                   resizeMode={'contain'}
@@ -114,13 +138,13 @@ function EmployersProfile({navigation}) {
             <Image
               source={require('../../../assets/icons/pencil.png')}
               resizeMode={'contain'}
-              style={{width: 30, height: 30}}
+              style={{ width: 30, height: 30 }}
             />
           </Pressable>
         </View>
 
         {/* About Section */}
-        <View style={{paddingHorizontal: '5%', marginBottom: '5%'}}>
+        <View style={{ paddingHorizontal: '5%', marginBottom: '5%' }}>
           <Text style={styles.text2}>About</Text>
 
           <Text style={styles.text4}>{AboutYou}</Text>

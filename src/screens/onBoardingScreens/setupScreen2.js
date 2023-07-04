@@ -1,7 +1,7 @@
-import React, {useState, useContext, useEffect} from 'react';
-import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
-import {showMessage, hideMessage} from 'react-native-flash-message';
+import React, { useState, useContext, useEffect } from 'react';
+import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+import { showMessage, hideMessage } from 'react-native-flash-message';
 import Video from 'react-native-video';
 import VideoPlayer from 'react-native-video-controls';
 
@@ -10,16 +10,16 @@ import Button3 from '../../components/buttons/button3';
 import colors from '../../globalStyles/colorScheme';
 import ImagePicker from 'react-native-image-crop-picker';
 import ImagePickerModal from '../../components/Modals/imagePickerModal';
-import {UserContext} from '../../contextApi/contextApi';
-import {setVideoLink} from '../../redux/features/userSlice';
+import { UserContext } from '../../contextApi/contextApi';
+import { setVideoLink } from '../../redux/features/userSlice';
 import moment from 'moment';
 
-function SetupScreen2({navigation}) {
+function SetupScreen2({ navigation }) {
   // Image picker modal viability state
   const [ModalVisibility, setmodalVisibility] = useState(false);
   const [videoPlayerControls, setVideoPlayerControls] = useState(true);
-  const {userType} = useContext(UserContext);
-  const {VideoLink, email, location} = useSelector(state => state.userProfile);
+  const { userType } = useContext(UserContext);
+  const { VideoLink, email, location } = useSelector(state => state.userProfile);
   const userDispatch = useDispatch();
 
   useEffect(() => {
@@ -49,7 +49,7 @@ function SetupScreen2({navigation}) {
           });
           return;
         }
-        userDispatch(setVideoLink({VideoLink: image.path}));
+        userDispatch(setVideoLink({ VideoLink: image.path }));
         showMessage({
           message: 'Media Selected',
           type: 'success',
@@ -133,7 +133,7 @@ function SetupScreen2({navigation}) {
         </Pressable>
       ) : (
         <View
-          style={{...styles.imagePlaceholder, backgroundColor: colors.black}}>
+          style={{ ...styles.imagePlaceholder, backgroundColor: colors.black }}>
           <VideoPlayer
             disableBack={true}
             disableVolume={true}
@@ -143,12 +143,12 @@ function SetupScreen2({navigation}) {
               uri: VideoLink,
             }} // Can be a URL or a local file.
             onBuffer={() => console.log('buffer')}
-            style={{width: '100%', height: '100%'}}
+            style={{ width: '100%', height: '100%' }}
           />
         </View>
       )}
       {/* Bottom Text */}
-      <View style={{flexWrap: 'wrap', width: '100%'}}>
+      <View style={{ flexWrap: 'wrap', width: '100%' }}>
         <Text style={styles.text}>
           {`Film a short 45 second video by pressing the record button or if you aren't great on the spot pre record one and upload it later. Venues will not be shown your profile until you upload a video.
 
@@ -159,7 +159,7 @@ function SetupScreen2({navigation}) {
         </Text>
       </View>
       {/* Next Arrow Button */}
-      <View style={{position: 'absolute', bottom: '10%', right: '5%'}}>
+      <View style={{ position: 'absolute', bottom: '10%', right: '5%' }}>
         <Button3
           onPress={() => {
             if (VideoLink == null)
