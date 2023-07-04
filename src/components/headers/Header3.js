@@ -34,16 +34,7 @@ const Header3 = (props) => {
           justifyContent: 'center',
         }}
         onPress={onPressTwo}
-      // onPress={() => Alert.alert('Delte user', 'Are you sure you want to delete this user',
-      //   [
-      //     {
-      //       text: "Cancel",
-      //       onPress: () => console.log("Cancel Pressed"),
-      //       style: "cancel"
-      //     },
-      //     { text: "OK", onPress: () => onPressTwo() }
-      //   ]
-      // )}
+
       >
         <Image
           source={require('../../../assets/icons/deleteUser.png')}
